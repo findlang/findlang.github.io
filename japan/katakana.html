@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=800">
+  <title>日语五十音图 - FindLang</title>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Noto Sans JP', Arial, '微软雅黑', sans-serif;
+      background: #fafbfc;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto 0 auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 32px 24px 24px 24px;
+    }
+    header {
+      background: #3f51b5;
+      color: #fff;
+      padding: 24px 0 16px 0;
+      text-align: center;
+      box-shadow: 0 2px 8px #0001;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin: 18px 0 0 0;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 20px;
+      border-radius: 20px;
+      transition: background 0.2s;
+    }
+    nav a:hover {
+      background: #283593;
+    }
+    .logo {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #1976d2;
+      letter-spacing: 2px;
+    }
+    .subtitle {
+      font-size: 1.1rem;
+      color: #666;
+      margin-top: 8px;
+    }
+    h1 {
+      font-size: 1.7rem;
+      margin: 0 0 16px 0;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    hr {
+      border: none;
+      border-top: 2px solid #e3e6ea;
+      margin: 24px 0;
+    }
+    table.gojyuon {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto 24px auto;
+      table-layout: fixed;
+      background: #f7fafd;
+    }
+    table.gojyuon th, table.gojyuon td {
+      border: 1px solid #e3e6ea;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 1.2rem;
+      font-family: 'Noto Sans JP', Arial, '微软雅黑', sans-serif;
+    }
+    table.gojyuon th {
+      background: #e3f2fd;
+      font-weight: 700;
+      color: #1976d2;
+    }
+    table.gojyuon td.romaji {
+      font-size: 0.95rem;
+      color: #888;
+      font-family: Arial, 'Noto Sans JP', '微软雅黑', sans-serif;
+    }
+    table.gojyuon td.kana {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #222;
+      letter-spacing: 1px;
+    }
+    @media print {
+      body {
+        background: #fff;
+      }
+      .container {
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+      }
+      header, footer {
+        display: none;
+      }
+      .container {
+        margin: 0;
+      }
+      table.gojyuon th, table.gojyuon td {
+        font-size: 1.1rem;
+        padding: 7px 0;
+      }
+    }
+    footer {
+      text-align: center;
+      color: #aaa;
+      font-size: 0.95rem;
+      margin: 32px 0 16px 0;
+    }
+  </style>
+</head>
+<body>
+<header>
+    <h1>日语五十音图</h1>
+    <nav>
+      <a href="../index.html">返回主站</a>
+      <a href="index.html">日语首页</a>
+      <a href="katakana.html">五十音图</a>
+      <a href="phrases.html">常用句</a>
+      <a href="grammar.html">语法</a>
+      <a href="vocabulary.html">词汇</a>
+    </nav>
+    </header>
+  <div class="container">
+    <div style="display: flex; justify-content: flex-end; gap: 16px; margin-bottom: 16px;">
+      <button onclick="window.print()" style="background: #1976d2; color: #fff; border: none; border-radius: 6px; padding: 8px 20px; font-size: 1rem; cursor: pointer; font-family: inherit; transition: background 0.2s;">打印</button>
+      <a href="katakana-a4-print.html" style="background: #fff; color: #1976d2; border: 2px solid #1976d2; border-radius: 6px; padding: 8px 20px; font-size: 1rem; text-decoration: none; display: inline-block; font-family: inherit; transition: background 0.2s, color 0.2s;">A4纸版/1纸</a>
+      <a href="katakana-a4.html" style="background: #fff; color: #1976d2; border: 2px solid #1976d2; border-radius: 6px; padding: 8px 20px; font-size: 1rem; text-decoration: none; display: inline-block; font-family: inherit; transition: background 0.2s, color 0.2s;">A4纸版</a>
+    </div>
+    <h1>日语五十音</h1>
+    <hr>
+    <table class="gojyuon">
+      <tr>
+        <th></th>
+        <th>あ段<br><span class="romaji">a</span></th>
+        <th>い段<br><span class="romaji">i</span></th>
+        <th>う段<br><span class="romaji">u</span></th>
+        <th>え段<br><span class="romaji">e</span></th>
+        <th>お段<br><span class="romaji">o</span></th>
+      </tr>
+      <tr>
+        <th>あ行<br><span class="romaji">a</span></th>
+        <td class="kana">あ / ア<br><span class="romaji">a</span></td>
+        <td class="kana">い / イ<br><span class="romaji">i</span></td>
+        <td class="kana">う / ウ<br><span class="romaji">u</span></td>
+        <td class="kana">え / エ<br><span class="romaji">e</span></td>
+        <td class="kana">お / オ<br><span class="romaji">o</span></td>
+      </tr>
+      <tr>
+        <th>か行<br><span class="romaji">ka</span></th>
+        <td class="kana">か / カ<br><span class="romaji">ka</span></td>
+        <td class="kana">き / キ<br><span class="romaji">ki</span></td>
+        <td class="kana">く / ク<br><span class="romaji">ku</span></td>
+        <td class="kana">け / ケ<br><span class="romaji">ke</span></td>
+        <td class="kana">こ / コ<br><span class="romaji">ko</span></td>
+      </tr>
+      <tr>
+        <th>さ行<br><span class="romaji">sa</span></th>
+        <td class="kana">さ / サ<br><span class="romaji">sa</span></td>
+        <td class="kana">し / シ<br><span class="romaji">shi</span></td>
+        <td class="kana">す / ス<br><span class="romaji">su</span></td>
+        <td class="kana">せ / セ<br><span class="romaji">se</span></td>
+        <td class="kana">そ / ソ<br><span class="romaji">so</span></td>
+      </tr>
+      <tr>
+        <th>た行<br><span class="romaji">ta</span></th>
+        <td class="kana">た / タ<br><span class="romaji">ta</span></td>
+        <td class="kana">ち / チ<br><span class="romaji">chi</span></td>
+        <td class="kana">つ / ツ<br><span class="romaji">tsu</span></td>
+        <td class="kana">て / テ<br><span class="romaji">te</span></td>
+        <td class="kana">と / ト<br><span class="romaji">to</span></td>
+      </tr>
+      <tr>
+        <th>な行<br><span class="romaji">na</span></th>
+        <td class="kana">な / ナ<br><span class="romaji">na</span></td>
+        <td class="kana">に / ニ<br><span class="romaji">ni</span></td>
+        <td class="kana">ぬ / ヌ<br><span class="romaji">nu</span></td>
+        <td class="kana">ね / ネ<br><span class="romaji">ne</span></td>
+        <td class="kana">の / ノ<br><span class="romaji">no</span></td>
+      </tr>
+      <tr>
+        <th>は行<br><span class="romaji">ha</span></th>
+        <td class="kana">は / ハ<br><span class="romaji">ha</span></td>
+        <td class="kana">ひ / ヒ<br><span class="romaji">hi</span></td>
+        <td class="kana">ふ / フ<br><span class="romaji">fu</span></td>
+        <td class="kana">へ / ヘ<br><span class="romaji">he</span></td>
+        <td class="kana">ほ / ホ<br><span class="romaji">ho</span></td>
+      </tr>
+      <tr>
+        <th>ま行<br><span class="romaji">ma</span></th>
+        <td class="kana">ま / マ<br><span class="romaji">ma</span></td>
+        <td class="kana">み / ミ<br><span class="romaji">mi</span></td>
+        <td class="kana">む / ム<br><span class="romaji">mu</span></td>
+        <td class="kana">め / メ<br><span class="romaji">me</span></td>
+        <td class="kana">も / モ<br><span class="romaji">mo</span></td>
+      </tr>
+      <tr>
+        <th>や行<br><span class="romaji">ya</span></th>
+        <td class="kana">や / ヤ<br><span class="romaji">ya</span></td>
+        <td></td>
+        <td class="kana">ゆ / ユ<br><span class="romaji">yu</span></td>
+        <td></td>
+        <td class="kana">よ / ヨ<br><span class="romaji">yo</span></td>
+      </tr>
+      <tr>
+        <th>ら行<br><span class="romaji">ra</span></th>
+        <td class="kana">ら / ラ<br><span class="romaji">ra</span></td>
+        <td class="kana">り / リ<br><span class="romaji">ri</span></td>
+        <td class="kana">る / ル<br><span class="romaji">ru</span></td>
+        <td class="kana">れ / レ<br><span class="romaji">re</span></td>
+        <td class="kana">ろ / ロ<br><span class="romaji">ro</span></td>
+      </tr>
+      <tr>
+        <th>わ行<br><span class="romaji">wa</span></th>
+        <td class="kana">わ / ワ<br><span class="romaji">wa</span></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="kana">を / ヲ<br><span class="romaji">wo</span></td>
+      </tr>
+      <tr>
+        <th>ん<br><span class="romaji">n</span></th>
+        <td class="kana">ん / ン<br><span class="romaji">n</span></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <!-- 浊音/半浊音表 -->
+    <hr>
+    <h2>浊音・半浊音</h2>
+    <table class="gojyuon">
+      <tr>
+        <th></th>
+        <th>が<br><span class="romaji">ga</span></th>
+        <th>ぎ<br><span class="romaji">gi</span></th>
+        <th>ぐ<br><span class="romaji">gu</span></th>
+        <th>げ<br><span class="romaji">ge</span></th>
+        <th>ご<br><span class="romaji">go</span></th>
+      </tr>
+      <tr>
+        <th>が行</th>
+        <td class="kana">が / ガ<br><span class="romaji">ga</span></td>
+        <td class="kana">ぎ / ギ<br><span class="romaji">gi</span></td>
+        <td class="kana">ぐ / グ<br><span class="romaji">gu</span></td>
+        <td class="kana">げ / ゲ<br><span class="romaji">ge</span></td>
+        <td class="kana">ご / ゴ<br><span class="romaji">go</span></td>
+      </tr>
+      <tr>
+        <th>ざ行</th>
+        <td class="kana">ざ / ザ<br><span class="romaji">za</span></td>
+        <td class="kana">じ / ジ<br><span class="romaji">ji</span></td>
+        <td class="kana">ず / ズ<br><span class="romaji">zu</span></td>
+        <td class="kana">ぜ / ゼ<br><span class="romaji">ze</span></td>
+        <td class="kana">ぞ / ゾ<br><span class="romaji">zo</span></td>
+      </tr>
+      <tr>
+        <th>だ行</th>
+        <td class="kana">だ / ダ<br><span class="romaji">da</span></td>
+        <td class="kana">ぢ / ヂ<br><span class="romaji">ji/di</span></td>
+        <td class="kana">づ / ヅ<br><span class="romaji">zu/du</span></td>
+        <td class="kana">で / デ<br><span class="romaji">de</span></td>
+        <td class="kana">ど / ド<br><span class="romaji">do</span></td>
+      </tr>
+      <tr>
+        <th>ば行</th>
+        <td class="kana">ば / バ<br><span class="romaji">ba</span></td>
+        <td class="kana">び / ビ<br><span class="romaji">bi</span></td>
+        <td class="kana">ぶ / ブ<br><span class="romaji">bu</span></td>
+        <td class="kana">べ / ベ<br><span class="romaji">be</span></td>
+        <td class="kana">ぼ / ボ<br><span class="romaji">bo</span></td>
+      </tr>
+      <tr>
+        <th>ぱ行</th>
+        <td class="kana">ぱ / パ<br><span class="romaji">pa</span></td>
+        <td class="kana">ぴ / ピ<br><span class="romaji">pi</span></td>
+        <td class="kana">ぷ / プ<br><span class="romaji">pu</span></td>
+        <td class="kana">ぺ / ペ<br><span class="romaji">pe</span></td>
+        <td class="kana">ぽ / ポ<br><span class="romaji">po</span></td>
+      </tr>
+    </table>
+    <!-- 拗音表 -->
+    <hr>
+    <h2>拗音</h2>
+    <table class="gojyuon">
+      <tr>
+        <th></th>
+        <th>ゃ<br><span class="romaji">ya</span></th>
+        <th>ゅ<br><span class="romaji">yu</span></th>
+        <th>ょ<br><span class="romaji">yo</span></th>
+      </tr>
+      <tr>
+        <th>き</th>
+        <td class="kana">きゃ / キャ<br><span class="romaji">kya</span></td>
+        <td class="kana">きゅ / キュ<br><span class="romaji">kyu</span></td>
+        <td class="kana">きょ / キョ<br><span class="romaji">kyo</span></td>
+      </tr>
+      <tr>
+        <th>ぎ</th>
+        <td class="kana">ぎゃ / ギャ<br><span class="romaji">gya</span></td>
+        <td class="kana">ぎゅ / ギュ<br><span class="romaji">gyu</span></td>
+        <td class="kana">ぎょ / ギョ<br><span class="romaji">gyo</span></td>
+      </tr>
+      <tr>
+        <th>し</th>
+        <td class="kana">しゃ / シャ<br><span class="romaji">sha</span></td>
+        <td class="kana">しゅ / シュ<br><span class="romaji">shu</span></td>
+        <td class="kana">しょ / ショ<br><span class="romaji">sho</span></td>
+      </tr>
+      <tr>
+        <th>じ</th>
+        <td class="kana">じゃ / ジャ<br><span class="romaji">ja</span></td>
+        <td class="kana">じゅ / ジュ<br><span class="romaji">ju</span></td>
+        <td class="kana">じょ / ジョ<br><span class="romaji">jo</span></td>
+      </tr>
+      <tr>
+        <th>ち</th>
+        <td class="kana">ちゃ / チャ<br><span class="romaji">cha</span></td>
+        <td class="kana">ちゅ / チュ<br><span class="romaji">chu</span></td>
+        <td class="kana">ちょ / チョ<br><span class="romaji">cho</span></td>
+      </tr>
+      <tr>
+        <th>ぢ</th>
+        <td class="kana">ぢゃ / ヂャ<br><span class="romaji">ja/dya</span></td>
+        <td class="kana">ぢゅ / ヂュ<br><span class="romaji">ju/dyu</span></td>
+        <td class="kana">ぢょ / ヂョ<br><span class="romaji">jo/dyo</span></td>
+      </tr>
+      <tr>
+        <th>に</th>
+        <td class="kana">にゃ / ニャ<br><span class="romaji">nya</span></td>
+        <td class="kana">にゅ / ニュ<br><span class="romaji">nyu</span></td>
+        <td class="kana">にょ / ニョ<br><span class="romaji">nyo</span></td>
+      </tr>
+      <tr>
+        <th>ひ</th>
+        <td class="kana">ひゃ / ヒャ<br><span class="romaji">hya</span></td>
+        <td class="kana">ひゅ / ヒュ<br><span class="romaji">hyu</span></td>
+        <td class="kana">ひょ / ヒョ<br><span class="romaji">hyo</span></td>
+      </tr>
+      <tr>
+        <th>び</th>
+        <td class="kana">びゃ / ビャ<br><span class="romaji">bya</span></td>
+        <td class="kana">びゅ / ビュ<br><span class="romaji">byu</span></td>
+        <td class="kana">びょ / ビョ<br><span class="romaji">byo</span></td>
+      </tr>
+      <tr>
+        <th>ぴ</th>
+        <td class="kana">ぴゃ / ピャ<br><span class="romaji">pya</span></td>
+        <td class="kana">ぴゅ / ピュ<br><span class="romaji">pyu</span></td>
+        <td class="kana">ぴょ / ピョ<br><span class="romaji">pyo</span></td>
+      </tr>
+      <tr>
+        <th>み</th>
+        <td class="kana">みゃ / ミャ<br><span class="romaji">mya</span></td>
+        <td class="kana">みゅ / ミュ<br><span class="romaji">myu</span></td>
+        <td class="kana">みょ / ミョ<br><span class="romaji">myo</span></td>
+      </tr>
+      <tr>
+        <th>り</th>
+        <td class="kana">りゃ / リャ<br><span class="romaji">rya</span></td>
+        <td class="kana">りゅ / リュ<br><span class="romaji">ryu</span></td>
+        <td class="kana">りょ / リョ<br><span class="romaji">ryo</span></td>
+      </tr>
+    </table>
+  </div>
+  <footer>
+    &copy; 2024 FindLang | 联系方式: htoptree@163.com
+  </footer>
+</body>
+</html>
