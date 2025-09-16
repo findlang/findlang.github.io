@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>艾宾浩斯记忆学习计划</title>
+    <title>学习计划 - 日英双语学习乐园</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700&family=Noto+Sans+JP:wght@500;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,35 +14,63 @@
         }
 
         body {
-            font-family: 'Microsoft YaHei', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Noto Sans SC', 'Noto Sans JP', Arial, sans-serif;
+            background: #f7f9fc;
+            color: #222;
             min-height: 100vh;
-            padding: 20px;
+        }
+        
+        header {
+            background: #3f51b5;
+            color: #fff;
+            padding: 24px 0 16px 0;
+            text-align: center;
+            box-shadow: 0 2px 8px #0001;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin: 18px 0 0 0;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 20px;
+            border-radius: 20px;
+            transition: background 0.2s;
+        }
+        
+        nav a:hover {
+            background: #283593;
         }
 
         .container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 32px auto 0 auto;
             background: white;
             border-radius: 15px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             overflow: hidden;
         }
 
-        .header {
+        .page-header {
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             color: white;
             padding: 30px;
             text-align: center;
         }
 
-        .header h1 {
+        .page-header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        .header p {
+        .page-header p {
             font-size: 1.1em;
             opacity: 0.9;
         }
@@ -48,6 +78,13 @@
         .form-section {
             padding: 40px;
             background: #f8f9fa;
+        }
+        
+        footer {
+            text-align: center;
+            color: #aaa;
+            font-size: 0.95rem;
+            margin: 32px 0 16px 0;
         }
 
         .form-grid {
@@ -200,9 +237,10 @@
         }
 
         .weekend {
-            background-color: #fff3e0 !important;
-            color: #e65100;
+            background-color: #f5f5f5 !important;
+            color: #333;
             font-weight: bold;
+            border-left: 4px solid #666 !important;
         }
 
         .lesson-row {
@@ -324,9 +362,14 @@
                 padding: 0;
             }
             
+            header {
+                display: none !important;
+            }
+            
             .container {
                 box-shadow: none;
                 border-radius: 0;
+                margin: 0;
             }
             
             .form-section {
@@ -354,7 +397,7 @@
                 display: none !important;
             }
 
-            .header.print-hidden {
+            .page-header.print-hidden {
                 display: none !important;
             }
 
@@ -372,6 +415,22 @@
 
             .print-hidden p {
                 display: none !important;
+            }
+            
+            footer {
+                display: none !important;
+            }
+            
+            /* 打印时周末行的特殊样式 */
+            .weekend {
+                background-color: #e8e8e8 !important;
+                border: 2px solid #333 !important;
+                font-weight: bold !important;
+            }
+            
+            .weekend td {
+                border: 1px solid #333 !important;
+                background-color: #e8e8e8 !important;
             }
         }
 
@@ -402,8 +461,21 @@
     </style>
 </head>
 <body>
+    <header>
+        <h1>学习计划</h1>
+        <nav>
+            <a href="../index.html">返回主站</a>
+            <a href="index.html">日语首页</a>
+            <a href="katakana.html">五十音图</a>
+            <a href="phrases.html">常用句</a>
+            <a href="grammar.html">语法</a>
+            <a href="vocabulary.html">词汇</a>
+            <a href="study-plan.html">学习计划</a>
+        </nav>
+    </header>
+    
     <div class="container">
-        <div class="header">
+        <div class="page-header">
             <h1>艾宾浩斯记忆学习计划</h1>
             <p>科学安排学习进度，提高记忆效果</p>
         </div>
@@ -428,9 +500,35 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="endDate">结束时间：</label>
-                    <input type="date" id="endDate" readonly>
-                    <small style="color: #666; margin-top: 5px; display: block;">根据课程数量自动计算</small>
+                    <label for="dailyLessons">每日课程数：</label>
+                    <input type="number" id="dailyLessons" min="1" max="10" value="1" required>
+                    <small style="color: #666; margin-top: 5px; display: block;">工作日每天学习的课程数量</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="weekendExtra">周末额外课程：</label>
+                    <input type="number" id="weekendExtra" min="0" max="5" value="0">
+                    <small style="color: #666; margin-top: 5px; display: block;">周末每天额外增加的课程数</small>
+                </div>
+
+                <div class="form-group">
+                    <label>结束时间设置：</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="autoEndDate" name="endDateMode" value="auto" checked>
+                            <label for="autoEndDate">自动计算</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="customEndDate" name="endDateMode" value="custom">
+                            <label for="customEndDate">自定义</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="endDate">结束日期：</label>
+                    <input type="date" id="endDate">
+                    <small id="endDateHint" style="color: #666; margin-top: 5px; display: block;">根据课程安排自动计算</small>
                 </div>
             </div>
 
@@ -506,6 +604,7 @@
                         <tr>
                             <th rowspan="2">序号</th>
                             <th rowspan="2">学习日期</th>
+                            <th rowspan="2">星期</th>
                             <th rowspan="2">学习内容</th>
                             <th colspan="3">短期记忆复习</th>
                             <th colspan="8">长期记忆复习周期（复习后打勾）</th>
@@ -530,28 +629,84 @@
             </div>
         </div>
     </div>
+    
+    <footer>
+        &copy; 2024 FindLang | 联系方式: htoptree@163.com
+    </footer>
 
     <script>
         // 设置默认日期为今天
         document.getElementById('startDate').value = new Date().toISOString().split('T')[0];
         
-        // 监听课程数量变化，自动计算结束时间
+        // 监听表单变化，自动计算结束时间
         document.getElementById('startLesson').addEventListener('input', updateEndDate);
         document.getElementById('endLesson').addEventListener('input', updateEndDate);
         document.getElementById('startDate').addEventListener('change', updateEndDate);
+        document.getElementById('dailyLessons').addEventListener('input', updateEndDate);
+        document.getElementById('weekendExtra').addEventListener('input', updateEndDate);
+        document.getElementById('autoEndDate').addEventListener('change', toggleEndDateMode);
+        document.getElementById('customEndDate').addEventListener('change', toggleEndDateMode);
         
+        // 初始化结束时间模式
+        toggleEndDateMode();
+        
+        // 切换结束时间模式
+        function toggleEndDateMode() {
+            const isAutoMode = document.getElementById('autoEndDate').checked;
+            const endDateInput = document.getElementById('endDate');
+            const endDateHint = document.getElementById('endDateHint');
+            
+            if (isAutoMode) {
+                endDateInput.readOnly = true;
+                endDateHint.textContent = '根据课程安排自动计算';
+                updateEndDate();
+            } else {
+                endDateInput.readOnly = false;
+                endDateHint.textContent = '请选择结束日期';
+            }
+        }
+
         // 自动计算结束时间
         function updateEndDate() {
+            const isAutoMode = document.getElementById('autoEndDate').checked;
+            if (!isAutoMode) return;
+            
             const startDateStr = document.getElementById('startDate').value;
             const startLesson = parseInt(document.getElementById('startLesson').value) || 1;
             const endLesson = parseInt(document.getElementById('endLesson').value) || 50;
+            const dailyLessons = parseInt(document.getElementById('dailyLessons').value) || 1;
+            const weekendExtra = parseInt(document.getElementById('weekendExtra').value) || 0;
             
             if (startDateStr && startLesson <= endLesson) {
                 const startDate = new Date(startDateStr);
-                const totalDays = endLesson - startLesson + 1;
-                const endDate = addDays(startDate, totalDays - 1);
+                const totalLessons = endLesson - startLesson + 1;
+                const endDate = calculateEndDate(startDate, totalLessons, dailyLessons, weekendExtra);
                 document.getElementById('endDate').value = formatDate(endDate);
             }
+        }
+
+        // 计算结束日期（考虑每日课程数和周末额外课程）
+        function calculateEndDate(startDate, totalLessons, dailyLessons, weekendExtra) {
+            let currentDate = new Date(startDate);
+            let remainingLessons = totalLessons;
+            
+            while (remainingLessons > 0) {
+                const dayOfWeek = currentDate.getDay(); // 0=周日, 6=周六
+                let todayLessons = dailyLessons;
+                
+                // 周末额外课程
+                if (dayOfWeek === 0 || dayOfWeek === 6) {
+                    todayLessons += weekendExtra;
+                }
+                
+                remainingLessons -= todayLessons;
+                
+                if (remainingLessons > 0) {
+                    currentDate.setDate(currentDate.getDate() + 1);
+                }
+            }
+            
+            return currentDate;
         }
 
         // 艾宾浩斯记忆曲线复习间隔
@@ -576,6 +731,12 @@
         function getWeekdayName(date) {
             const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
             return weekdays[date.getDay()];
+        }
+
+        // 判断是否为周末
+        function isWeekend(date) {
+            const dayOfWeek = date.getDay();
+            return dayOfWeek === 0 || dayOfWeek === 6;
         }
 
         // 格式化日期为 yyyy-mm-dd
@@ -605,10 +766,19 @@
                 const startDateStr = document.getElementById('startDate').value;
                 const startLesson = parseInt(document.getElementById('startLesson').value);
                 const endLesson = parseInt(document.getElementById('endLesson').value);
+                const dailyLessons = parseInt(document.getElementById('dailyLessons').value) || 1;
+                const weekendExtra = parseInt(document.getElementById('weekendExtra').value) || 0;
+                const isAutoMode = document.getElementById('autoEndDate').checked;
+                const endDateStr = document.getElementById('endDate').value;
 
                 // 验证输入
                 if (!startDateStr) {
                     showMessage('请选择开始日期', 'error');
+                    return;
+                }
+
+                if (!isAutoMode && !endDateStr) {
+                    showMessage('请选择结束日期', 'error');
                     return;
                 }
 
@@ -627,19 +797,65 @@
                     return;
                 }
 
-                const startDate = new Date(startDateStr);
-                const scheduleData = [];
-                
-                let currentDate = new Date(startDate);
-                let lessonIndex = 1;
+                if (dailyLessons < 1 || dailyLessons > 10) {
+                    showMessage('每日课程数必须在1-10之间', 'error');
+                    return;
+                }
 
-                // 生成每一课的学习计划
-                for (let lesson = startLesson; lesson <= endLesson; lesson++) {
+                const startDate = new Date(startDateStr);
+                const endDate = isAutoMode ? 
+                    calculateEndDate(startDate, endLesson - startLesson + 1, dailyLessons, weekendExtra) :
+                    new Date(endDateStr);
+
+                // 验证自定义结束日期
+                if (!isAutoMode && endDate < startDate) {
+                    showMessage('结束日期不能早于开始日期', 'error');
+                    return;
+                }
+
+                const scheduleData = generateLessonSchedule(startDate, endDate, startLesson, endLesson, dailyLessons, weekendExtra);
+
+                // 渲染表格
+                renderScheduleTable(scheduleData);
+                
+                // 显示列控制面板
+                document.getElementById('columnControlPanel').style.display = 'block';
+                
+                // 更新结束时间显示
+                if (isAutoMode) updateEndDate();
+                
+                showMessage(`学习计划生成成功！共${scheduleData.length}课`, 'success');
+
+            } catch (error) {
+                console.error('生成计划时出错:', error);
+                showMessage('生成计划时出错，请检查输入参数', 'error');
+            }
+        }
+
+        // 生成课程安排
+        function generateLessonSchedule(startDate, endDate, startLesson, endLesson, dailyLessons, weekendExtra) {
+            const scheduleData = [];
+            let currentDate = new Date(startDate);
+            let currentLesson = startLesson;
+            let lessonIndex = 1;
+
+            while (currentLesson <= endLesson && currentDate <= endDate) {
+                const dayOfWeek = currentDate.getDay(); // 0=周日, 6=周六
+                let todayLessons = dailyLessons;
+                
+                // 周末额外课程
+                if (dayOfWeek === 0 || dayOfWeek === 6) {
+                    todayLessons += weekendExtra;
+                }
+
+                // 生成当天的课程
+                for (let i = 0; i < todayLessons && currentLesson <= endLesson; i++) {
                     const lessonData = {
                         index: lessonIndex,
-                        lesson: lesson,
+                        lesson: currentLesson,
                         date: formatDate(currentDate),
-                        content: `第${lesson}课`,
+                        weekday: getWeekdayName(currentDate),
+                        content: `第${currentLesson}课`,
                         shortTerm: {
                             min5: calculateDateTime(currentDate, 5, 'minutes'),
                             min30: calculateDateTime(currentDate, 30, 'minutes'),
@@ -659,24 +875,14 @@
                     
                     scheduleData.push(lessonData);
                     lessonIndex++;
-                    currentDate = addDays(currentDate, 1);
+                    currentLesson++;
                 }
 
-                // 渲染表格
-                renderScheduleTable(scheduleData);
-                
-                // 显示列控制面板
-                document.getElementById('columnControlPanel').style.display = 'block';
-                
-                // 更新结束时间显示
-                updateEndDate();
-                
-                showMessage(`学习计划生成成功！共${endLesson - startLesson + 1}课`, 'success');
-
-            } catch (error) {
-                console.error('生成计划时出错:', error);
-                showMessage('生成计划时出错，请检查输入参数', 'error');
+                // 移动到下一天
+                currentDate.setDate(currentDate.getDate() + 1);
             }
+
+            return scheduleData;
         }
 
         // 计算复习时间
@@ -714,10 +920,16 @@
             scheduleData.forEach(item => {
                 const row = document.createElement('tr');
                 row.className = 'lesson-row';
+                
+                // 如果是周末，添加特殊样式
+                if (isWeekend(new Date(item.date))) {
+                    row.classList.add('weekend');
+                }
 
                 row.innerHTML = `
                     <td>${item.index}</td>
                     <td>${item.date}</td>
+                    <td>${item.weekday}</td>
                     <td>${item.content}</td>
                     <td class="review-cell col-min5">
                         <div class="review-time">${item.shortTerm.min5}</div>
@@ -803,17 +1015,20 @@
             });
 
             // 控制标题显示（包括页面顶部的header和结果区域的标题）
-            const pageHeader = document.querySelector('.header');
+            const pageHeader = document.querySelector('header');
+            const pageHeaderInContainer = document.querySelector('.page-header');
             const headerSection = document.getElementById('headerSection');
             const printTitle = document.getElementById('printTitle');
-            const printSubtitle = headerSection.querySelector('p');
+            const printSubtitle = headerSection ? headerSection.querySelector('p') : null;
             
             if (!showHeader) {
                 // 隐藏页面顶部的header区域
-                pageHeader.classList.add('print-hidden');
+                if (pageHeader) pageHeader.classList.add('print-hidden');
+                // 隐藏容器内的页面标题
+                if (pageHeaderInContainer) pageHeaderInContainer.classList.add('print-hidden');
                 // 隐藏结果区域的标题
-                headerSection.classList.add('print-hidden');
-                printTitle.classList.add('print-hidden');
+                if (headerSection) headerSection.classList.add('print-hidden');
+                if (printTitle) printTitle.classList.add('print-hidden');
                 if (printSubtitle) printSubtitle.classList.add('print-hidden');
             }
 

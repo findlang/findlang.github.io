@@ -1,26 +1,20 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=800">
-  <title>日语五十音图 - FindLang</title>
-  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>五十音图 - 日英双语学习乐园</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700&family=Noto+Sans+JP:wght@500;700&display=swap');
+    
     body {
-      font-family: 'Noto Sans JP', Arial, '微软雅黑', sans-serif;
-      background: #fafbfc;
+      font-family: 'Noto Sans SC', 'Noto Sans JP', Arial, sans-serif;
+      background: #f7f9fc;
       color: #222;
       margin: 0;
       padding: 0;
     }
-    .container {
-      max-width: 800px;
-      margin: 40px auto 0 auto;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      padding: 32px 24px 24px 24px;
-    }
+    
     header {
       background: #3f51b5;
       color: #fff;
@@ -28,12 +22,14 @@
       text-align: center;
       box-shadow: 0 2px 8px #0001;
     }
+    
     nav {
       display: flex;
       justify-content: center;
       gap: 32px;
       margin: 18px 0 0 0;
     }
+    
     nav a {
       color: #fff;
       text-decoration: none;
@@ -42,8 +38,17 @@
       border-radius: 20px;
       transition: background 0.2s;
     }
+    
     nav a:hover {
       background: #283593;
+    }
+    .container {
+      max-width: 800px;
+      margin: 32px auto 0 auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px #0001;
+      padding: 32px 24px 24px 24px;
     }
     .logo {
       font-size: 2.2rem;
@@ -61,6 +66,7 @@
       margin: 0 0 16px 0;
       font-weight: 700;
       letter-spacing: 1px;
+      color: #3f51b5;
     }
     hr {
       border: none;
@@ -105,12 +111,10 @@
         box-shadow: none;
         border-radius: 0;
         padding: 0;
+        margin: 0;
       }
       header, footer {
-        display: none;
-      }
-      .container {
-        margin: 0;
+        display: none !important;
       }
       table.gojyuon th, table.gojyuon td {
         font-size: 1.1rem;
@@ -126,8 +130,8 @@
   </style>
 </head>
 <body>
-<header>
-    <h1>日语五十音图</h1>
+  <header>
+    <h1>五十音图</h1>
     <nav>
       <a href="../index.html">返回主站</a>
       <a href="index.html">日语首页</a>
@@ -135,13 +139,14 @@
       <a href="phrases.html">常用句</a>
       <a href="grammar.html">语法</a>
       <a href="vocabulary.html">词汇</a>
+      <a href="study-plan.html">学习计划</a>
     </nav>
-    </header>
+  </header>
   <div class="container">
     <div style="display: flex; justify-content: flex-end; gap: 16px; margin-bottom: 16px;">
-      <button onclick="window.print()" style="background: #1976d2; color: #fff; border: none; border-radius: 6px; padding: 8px 20px; font-size: 1rem; cursor: pointer; font-family: inherit; transition: background 0.2s;">打印</button>
-      <a href="katakana-a4-print.html" style="background: #fff; color: #1976d2; border: 2px solid #1976d2; border-radius: 6px; padding: 8px 20px; font-size: 1rem; text-decoration: none; display: inline-block; font-family: inherit; transition: background 0.2s, color 0.2s;">A4纸版/1纸</a>
-      <a href="katakana-a4.html" style="background: #fff; color: #1976d2; border: 2px solid #1976d2; border-radius: 6px; padding: 8px 20px; font-size: 1rem; text-decoration: none; display: inline-block; font-family: inherit; transition: background 0.2s, color 0.2s;">A4纸版</a>
+      <button onclick="window.print()" style="background: #3f51b5; color: #fff; border: none; border-radius: 6px; padding: 8px 20px; font-size: 1rem; cursor: pointer; font-family: inherit; transition: background 0.2s;">打印</button>
+      <a href="katakana-a4-print.html" style="background: #fff; color: #3f51b5; border: 2px solid #3f51b5; border-radius: 6px; padding: 8px 20px; font-size: 1rem; text-decoration: none; display: inline-block; font-family: inherit; transition: background 0.2s, color 0.2s;">A4纸版/1纸</a>
+      <a href="katakana-a4.html" style="background: #fff; color: #3f51b5; border: 2px solid #3f51b5; border-radius: 6px; padding: 8px 20px; font-size: 1rem; text-decoration: none; display: inline-block; font-family: inherit; transition: background 0.2s, color 0.2s;">A4纸版</a>
     </div>
     <h1>日语五十音</h1>
     <hr>
