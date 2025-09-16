@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>JLPT N4 语法总结 - 日语学习乐园</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="JLPT N4级别语法点系统总结，包含复合句型、敬语基础、条件表达等进阶语法知识">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+    
+    :root {
+      --primary-color: #d32f2f;
+      --secondary-color: #1976d2;
+      --accent-color: #ff6f00;
+      --success-color: #388e3c;
+      --text-primary: #212121;
+      --text-secondary: #757575;
+      --background-light: #fafafa;
+      --background-white: #ffffff;
+      --shadow-light: rgba(0,0,0,0.1);
+      --shadow-medium: rgba(0,0,0,0.15);
+      --border-radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans SC', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 50%, #fd79a8 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .sakura {
+      position: fixed;
+      top: -10px;
+      z-index: -1;
+      color: #ffb3d9;
+      font-size: 14px;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100vh) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), #e57373);
+      color: white;
+      padding: 1.5rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+      animation: float 20s infinite linear;
+    }
+
+    @keyframes float {
+      0% { transform: translateX(-100px); }
+      100% { transform: translateX(100px); }
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      font-family: 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    nav a {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius);
+      font-weight: 500;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
+      font-size: 0.85rem;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .level-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--secondary-color), #42a5f5);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 1rem 0;
+      box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+    }
+
+    .grammar-section {
+      background: var(--background-white);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      margin: 1.5rem auto;
+      box-shadow: 0 4px 20px var(--shadow-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .grammar-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    }
+
+    .grammar-section h2 {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .grammar-section h3 {
+      color: var(--secondary-color);
+      font-size: 1.2rem;
+      margin: 1.5rem 0 0.8rem 0;
+      padding-left: 1rem;
+      border-left: 4px solid var(--secondary-color);
+    }
+
+    .grammar-point {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-left: 4px solid var(--accent-color);
+    }
+
+    .grammar-point h4 {
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+
+    .example {
+      background: #e3f2fd;
+      border-radius: 6px;
+      padding: 1rem;
+      margin: 0.8rem 0;
+      border-left: 3px solid var(--secondary-color);
+    }
+
+    .japanese {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 0.3rem;
+    }
+
+    .reading {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-style: italic;
+      margin-bottom: 0.3rem;
+    }
+
+    .translation {
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+
+    .pattern-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .pattern-card {
+      background: white;
+      border-radius: 8px;
+      padding: 1.2rem;
+      box-shadow: 0 2px 8px var(--shadow-light);
+      border-top: 3px solid var(--accent-color);
+    }
+
+    .pattern-card h5 {
+      color: var(--primary-color);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .tips {
+      background: #fff3e0;
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-left: 4px solid var(--accent-color);
+    }
+
+    .tips h4 {
+      color: var(--accent-color);
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .progress-tracker {
+      background: var(--background-white);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      margin: 1.5rem auto;
+      box-shadow: 0 4px 20px var(--shadow-light);
+      text-align: center;
+    }
+
+    .progress-tracker h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .progress-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .progress-item {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .progress-item:hover {
+      background: #e3f2fd;
+    }
+
+    .progress-item.completed {
+      background: #e8f5e8;
+      border: 2px solid var(--success-color);
+    }
+
+    .progress-item input[type="checkbox"] {
+      margin-right: 0.5rem;
+      transform: scale(1.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-secondary);
+      background: var(--background-white);
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.6rem; }
+      .subtitle { font-size: 0.9rem; }
+      .grammar-section { padding: 1.5rem; }
+      .pattern-grid { grid-template-columns: 1fr; }
+      .progress-items { grid-template-columns: 1fr; }
+      nav { gap: 0.4rem; }
+      nav a { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: var(--transition);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="sakura" style="left: 10%; animation-duration: 16s; animation-delay: 0s;">🌸</div>
+  <div class="sakura" style="left: 30%; animation-duration: 20s; animation-delay: 3s;">🌸</div>
+  <div class="sakura" style="left: 50%; animation-duration: 14s; animation-delay: 1s;">🌸</div>
+  <div class="sakura" style="left: 70%; animation-duration: 18s; animation-delay: 4s;">🌸</div>
+  <div class="sakura" style="left: 90%; animation-duration: 12s; animation-delay: 2s;">🌸</div>
+
+  <header>
+    <div class="header-content">
+      <h1>JLPT N4 语法总结</h1>
+      <p class="subtitle">N4级别进阶语法点系统学习 - 复合句型与表达方式</p>
+      
+      <nav>
+        <a href="../index.html">🏠 返回主站</a>
+        <a href="index.html">📚 学习中心</a>
+        <a href="katakana-a4.html">🔤 五十音图</a>
+        <a href="n5-grammar.html">📖 N5语法</a>
+        <a href="n4-grammar.html">📘 N4语法</a>
+        <a href="n5-vocabulary.html">📝 N5词汇</a>
+        <a href="../study-plan.html">📅 学习计划</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="level-badge fade-in">
+      🎯 JLPT N4 级别 - 进阶语法
+    </div>
+
+    <!-- 复合句型 -->
+    <section class="grammar-section fade-in">
+      <h2>🔗 复合句型</h2>
+      
+      <div class="grammar-point">
+        <h4>1. ～て形 + います（进行时/状态）</h4>
+        <div class="example">
+          <div class="japanese">今、勉強しています。</div>
+          <div class="reading">いま、べんきょうしています。</div>
+          <div class="translation">现在正在学习。</div>
+        </div>
+        <div class="example">
+          <div class="japanese">結婚しています。</div>
+          <div class="reading">けっこんしています。</div>
+          <div class="translation">已经结婚了。（状态）</div>
+        </div>
+      </div>
+
+      <div class="grammar-point">
+        <h4>2. ～たことがあります（经验）</h4>
+        <div class="example">
+          <div class="japanese">日本に行ったことがあります。</div>
+          <div class="reading">にほんに いったことが あります。</div>
+          <div class="translation">去过日本。</div>
+        </div>
+      </div>
+
+      <div class="grammar-point">
+        <h4>3. ～たり～たりします（列举）</h4>
+        <div class="example">
+          <div class="japanese">休みの日は本を読んだり、映画を見たりします。</div>
+          <div class="reading">やすみのひは ほんを よんだり、えいがを みたりします。</div>
+          <div class="translation">休息日读书啊、看电影啊什么的。</div>
+        </div>
+      </div>
+
+      <div class="tips">
+        <h4>💡 ～て形的多种用法</h4>
+        <p>～て形是日语中最重要的动词形式之一，可以表示进行、完成、并列、原因等多种含义。</p>
+      </div>
+    </section>
+
+    <!-- 条件表达 -->
+    <section class="grammar-section fade-in">
+      <h2>🌟 条件表达</h2>
+      
+      <div class="pattern-grid">
+        <div class="pattern-card">
+          <h5>～たら（假定条件）</h5>
+          <div class="example">
+            <div class="japanese">雨が降ったら、家にいます。</div>
+            <div class="reading">あめが ふったら、いえに います。</div>
+            <div class="translation">如果下雨的话，就待在家里。</div>
+          </div>
+        </div>
+
+        <div class="pattern-card">
+          <h5>～ば（一般条件）</h5>
+          <div class="example">
+            <div class="japanese">安ければ、買います。</div>
+            <div class="reading">やすければ、かいます。</div>
+            <div class="translation">如果便宜的话，就买。</div>
+          </div>
+        </div>
+
+        <div class="pattern-card">
+          <h5>～と（自然条件）</h5>
+          <div class="example">
+            <div class="japanese">春になると、桜が咲きます。</div>
+            <div class="reading">はるになると、さくらが さきます。</div>
+            <div class="translation">一到春天，樱花就开。</div>
+          </div>
+        </div>
+
+        <div class="pattern-card">
+          <h5>～なら（话题条件）</h5>
+          <div class="example">
+            <div class="japanese">日本語なら、少し分かります。</div>
+            <div class="reading">にほんごなら、すこし わかります。</div>
+            <div class="translation">如果是日语的话，稍微懂一点。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 敬语基础 -->
+    <section class="grammar-section fade-in">
+      <h2>🙏 敬语基础</h2>
+      
+      <div class="grammar-point">
+        <h4>1. 尊敬语（对他人的敬语）</h4>
+        <div class="example">
+          <div class="japanese">先生はいらっしゃいますか。</div>
+          <div class="reading">せんせいは いらっしゃいますか。</div>
+          <div class="translation">老师在吗？</div>
+        </div>
+        <div class="example">
+          <div class="japanese">お忙しいですか。</div>
+          <div class="reading">おいそがしいですか。</div>
+          <div class="translation">您忙吗？</div>
+        </div>
+      </div>
+
+      <div class="grammar-point">
+        <h4>2. 谦让语（对自己的谦逊）</h4>
+        <div class="example">
+          <div class="japanese">私が参ります。</div>
+          <div class="reading">わたしが まいります。</div>
+          <div class="translation">我去。</div>
+        </div>
+        <div class="example">
+          <div class="japanese">お手伝いいたします。</div>
+          <div class="reading">おてつだい いたします。</div>
+          <div class="translation">我来帮忙。</div>
+        </div>
+      </div>
+
+      <div class="grammar-point">
+        <h4>3. 丁宁语（礼貌语）</h4>
+        <div class="example">
+          <div class="japanese">お疲れ様でした。</div>
+          <div class="reading">おつかれさまでした。</div>
+          <div class="translation">辛苦了。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 意志与推测 -->
+    <section class="grammar-section fade-in">
+      <h2>🤔 意志与推测</h2>
+      
+      <div class="grammar-point">
+        <h4>1. ～つもりです（打算）</h4>
+        <div class="example">
+          <div class="japanese">来年、日本に行くつもりです。</div>
+          <div class="reading">らいねん、にほんに いくつもりです。</div>
+          <div class="translation">打算明年去日本。</div>
+        </div>
+      </div>
+
+      <div class="grammar-point">
+        <h4>2. ～でしょう（推测）</h4>
+        <div class="example">
+          <div class="japanese">明日は雨でしょう。</div>
+          <div class="reading">あしたは あめでしょう。</div>
+          <div class="translation">明天大概会下雨吧。</div>
+        </div>
+      </div>
+
+      <div class="grammar-point">
+        <h4>3. ～かもしれません（可能性）</h4>
+        <div class="example">
+          <div class="japanese">彼は来ないかもしれません。</div>
+          <div class="reading">かれは こないかもしれません。</div>
+          <div class="translation">他可能不会来。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 授受表现 -->
+    <section class="grammar-section fade-in">
+      <h2>🎁 授受表现</h2>
+      
+      <div class="grammar-point">
+        <h4>1. あげます/もらいます/くれます</h4>
+        <div class="example">
+          <div class="japanese">友達に本をあげました。</div>
+          <div class="reading">ともだちに ほんを あげました。</div>
+          <div class="translation">给朋友书了。</div>
+        </div>
+        <div class="example">
+          <div class="japanese">友達から本をもらいました。</div>
+          <div class="reading">ともだちから ほんを もらいました。</div>
+          <div class="translation">从朋友那里得到了书。</div>
+        </div>
+        <div class="example">
+          <div class="japanese">友達が本をくれました。</div>
+          <div class="reading">ともだちが ほんを くれました。</div>
+          <div class="translation">朋友给了我书。</div>
+        </div>
+      </div>
+
+      <div class="grammar-point">
+        <h4>2. ～てあげます/～てもらいます/～てくれます</h4>
+        <div class="example">
+          <div class="japanese">友達に日本語を教えてあげました。</div>
+          <div class="reading">ともだちに にほんごを おしえて あげました。</div>
+          <div class="translation">教了朋友日语。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 学习进度追踪 -->
+    <section class="progress-tracker fade-in">
+      <h3>📊 N4语法学习进度</h3>
+      <p>勾选已掌握的语法点，追踪你的学习进度</p>
+      
+      <div class="progress-items">
+        <div class="progress-item">
+          <input type="checkbox" id="compound"> 
+          <label for="compound">复合句型表达</label>
+        </div>
+        <div class="progress-item">
+          <input type="checkbox" id="conditions"> 
+          <label for="conditions">条件表达句型</label>
+        </div>
+        <div class="progress-item">
+          <input type="checkbox" id="keigo"> 
+          <label for="keigo">敬语基础用法</label>
+        </div>
+        <div class="progress-item">
+          <input type="checkbox" id="intention"> 
+          <label for="intention">意志与推测表达</label>
+        </div>
+        <div class="progress-item">
+          <input type="checkbox" id="giving"> 
+          <label for="giving">授受表现</label>
+        </div>
+        <div class="progress-item">
+          <input type="checkbox" id="experience"> 
+          <label for="experience">经验表达</label>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 日语学习乐园 | 联系方式: htoptree@163.com</p>
+    <p>頑張って！(加油！) - N4语法让你的日语表达更丰富</p>
+  </footer>
+
+  <script>
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    const progressItems = document.querySelectorAll('.progress-item');
+    progressItems.forEach(item => {
+      const checkbox = item.querySelector('input[type="checkbox"]');
+      
+      const isCompleted = localStorage.getItem(`n4-grammar-${checkbox.id}`) === 'true';
+      checkbox.checked = isCompleted;
+      if (isCompleted) {
+        item.classList.add('completed');
+      }
+
+      checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+          item.classList.add('completed');
+          localStorage.setItem(`n4-grammar-${checkbox.id}`, 'true');
+        } else {
+          item.classList.remove('completed');
+          localStorage.setItem(`n4-grammar-${checkbox.id}`, 'false');
+        }
+      });
+    });
+
+    function createSakura() {
+      const sakura = document.createElement('div');
+      sakura.className = 'sakura';
+      sakura.innerHTML = '🌸';
+      sakura.style.left = Math.random() * 100 + '%';
+      sakura.style.animationDuration = (Math.random() * 8 + 12) + 's';
+      sakura.style.animationDelay = Math.random() * 3 + 's';
+      document.body.appendChild(sakura);
+
+      setTimeout(() => {
+        sakura.remove();
+      }, 20000);
+    }
+
+    setInterval(createSakura, 5000);
+  </script>
+</body>
+</html>

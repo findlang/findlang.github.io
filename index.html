@@ -2,164 +2,669 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>日英双语学习乐园</title>
+  <title>日语学习乐园 - 日本語を学ぼう</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="专业的日语学习平台，提供五十音图、语法、词汇、会话等全方位日语学习资源">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700&family=Noto+Sans+JP:wght@500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+    
+    :root {
+      --primary-color: #d32f2f;
+      --secondary-color: #1976d2;
+      --accent-color: #ff6f00;
+      --text-primary: #212121;
+      --text-secondary: #757575;
+      --background-light: #fafafa;
+      --background-white: #ffffff;
+      --shadow-light: rgba(0,0,0,0.1);
+      --shadow-medium: rgba(0,0,0,0.15);
+      --border-radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      margin: 0;
-      font-family: 'Noto Sans SC', 'Noto Sans JP', Arial, sans-serif;
-      background: linear-gradient(120deg, #f0f4ff 0%, #f9fbe7 100%);
-      color: #222;
+      font-family: 'Noto Sans SC', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 50%, #fd79a8 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
     }
+
+    /* 樱花背景动画 */
+    .sakura {
+      position: fixed;
+      top: -10px;
+      z-index: -1;
+      color: #ffb3d9;
+      font-size: 20px;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100vh) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
     header {
-      background: #3f51b5;
-      color: #fff;
-      padding: 24px 0 16px 0;
+      background: linear-gradient(135deg, var(--primary-color), #e57373);
+      color: white;
+      padding: 2rem 0;
       text-align: center;
-      box-shadow: 0 2px 8px #0001;
+      position: relative;
+      overflow: hidden;
     }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+      animation: float 20s infinite linear;
+    }
+
+    @keyframes float {
+      0% { transform: translateX(-100px); }
+      100% { transform: translateX(100px); }
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+    }
+
     header h1 {
-      font-size: 2.4rem;
-      margin: 0 0 8px 0;
-      letter-spacing: 2px;
-      font-family: 'Noto Sans JP', 'Noto Sans SC', Arial, sans-serif;
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      font-family: 'Noto Sans JP', 'Noto Sans SC', sans-serif;
     }
-    header p {
-      font-size: 1.1rem;
-      margin: 0;
-      opacity: 0.92;
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+      font-weight: 300;
     }
+
+    .japanese-text {
+      font-size: 1.5rem;
+      color: #ffeb3b;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
     nav {
       display: flex;
       justify-content: center;
-      gap: 32px;
-      margin: 24px 0 0 0;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
     }
+
     nav a {
-      color: #3f51b5;
-      background: #fff;
+      background: rgba(255,255,255,0.2);
+      color: white;
       text-decoration: none;
-      font-weight: bold;
-      padding: 10px 28px;
-      border-radius: 24px;
-      font-size: 1.1rem;
-      box-shadow: 0 2px 8px #0001;
-      transition: background 0.2s, color 0.2s;
+      padding: 0.8rem 1.5rem;
+      border-radius: var(--border-radius);
+      font-weight: 500;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
     }
+
     nav a:hover {
-      background: #3f51b5;
-      color: #fff;
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
-    .main {
-      max-width: 900px;
-      margin: 40px auto 0 auto;
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 4px 24px #0002;
-      padding: 36px 32px 32px 32px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 32px;
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .hero-section {
+      margin: 3rem auto;
+      background: var(--background-white);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px var(--shadow-medium);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
       align-items: center;
+      padding: 3rem;
     }
-    .main-img {
-      flex: 1 1 260px;
-      min-width: 220px;
-      text-align: center;
+
+    .hero-text h2 {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-weight: 700;
     }
-    .main-img img {
-      width: 180px;
-      max-width: 90%;
-      border-radius: 16px;
-      box-shadow: 0 2px 12px #0001;
-    }
-    .main-content {
-      flex: 2 1 340px;
-      min-width: 260px;
-    }
-    .main-content h2 {
-      font-size: 1.6rem;
-      color: #3f51b5;
-      margin-top: 0;
-    }
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px 32px;
-      margin: 18px 0 24px 0;
-    }
-    .feature {
-      background: #f5f7fa;
-      border-radius: 10px;
-      padding: 12px 18px;
-      font-size: 1rem;
-      color: #333;
-      box-shadow: 0 1px 4px #0001;
-      flex: 1 1 180px;
-      min-width: 160px;
-    }
-    .actions {
-      margin-top: 18px;
-    }
-    .actions a {
-      display: inline-block;
-      background: #3f51b5;
-      color: #fff;
-      text-decoration: none;
+
+    .hero-description {
       font-size: 1.1rem;
-      font-weight: bold;
-      padding: 12px 36px;
-      border-radius: 24px;
-      margin-right: 18px;
-      box-shadow: 0 2px 8px #0001;
-      transition: background 0.2s;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      line-height: 1.8;
     }
-    .actions a:hover {
-      background: #283593;
+
+    .hero-image {
+      text-align: center;
+      position: relative;
     }
-    @media (max-width: 700px) {
-      .main { flex-direction: column; padding: 18px 6vw; }
-      .main-img img { width: 120px; }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 20px var(--shadow-light);
     }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 3rem auto;
+    }
+
+    .feature-card {
+      background: var(--background-white);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 20px var(--shadow-light);
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px var(--shadow-medium);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .feature-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .feature-description {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .cta-section {
+      text-align: center;
+      margin: 4rem auto;
+      padding: 3rem;
+      background: var(--background-white);
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 20px var(--shadow-light);
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-color), #e57373);
+      color: white;
+      box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(211, 47, 47, 0.4);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, var(--secondary-color), #42a5f5);
+      color: white;
+      box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(25, 118, 210, 0.4);
+    }
+
+    .countdown-section {
+      margin: 3rem auto;
+    }
+
+    .countdown-container {
+      background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+      border: 2px solid var(--secondary-color); border-radius: var(--border-radius);
+      padding: 2rem; text-align: center;
+      box-shadow: 0 4px 20px rgba(25, 118, 210, 0.2);
+    }
+
+    .countdown-container h3 {
+      color: var(--primary-color); margin-bottom: 1.5rem;
+      font-size: 1.5rem; font-weight: 600;
+    }
+
+    .countdown-display {
+      display: flex; justify-content: center; gap: 1.5rem; margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .countdown-item {
+      background: var(--background-white); border-radius: var(--border-radius);
+      padding: 1rem; min-width: 80px; box-shadow: 0 2px 10px var(--shadow-light);
+      border: 2px solid var(--accent-color);
+    }
+
+    .countdown-number {
+      display: block; font-size: 2rem; font-weight: 700;
+      color: var(--primary-color); line-height: 1;
+    }
+
+    .countdown-label {
+      display: block; font-size: 0.9rem; color: var(--text-secondary);
+      margin-top: 0.5rem; font-weight: 500;
+    }
+
+    .next-exam-info {
+      font-size: 1rem; color: var(--secondary-color); font-weight: 600;
+      margin: 1rem 0;
+    }
+
+    .exam-links {
+      display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .exam-guide-link {
+      display: inline-block; background: linear-gradient(135deg, var(--secondary-color), #42a5f5);
+      color: white; text-decoration: none; padding: 0.8rem 1.5rem;
+      border-radius: var(--border-radius); font-weight: 500; transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+    }
+
+    .exam-guide-link:hover {
+      transform: translateY(-2px); box-shadow: 0 8px 25px rgba(25, 118, 210, 0.4);
+    }
+
+    .official-link {
+      display: inline-block; background: linear-gradient(135deg, #4caf50, #66bb6a);
+      color: white; text-decoration: none; padding: 0.8rem 1.5rem;
+      border-radius: var(--border-radius); font-weight: 500; transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    }
+
+    .official-link:hover {
+      transform: translateY(-2px); box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+    }
+
     footer {
       text-align: center;
-      color: #aaa;
-      font-size: 0.95rem;
-      margin: 32px 0 16px 0;
+      padding: 2rem;
+      color: var(--text-secondary);
+      background: var(--background-white);
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 2rem; }
+      .subtitle { font-size: 1rem; }
+      .japanese-text { font-size: 1.2rem; }
+      .hero-content { 
+        grid-template-columns: 1fr; 
+        padding: 2rem;
+        text-align: center;
+      }
+      .hero-text h2 { font-size: 2rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+      nav { gap: 0.5rem; }
+      nav a { padding: 0.6rem 1rem; font-size: 0.9rem; }
+    }
+
+    /* 滚动动画 */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: var(--transition);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
+  <!-- 樱花背景效果 -->
+  <div class="sakura" style="left: 10%; animation-duration: 15s; animation-delay: 0s;">🌸</div>
+  <div class="sakura" style="left: 20%; animation-duration: 18s; animation-delay: 2s;">🌸</div>
+  <div class="sakura" style="left: 30%; animation-duration: 12s; animation-delay: 4s;">🌸</div>
+  <div class="sakura" style="left: 40%; animation-duration: 20s; animation-delay: 1s;">🌸</div>
+  <div class="sakura" style="left: 50%; animation-duration: 16s; animation-delay: 3s;">🌸</div>
+  <div class="sakura" style="left: 60%; animation-duration: 14s; animation-delay: 5s;">🌸</div>
+  <div class="sakura" style="left: 70%; animation-duration: 19s; animation-delay: 2s;">🌸</div>
+  <div class="sakura" style="left: 80%; animation-duration: 13s; animation-delay: 4s;">🌸</div>
+  <div class="sakura" style="left: 90%; animation-duration: 17s; animation-delay: 1s;">🌸</div>
+
   <header>
-    <h1>日英双语学习乐园</h1>
-    <p>让日语和英语学习变得有趣、高效、系统</p>
-    <nav>
-      <a href="japan/phrases.html">日语常用句</a>
-      <a href="#">英语常用句</a>
-      <a href="japan/katakana.html">五十音图</a>
-    </nav>
+    <div class="header-content">
+      <h1>日语学习乐园</h1>
+      <div class="japanese-text">日本語を学ぼう！</div>
+      <p class="subtitle">系统化学习日语，从五十音图到流利对话</p>
+      
+      <nav>
+        <a href="index.html">🏠 首页</a>
+        <a href="japan/index.html">🇯🇵 日语学习</a>
+        <a href="japan/jlpt-guide.html">📋 JLPT指南</a>
+        <a href="study-plan.html">📅 学习计划</a>
+        <a style="display: none;" href="english/index.html">🇺🇸 英语学习</a>
+
+      </nav>
+    </div>
   </header>
-  <div class="main">
-    <div class="main-img">
-      <img src="assets/imgs/home.jpg" alt="学习插画">
-    </div>
-    <div class="main-content">
-      <h2>欢迎来到日英双语学习乐园！</h2>
-      <div class="features">
-        <div class="feature">📚 日语五十音图、常用句、语法一站式学习</div>
-        <div class="feature">🔤 英语字母、音标、常用表达、趣味练习</div>
-        <div class="feature">🌈 适合小学生、初学者和兴趣爱好者</div>
-        <div class="feature">💡 现代美观、响应式设计，支持A4打印</div>
+
+  <div class="container">
+    <section class="hero-section fade-in">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h2>开启你的日语学习之旅</h2>
+          <p class="hero-description">
+            从零基础到流利对话，我们提供最系统、最有趣的日语学习体验。
+            无论你是想看懂动漫、准备日语考试，还是计划去日本旅行，
+            这里都有适合你的学习内容。
+          </p>
+          <div class="cta-buttons">
+            <a href="japan/index.html" class="btn btn-primary">
+              🚀 立即开始学习
+            </a>
+            <a href="study-plan.html" class="btn btn-secondary">
+              📋 制定学习计划
+            </a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="assets/imgs/home.jpg" alt="日语学习插画">
+        </div>
       </div>
-      <div class="actions">
-        <a href="japan/index.html">开始日语学习</a>
-        <a href="#">开始英语学习</a>
+    </section>
+
+    <!-- JLPT考试倒计时区域 -->
+    <section class="countdown-section fade-in">
+      <div class="countdown-container">
+        <h3>⏰ JLPT考试倒计时</h3>
+        <div class="countdown-display" id="countdownDisplay">
+          <div class="countdown-item">
+            <span class="countdown-number" id="days">0</span>
+            <span class="countdown-label">天</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="hours">0</span>
+            <span class="countdown-label">时</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="minutes">0</span>
+            <span class="countdown-label">分</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="seconds">0</span>
+            <span class="countdown-label">秒</span>
+          </div>
+        </div>
+        <p class="next-exam-info" id="nextExamInfo">正在计算...</p>
+        <div class="exam-links">
+          <a href="japan/jlpt-guide.html" class="exam-guide-link">📖 查看考试指南</a>
+          <a href="https://jlpt-main.neea.cn/" target="_blank" class="official-link">🌐 官方报名入口</a>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <section class="features-grid">
+      <div class="feature-card fade-in">
+        <span class="feature-icon">🔤</span>
+        <h3 class="feature-title">五十音图精通</h3>
+        <p class="feature-description">
+          平假名、片假名全覆盖，配有标准发音和记忆技巧，
+          支持A4打印练习，让你快速掌握日语基础。
+        </p>
+      </div>
+
+      <div class="feature-card fade-in">
+        <span class="feature-icon">📚</span>
+        <h3 class="feature-title">系统语法学习</h3>
+        <p class="feature-description">
+          从基础语法到高级表达，循序渐进的语法体系，
+          配合实例讲解，让语法学习不再枯燥。
+        </p>
+      </div>
+
+      <div class="feature-card fade-in">
+        <span class="feature-icon">💬</span>
+        <h3 class="feature-title">实用会话练习</h3>
+        <p class="feature-description">
+          日常对话、商务用语、旅游必备句型，
+          情景化学习让你在实际交流中更加自信。
+        </p>
+      </div>
+
+      <div class="feature-card fade-in">
+        <span class="feature-icon">🎯</span>
+        <h3 class="feature-title">个性化学习</h3>
+        <p class="feature-description">
+          根据你的学习目标和进度，制定专属学习计划，
+          让每一分钟的学习都更加高效。
+        </p>
+      </div>
+
+      <div class="feature-card fade-in">
+        <span class="feature-icon">📱</span>
+        <h3 class="feature-title">随时随地学习</h3>
+        <p class="feature-description">
+          响应式设计，支持手机、平板、电脑多端学习，
+          让你在任何时间、任何地点都能学习日语。
+        </p>
+      </div>
+
+      <div class="feature-card fade-in">
+        <span class="feature-icon">🎨</span>
+        <h3 class="feature-title">趣味学习体验</h3>
+        <p class="feature-description">
+          精美的界面设计，有趣的学习方式，
+          让日语学习成为一种享受而不是负担。
+        </p>
+      </div>
+    </section>
+
+    <section class="cta-section fade-in">
+      <h2>准备好开始学习了吗？</h2>
+      <p>加入我们，开启你的日语学习之旅！</p>
+      <div class="cta-buttons">
+        <a href="japan/katakana-a4.html" class="btn btn-primary">
+          🔤 从五十音图开始
+        </a>
+        <a href="japan/grammar.html" class="btn btn-secondary">
+          📖 学习基础语法
+        </a>
+      </div>
+    </section>
   </div>
+
   <footer>
-    &copy; 2024 FindLang | 联系方式: htoptree@163.com
+    <p>&copy; 2024 日语学习乐园 | 联系方式: htoptree@163.com</p>
+    <p>がんばって！(加油！)</p>
   </footer>
+
+  <script>
+    // JLPT考试倒计时功能
+    function getNextJLPTExam() {
+      const now = new Date();
+      const currentYear = now.getFullYear();
+      
+      // 计算当年7月和12月第一个周日
+      const julyFirstSunday = getFirstSundayOfMonth(currentYear, 6); // 7月是第6个月(0-based)
+      const decemberFirstSunday = getFirstSundayOfMonth(currentYear, 11); // 12月是第11个月
+      
+      // 如果当前时间还没到7月考试
+      if (now < julyFirstSunday) {
+        return {
+          date: julyFirstSunday,
+          session: '第一回',
+          year: currentYear
+        };
+      }
+      // 如果当前时间还没到12月考试
+      else if (now < decemberFirstSunday) {
+        return {
+          date: decemberFirstSunday,
+          session: '第二回',
+          year: currentYear
+        };
+      }
+      // 如果已经过了当年的考试，计算下一年7月
+      else {
+        const nextYear = currentYear + 1;
+        const nextJulyFirstSunday = getFirstSundayOfMonth(nextYear, 6);
+        return {
+          date: nextJulyFirstSunday,
+          session: '第一回',
+          year: nextYear
+        };
+      }
+    }
+    
+    function getFirstSundayOfMonth(year, month) {
+      const firstDay = new Date(year, month, 1);
+      const dayOfWeek = firstDay.getDay(); // 0 = 周日, 1 = 周一, ...
+      const daysToAdd = dayOfWeek === 0 ? 0 : 7 - dayOfWeek;
+      return new Date(year, month, 1 + daysToAdd);
+    }
+    
+    function updateCountdown() {
+      const nextExam = getNextJLPTExam();
+      const now = new Date();
+      const timeDiff = nextExam.date - now;
+      
+      if (timeDiff > 0) {
+        const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+        
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+        document.getElementById('seconds').textContent = seconds;
+        
+        const examDateStr = nextExam.date.toLocaleDateString('zh-CN', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          weekday: 'long'
+        });
+        
+        document.getElementById('nextExamInfo').textContent = 
+          `${nextExam.year}年${nextExam.session} - ${examDateStr}`;
+      } else {
+        document.getElementById('nextExamInfo').textContent = '考试时间计算中...';
+      }
+    }
+
+    // 页面滚动动画效果
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // 页面加载完成后开始倒计时和动画
+    document.addEventListener('DOMContentLoaded', function() {
+      updateCountdown();
+      setInterval(updateCountdown, 1000); // 每秒更新一次倒计时
+    });
+
+    // 观察所有需要动画的元素
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // 动态创建更多樱花
+    function createSakura() {
+      const sakura = document.createElement('div');
+      sakura.className = 'sakura';
+      sakura.innerHTML = '🌸';
+      sakura.style.left = Math.random() * 100 + '%';
+      sakura.style.animationDuration = (Math.random() * 10 + 10) + 's';
+      sakura.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(sakura);
+
+      // 动画结束后移除元素
+      setTimeout(() => {
+        sakura.remove();
+      }, 25000);
+    }
+
+    // 每隔一段时间创建新的樱花
+    setInterval(createSakura, 3000);
+  </script>
 </body>
 </html>

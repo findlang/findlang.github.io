@@ -3,10 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>学习计划 - 日英双语学习乐园</title>
+    <title>学习计划 - 日语学习乐园</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700&family=Noto+Sans+JP:wght@500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
         
+        :root {
+            --primary-color: #d32f2f;
+            --secondary-color: #1976d2;
+            --accent-color: #ff6f00;
+            --success-color: #388e3c;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --background-white: #ffffff;
+            --shadow-light: rgba(0,0,0,0.1);
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,77 +27,115 @@
         }
 
         body {
-            font-family: 'Noto Sans SC', 'Noto Sans JP', Arial, sans-serif;
-            background: #f7f9fc;
-            color: #222;
+            font-family: 'Noto Sans SC', 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 50%, #fd79a8 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
             min-height: 100vh;
+        }
+
+        .sakura {
+            position: fixed; top: -10px; z-index: -1; color: #ffb3d9; font-size: 14px;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
         }
         
         header {
-            background: #3f51b5;
-            color: #fff;
-            padding: 24px 0 16px 0;
-            text-align: center;
-            box-shadow: 0 2px 8px #0001;
+            background: linear-gradient(135deg, var(--primary-color), #e57373);
+            color: white; padding: 1.5rem 0; text-align: center; position: relative; overflow: hidden;
         }
+        header::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+        @keyframes float { 0% { transform: translateX(-100px); } 100% { transform: translateX(100px); } }
+
+        .header-content { position: relative; z-index: 2; }
+        header h1 { font-size: 2rem; margin-bottom: 0.5rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .subtitle { font-size: 1rem; opacity: 0.9; margin-bottom: 1.5rem; font-weight: 300; }
         
         nav {
-            display: flex;
-            justify-content: center;
-            gap: 32px;
-            margin: 18px 0 0 0;
+            display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.5rem;
         }
         
         nav a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 8px 20px;
-            border-radius: 20px;
-            transition: background 0.2s;
+            background: rgba(255,255,255,0.2); color: white; text-decoration: none; padding: 0.5rem 1rem;
+            border-radius: var(--border-radius); font-weight: 500; transition: var(--transition);
+            backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); font-size: 0.85rem;
         }
         
         nav a:hover {
-            background: #283593;
+            background: rgba(255,255,255,0.3); transform: translateY(-2px);
         }
 
         .container {
             max-width: 1200px;
-            margin: 32px auto 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
 
         .page-header {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: white;
-            padding: 30px;
+            background: var(--background-white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px var(--shadow-light);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
         }
 
         .page-header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-weight: 700;
         }
 
         .page-header p {
-            font-size: 1.1em;
-            opacity: 0.9;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 300;
         }
 
         .form-section {
-            padding: 40px;
-            background: #f8f9fa;
+            background: var(--background-white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px var(--shadow-light);
+            position: relative;
+            overflow: hidden;
+        }
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
         }
         
         footer {
             text-align: center;
-            color: #aaa;
-            font-size: 0.95rem;
-            margin: 32px 0 16px 0;
+            padding: 2rem;
+            color: var(--text-secondary);
+            background: var(--background-white);
+            margin-top: 2rem;
         }
 
         .form-grid {
@@ -95,35 +146,41 @@
         }
 
         .form-group {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+            transition: var(--transition);
+        }
+        .form-group:hover {
+            background: #e3f2fd;
+            transform: translateY(-2px);
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #333;
-            font-size: 1.1em;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 1rem;
         }
 
         .form-group input,
         .form-group select {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #e1e5e9;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: inherit;
         }
 
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #4facfe;
-            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
         }
 
         .radio-group {
@@ -159,40 +216,56 @@
         }
 
         .btn {
-            padding: 15px 30px;
+            padding: 0.8rem 2rem;
             border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            transition: var(--transition);
+            font-family: inherit;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary-color), #e57373);
             color: white;
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 8px 25px rgba(211, 47, 47, 0.4);
         }
 
         .btn-secondary {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, var(--secondary-color), #42a5f5);
             color: white;
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
         }
 
         .btn-secondary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(240, 147, 251, 0.3);
+            box-shadow: 0 8px 25px rgba(25, 118, 210, 0.4);
         }
 
         .result-section {
-            padding: 40px;
+            background: var(--background-white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px var(--shadow-light);
+            position: relative;
+            overflow: hidden;
             display: none;
+        }
+        .result-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--success-color), var(--accent-color));
         }
 
         .result-section.show {
@@ -201,29 +274,29 @@
 
         .table-container {
             overflow-x: auto;
-            margin-top: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-top: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px var(--shadow-light);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            background: white;
+            background: var(--background-white);
         }
 
         th, td {
-            padding: 15px;
+            padding: 0.8rem;
             text-align: center;
-            border-bottom: 1px solid #e1e5e9;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.9rem;
         }
 
         th {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary-color), #e57373);
             color: white;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-weight: 600;
+            font-size: 0.85rem;
         }
 
         tr:nth-child(even) {
@@ -278,16 +351,18 @@
 
         .column-control-panel {
             background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border: 1px solid #e1e5e9;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--secondary-color);
+            box-shadow: 0 2px 10px var(--shadow-light);
         }
 
         .column-control-panel h3 {
-            margin: 0 0 15px 0;
-            color: #333;
+            margin: 0 0 1rem 0;
+            color: var(--text-primary);
             text-align: center;
+            font-weight: 600;
         }
 
         .control-grid {
@@ -322,17 +397,20 @@
         }
 
         .btn-small {
-            padding: 8px 15px;
-            font-size: 12px;
-            background: #667eea;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            background: var(--secondary-color);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: var(--border-radius);
             cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
         }
 
         .btn-small:hover {
-            background: #5a6fd8;
+            background: #1565c0;
+            transform: translateY(-1px); 
         }
 
         .col-hidden {
@@ -444,34 +522,61 @@
         .error {
             background-color: #ffebee;
             color: #c62828;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
             border-left: 4px solid #c62828;
+            font-weight: 500;
         }
 
         .success {
             background-color: #e8f5e8;
-            color: #2e7d32;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border-left: 4px solid #2e7d32;
+            color: var(--success-color);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+            border-left: 4px solid var(--success-color);
+            font-weight: 500;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.6rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .control-grid { grid-template-columns: 1fr; }
+            nav { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
 <body>
+    <div class="sakura" style="left: 10%; animation-duration: 16s; animation-delay: 0s;">🌸</div>
+    <div class="sakura" style="left: 30%; animation-duration: 20s; animation-delay: 3s;">🌸</div>
+    <div class="sakura" style="left: 70%; animation-duration: 18s; animation-delay: 4s;">🌸</div>
+
     <header>
-        <h1>学习计划</h1>
-        <nav>
-            <a href="../index.html">返回主站</a>
-            <a href="index.html">日语首页</a>
-            <a href="katakana.html">五十音图</a>
-            <a href="phrases.html">常用句</a>
-            <a href="grammar.html">语法</a>
-            <a href="vocabulary.html">词汇</a>
-            <a href="study-plan.html">学习计划</a>
-        </nav>
+        <div class="header-content">
+            <h1>学习计划</h1>
+            <p class="subtitle">科学安排学习进度，提高记忆效果</p>
+            
+            <nav>
+                <a href="index.html">🏠 返回主站</a>
+                <a href="japan/index.html">📚 学习中心</a>
+                <a href="japan/n5-grammar.html">📖 N5语法</a>
+                <a href="japan/n4-grammar.html">📘 N4语法</a>
+                <a href="japan/n5-vocabulary.html">📋 N5词汇</a>
+                <a href="japan/n4-vocabulary.html">📋 N4词汇</a>
+                <a href="study-plan.html">📅 学习计划</a>
+            </nav>
+        </div>
     </header>
     
     <div class="container">
@@ -631,10 +736,32 @@
     </div>
     
     <footer>
-        &copy; 2024 FindLang | 联系方式: htoptree@163.com
+        <p>&copy; 2024 日语学习乐园 | 联系方式: htoptree@163.com</p>
+        <p>頑張って！(加油！) - 科学的学习计划助你高效掌握日语</p>
     </footer>
 
     <script>
+        // 樱花动画
+        function createSakura() {
+            const sakura = document.createElement('div');
+            sakura.className = 'sakura';
+            sakura.innerHTML = '🌸';
+            sakura.style.left = Math.random() * 100 + '%';
+            sakura.style.animationDuration = (Math.random() * 8 + 12) + 's';
+            document.body.appendChild(sakura);
+            setTimeout(() => sakura.remove(), 20000);
+        }
+
+        // 淡入动画
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        setInterval(createSakura, 5000);
         // 设置默认日期为今天
         document.getElementById('startDate').value = new Date().toISOString().split('T')[0];
         

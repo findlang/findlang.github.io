@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>JLPT考试指南 - 日语学习乐园</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+    
+    :root {
+      --primary-color: #d32f2f;
+      --secondary-color: #1976d2;
+      --accent-color: #ff6f00;
+      --success-color: #388e3c;
+      --text-primary: #212121;
+      --text-secondary: #757575;
+      --background-white: #ffffff;
+      --shadow-light: rgba(0,0,0,0.1);
+      --border-radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans SC', 'Noto Sans JP', sans-serif;
+      background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 50%, #fd79a8 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .sakura {
+      position: fixed; top: -10px; z-index: -1; color: #ffb3d9; font-size: 14px;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-100vh) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), #e57373);
+      color: white; padding: 1.5rem 0; text-align: center; position: relative; overflow: hidden;
+    }
+    header::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+      animation: float 20s infinite linear;
+    }
+    @keyframes float { 0% { transform: translateX(-100px); } 100% { transform: translateX(100px); } }
+
+    .header-content { position: relative; z-index: 2; }
+    header h1 { font-size: 2rem; margin-bottom: 0.5rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .subtitle { font-size: 1rem; opacity: 0.9; margin-bottom: 1.5rem; font-weight: 300; }
+
+    nav { display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.5rem; }
+    nav a {
+      background: rgba(255,255,255,0.2); color: white; text-decoration: none; padding: 0.5rem 1rem;
+      border-radius: var(--border-radius); font-weight: 500; transition: var(--transition);
+      backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); font-size: 0.85rem;
+    }
+    nav a:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+
+    .section {
+      background: var(--background-white); border-radius: var(--border-radius); padding: 2rem;
+      margin: 1.5rem auto; box-shadow: 0 4px 20px var(--shadow-light); position: relative; overflow: hidden;
+    }
+    .section::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    }
+
+    .section h2 { color: var(--primary-color); font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center; }
+    .section h3 { color: var(--secondary-color); font-size: 1.3rem; margin: 1.5rem 0 1rem 0; }
+
+    .level-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin: 2rem 0;
+    }
+
+    .level-card {
+      background: #f8f9fa; border-radius: 8px; padding: 1.5rem; border-left: 4px solid var(--accent-color);
+      transition: var(--transition); text-align: center;
+    }
+    .level-card:hover { background: #e3f2fd; transform: translateY(-2px); }
+
+    .level-badge {
+      display: inline-block; background: linear-gradient(135deg, var(--secondary-color), #42a5f5);
+      color: white; padding: 0.5rem 1.5rem; border-radius: 20px; font-weight: 600;
+      font-size: 1.2rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+    }
+
+    .level-description { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1rem; }
+    .level-stats { font-size: 0.9rem; color: var(--text-primary); }
+
+    .timeline {
+      position: relative; padding-left: 2rem; margin: 2rem 0;
+    }
+    .timeline::before {
+      content: ''; position: absolute; left: 0.5rem; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+    }
+
+    .timeline-item {
+      position: relative; margin-bottom: 2rem; background: #f8f9fa; padding: 1.5rem;
+      border-radius: 8px; border-left: 4px solid var(--secondary-color);
+    }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -2.2rem; top: 1.5rem; width: 12px; height: 12px;
+      background: var(--primary-color); border-radius: 50%; border: 3px solid white;
+    }
+
+    .timeline-date { font-weight: 600; color: var(--primary-color); margin-bottom: 0.5rem; }
+    .timeline-content { color: var(--text-secondary); }
+
+    .tips-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem; margin: 2rem 0;
+    }
+
+    .tip-card {
+      background: #f0f8ff; border-radius: 8px; padding: 1.5rem; border-left: 4px solid var(--success-color);
+      transition: var(--transition);
+    }
+    .tip-card:hover { background: #e8f5e8; transform: translateY(-2px); }
+
+    .tip-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .tip-title { font-weight: 600; color: var(--text-primary); margin-bottom: 0.8rem; }
+    .tip-content { color: var(--text-secondary); font-size: 0.95rem; }
+
+    .resource-list {
+      list-style: none; padding: 0;
+    }
+    .resource-list li {
+      background: #f8f9fa; margin: 0.8rem 0; padding: 1rem; border-radius: 8px;
+      border-left: 4px solid var(--accent-color); transition: var(--transition);
+    }
+    .resource-list li:hover { background: #e3f2fd; transform: translateX(5px); }
+
+    .resource-list a {
+      color: var(--secondary-color); text-decoration: none; font-weight: 500;
+    }
+    .resource-list a:hover { color: var(--primary-color); }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+      border: 2px solid var(--accent-color); border-radius: var(--border-radius);
+      padding: 1.5rem; margin: 1.5rem 0; text-align: center;
+    }
+
+    .cta-button {
+      display: inline-block; background: linear-gradient(135deg, var(--primary-color), #e57373);
+      color: white; padding: 1rem 2rem; border-radius: var(--border-radius);
+      text-decoration: none; font-weight: 600; transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+    }
+    .cta-button:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(211, 47, 47, 0.4); }
+
+    .countdown-container {
+      background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+      border: 2px solid var(--secondary-color); border-radius: var(--border-radius);
+      padding: 2rem; margin: 2rem 0; text-align: center;
+      box-shadow: 0 4px 20px rgba(25, 118, 210, 0.2);
+    }
+
+    .countdown-display {
+      display: flex; justify-content: center; gap: 1.5rem; margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .countdown-item {
+      background: var(--background-white); border-radius: var(--border-radius);
+      padding: 1rem; min-width: 80px; box-shadow: 0 2px 10px var(--shadow-light);
+      border: 2px solid var(--accent-color);
+    }
+
+    .countdown-number {
+      display: block; font-size: 2rem; font-weight: 700;
+      color: var(--primary-color); line-height: 1;
+    }
+
+    .countdown-label {
+      display: block; font-size: 0.9rem; color: var(--text-secondary);
+      margin-top: 0.5rem; font-weight: 500;
+    }
+
+    .next-exam-info {
+      font-size: 1rem; color: var(--secondary-color); font-weight: 600;
+      margin-top: 1rem;
+    }
+
+    .official-link {
+      display: inline-block; background: linear-gradient(135deg, #4caf50, #66bb6a);
+      color: white; text-decoration: none; padding: 0.8rem 1.5rem;
+      border-radius: var(--border-radius); font-weight: 600; transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+      font-size: 1rem;
+    }
+
+    .official-link:hover {
+      transform: translateY(-2px); box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+      background: linear-gradient(135deg, #43a047, #5cb85c);
+    }
+
+    footer {
+      text-align: center; padding: 2rem; color: var(--text-secondary);
+      background: var(--background-white); margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.6rem; }
+      .level-grid { grid-template-columns: 1fr; }
+      .tips-grid { grid-template-columns: 1fr; }
+      .timeline { padding-left: 1.5rem; }
+    }
+
+    .fade-in { opacity: 0; transform: translateY(30px); transition: var(--transition); }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+  <div class="sakura" style="left: 10%; animation-duration: 16s; animation-delay: 0s;">🌸</div>
+  <div class="sakura" style="left: 30%; animation-duration: 20s; animation-delay: 3s;">🌸</div>
+  <div class="sakura" style="left: 70%; animation-duration: 18s; animation-delay: 4s;">🌸</div>
+
+  <header>
+    <div class="header-content">
+      <h1>JLPT考试指南</h1>
+      <p class="subtitle">日本语能力测试全面解析 - 助你顺利通过考试</p>
+      
+      <nav>
+        <a href="../index.html">🏠 返回主站</a>
+        <a href="index.html">📚 学习中心</a>
+        <a href="n5-grammar.html">📖 N5语法</a>
+        <a href="n4-grammar.html">📘 N4语法</a>
+        <a href="n5-vocabulary.html">📋 N5词汇</a>
+        <a href="n4-vocabulary.html">📋 N4词汇</a>
+        <a href="../study-plan.html">📅 学习计划</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <section class="section fade-in">
+      <h2>🎯 什么是JLPT？</h2>
+      <p style="font-size: 1.1rem; text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">
+        日本语能力测试（Japanese Language Proficiency Test，简称JLPT）是面向母语为非日语学习者的日语能力测试。
+        考试分为N1、N2、N3、N4、N5共5个级别，N5为最初级，N1为最高级。
+      </p>
+
+      <div class="highlight-box">
+        <h3 style="color: var(--primary-color); margin-bottom: 1rem;" id="examYearTitle">📊 考试时间</h3>
+        <p><strong>第一回：</strong><span id="julyExamDate">计算中...</span></p>
+        <p><strong>第二回：</strong><span id="decemberExamDate">计算中...</span></p>
+        <div style="margin-top: 1.5rem; text-align: center;">
+          <a href="https://jlpt-main.neea.cn/" target="_blank" class="official-link">
+            🌐 中国教育考试网 - JLPT官方报名入口
+          </a>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+          *具体时间以官方公布为准，建议提前关注报名信息
+        </p>
+      </div>
+
+      <div class="countdown-container">
+        <h3 style="color: var(--primary-color); margin-bottom: 1rem; text-align: center;">⏰ 距离下次考试还有</h3>
+        <div class="countdown-display" id="countdownDisplay">
+          <div class="countdown-item">
+            <span class="countdown-number" id="days">0</span>
+            <span class="countdown-label">天</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="hours">0</span>
+            <span class="countdown-label">时</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="minutes">0</span>
+            <span class="countdown-label">分</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="seconds">0</span>
+            <span class="countdown-label">秒</span>
+          </div>
+        </div>
+        <p class="next-exam-info" id="nextExamInfo">正在计算...</p>
+      </div>
+    </section>
+
+    <section class="section fade-in">
+      <h2>📊 JLPT等级详解</h2>
+      <div class="level-grid">
+        <div class="level-card">
+          <div class="level-badge" style="background: linear-gradient(135deg, #f44336, #e57373);">N5</div>
+          <div class="level-description">
+            能够在一定程度上理解基本的日语。能够阅读和理解使用平假名、片假名及用于日常生活中的基本汉字书写的惯用短语、句子及文章。
+          </div>
+          <div class="level-stats">
+            <p><strong>词汇量：</strong>约800词</p>
+            <p><strong>汉字：</strong>约100字</p>
+            <p><strong>学习时间：</strong>150-300小时</p>
+          </div>
+        </div>
+
+        <div class="level-card">
+          <div class="level-badge" style="background: linear-gradient(135deg, #ff9800, #ffb74d);">N4</div>
+          <div class="level-description">
+            能够理解基本的日语。能够阅读和理解使用基本词汇及汉字书写的有关日常生活话题的文章。
+          </div>
+          <div class="level-stats">
+            <p><strong>词汇量：</strong>约1500词</p>
+            <p><strong>汉字：</strong>约300字</p>
+            <p><strong>学习时间：</strong>300-600小时</p>
+          </div>
+        </div>
+
+        <div class="level-card">
+          <div class="level-badge" style="background: linear-gradient(135deg, #2196f3, #64b5f6);">N3</div>
+          <div class="level-description">
+            能够在一定程度上理解日常生活中的日语。能够阅读和理解日常话题的具体内容的文章。
+          </div>
+          <div class="level-stats">
+            <p><strong>词汇量：</strong>约3700词</p>
+            <p><strong>汉字：</strong>约650字</p>
+            <p><strong>学习时间：</strong>450-900小时</p>
+          </div>
+        </div>
+
+        <div class="level-card">
+          <div class="level-badge" style="background: linear-gradient(135deg, #4caf50, #81c784);">N2</div>
+          <div class="level-description">
+            能够理解日常生活中的日语，和一定程度上理解各种场面的日语。能够阅读和理解一般话题的报纸、杂志的报道、解说、简单的评论等。
+          </div>
+          <div class="level-stats">
+            <p><strong>词汇量：</strong>约6000词</p>
+            <p><strong>汉字：</strong>约1000字</p>
+            <p><strong>学习时间：</strong>600-1200小时</p>
+          </div>
+        </div>
+
+        <div class="level-card">
+          <div class="level-badge" style="background: linear-gradient(135deg, #9c27b0, #ba68c8);">N1</div>
+          <div class="level-description">
+            能够理解各种场面的日语。能够阅读有关各类话题的报纸社论、评论等逻辑性稍强、抽象度高的文章。
+          </div>
+          <div class="level-stats">
+            <p><strong>词汇量：</strong>约10000词</p>
+            <p><strong>汉字：</strong>约2000字</p>
+            <p><strong>学习时间：</strong>900-1800小时</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fade-in">
+      <h2>📅 备考时间规划</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">考前6个月</div>
+          <div class="timeline-content">
+            <strong>基础巩固期</strong><br>
+            • 确定目标等级，制定学习计划<br>
+            • 系统学习语法和词汇<br>
+            • 建立学习习惯，每日坚持
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">考前3个月</div>
+          <div class="timeline-content">
+            <strong>强化提升期</strong><br>
+            • 开始真题练习，熟悉考试题型<br>
+            • 重点攻克薄弱环节<br>
+            • 增加听力和阅读练习量
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">考前1个月</div>
+          <div class="timeline-content">
+            <strong>冲刺复习期</strong><br>
+            • 模拟考试，掌握答题节奏<br>
+            • 复习重点语法和高频词汇<br>
+            • 调整作息，保持最佳状态
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">考前1周</div>
+          <div class="timeline-content">
+            <strong>最后准备期</strong><br>
+            • 轻松复习，避免过度疲劳<br>
+            • 准备考试用品，确认考场信息<br>
+            • 保持良好心态，充满信心
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fade-in">
+      <h2>💡 备考技巧与建议</h2>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-icon">📚</div>
+          <div class="tip-title">词汇学习技巧</div>
+          <div class="tip-content">
+            • 使用词汇卡片，利用碎片时间复习<br>
+            • 结合例句学习，理解词汇用法<br>
+            • 定期复习，运用艾宾浩斯记忆曲线<br>
+            • 分类记忆，按主题整理词汇
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-icon">📖</div>
+          <div class="tip-title">语法掌握方法</div>
+          <div class="tip-content">
+            • 理解语法规则，不要死记硬背<br>
+            • 多做练习题，加深理解<br>
+            • 注意语法的使用场合和语感<br>
+            • 制作语法笔记，系统整理
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-icon">👂</div>
+          <div class="tip-title">听力提升策略</div>
+          <div class="tip-content">
+            • 每天坚持听日语材料30分钟以上<br>
+            • 从慢速材料开始，逐步提高难度<br>
+            • 练习预测和推理能力<br>
+            • 熟悉各种口音和语调变化
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-icon">📝</div>
+          <div class="tip-title">阅读理解技巧</div>
+          <div class="tip-content">
+            • 提高阅读速度，掌握快速浏览技巧<br>
+            • 学会抓住文章主旨和关键信息<br>
+            • 扩大阅读量，接触各种文体<br>
+            • 练习推理判断和细节理解
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-icon">⏰</div>
+          <div class="tip-title">时间管理</div>
+          <div class="tip-content">
+            • 合理分配各部分答题时间<br>
+            • 先易后难，确保基础分数<br>
+            • 留出检查时间，避免低级错误<br>
+            • 平时练习时严格控制时间
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-icon">🎯</div>
+          <div class="tip-title">应试心态</div>
+          <div class="tip-content">
+            • 保持自信，相信自己的实力<br>
+            • 遇到难题不要慌张，冷静分析<br>
+            • 注意答题卡填涂，避免失误<br>
+            • 考前充分休息，保持最佳状态
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fade-in">
+      <h2>📚 推荐学习资源</h2>
+      
+      <h3>📖 教材推荐</h3>
+      <ul class="resource-list">
+        <li><strong>《新标准日本语》</strong> - 经典入门教材，适合N5-N4学习者</li>
+        <li><strong>《大家的日语》</strong> - 注重实用性，口语表达丰富</li>
+        <li><strong>《新编日语》</strong> - 语法系统完整，适合深入学习</li>
+        <li><strong>《日本语能力测试官方问题集》</strong> - 官方真题，必备资料</li>
+      </ul>
+
+      <h3>🌐 在线资源</h3>
+      <ul class="resource-list">
+        <li><strong>JLPT官方网站</strong> - 获取最新考试信息和样题</li>
+        <li><strong>NHK Easy News</strong> - 简化版日语新闻，提高阅读能力</li>
+        <li><strong>Anki</strong> - 间隔重复记忆软件，词汇学习利器</li>
+        <li><strong>日语语法指南</strong> - 在线语法学习资源</li>
+      </ul>
+
+      <h3>📱 手机应用</h3>
+      <ul class="resource-list">
+        <li><strong>最最日语</strong> - 综合学习应用，功能丰富</li>
+        <li><strong>沪江开心词场</strong> - 词汇记忆应用</li>
+        <li><strong>日语语法酷</strong> - 语法学习专用应用</li>
+        <li><strong>NHK World</strong> - 日语新闻听力练习</li>
+      </ul>
+    </section>
+
+    <section class="section fade-in">
+      <h2>🎉 开始你的JLPT备考之旅</h2>
+      <div class="highlight-box">
+        <h3 style="color: var(--primary-color); margin-bottom: 1rem;">准备好了吗？</h3>
+        <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">
+          选择适合你的等级，制定科学的学习计划，让我们一起向JLPT证书迈进！
+        </p>
+        <a href="../study-plan.html" class="cta-button">制定学习计划</a>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 日语学习乐园 | 联系方式: htoptree@163.com</p>
+    <p>頑張って！(加油！) - JLPT考试，我们与你同行</p>
+  </footer>
+
+  <script>
+    // JLPT考试倒计时功能
+    function getNextJLPTExam() {
+      const now = new Date();
+      const currentYear = now.getFullYear();
+      
+      // 计算当年7月和12月第一个周日
+      const julyFirstSunday = getFirstSundayOfMonth(currentYear, 6); // 7月是第6个月(0-based)
+      const decemberFirstSunday = getFirstSundayOfMonth(currentYear, 11); // 12月是第11个月
+      
+      // 如果当前时间还没到7月考试
+      if (now < julyFirstSunday) {
+        return {
+          date: julyFirstSunday,
+          session: '第一回',
+          year: currentYear
+        };
+      }
+      // 如果当前时间还没到12月考试
+      else if (now < decemberFirstSunday) {
+        return {
+          date: decemberFirstSunday,
+          session: '第二回',
+          year: currentYear
+        };
+      }
+      // 如果已经过了当年的考试，计算下一年7月
+      else {
+        const nextYear = currentYear + 1;
+        const nextJulyFirstSunday = getFirstSundayOfMonth(nextYear, 6);
+        return {
+          date: nextJulyFirstSunday,
+          session: '第一回',
+          year: nextYear
+        };
+      }
+    }
+    
+    function getFirstSundayOfMonth(year, month) {
+      const firstDay = new Date(year, month, 1);
+      const dayOfWeek = firstDay.getDay(); // 0 = 周日, 1 = 周一, ...
+      const daysToAdd = dayOfWeek === 0 ? 0 : 7 - dayOfWeek;
+      return new Date(year, month, 1 + daysToAdd);
+    }
+    
+    function updateCountdown() {
+      const nextExam = getNextJLPTExam();
+      const now = new Date();
+      const timeDiff = nextExam.date - now;
+      
+      if (timeDiff > 0) {
+        const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+        
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+        document.getElementById('seconds').textContent = seconds;
+        
+        const examDateStr = nextExam.date.toLocaleDateString('zh-CN', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          weekday: 'long'
+        });
+        
+        document.getElementById('nextExamInfo').textContent = 
+          `${nextExam.year}年${nextExam.session} - ${examDateStr}`;
+      } else {
+        document.getElementById('nextExamInfo').textContent = '考试时间计算中...';
+      }
+    }
+    
+    // 动态显示考试时间
+    function displayExamDates() {
+      const currentYear = new Date().getFullYear();
+      
+      // 计算当年7月和12月第一个周日
+      const julyFirstSunday = getFirstSundayOfMonth(currentYear, 6);
+      const decemberFirstSunday = getFirstSundayOfMonth(currentYear, 11);
+      
+      // 格式化日期显示
+      const julyDateStr = `${julyFirstSunday.getMonth() + 1}月${julyFirstSunday.getDate()}日（周日）`;
+      const decemberDateStr = `${decemberFirstSunday.getMonth() + 1}月${decemberFirstSunday.getDate()}日（周日）`;
+      
+      // 更新页面显示
+      document.getElementById('examYearTitle').textContent = `📊 ${currentYear}年考试时间`;
+      document.getElementById('julyExamDate').textContent = julyDateStr;
+      document.getElementById('decemberExamDate').textContent = decemberDateStr;
+    }
+    
+    // 页面加载完成后开始倒计时和显示考试时间
+    document.addEventListener('DOMContentLoaded', function() {
+      displayExamDates(); // 显示动态考试时间
+      updateCountdown();
+      setInterval(updateCountdown, 1000); // 每秒更新一次
+    });
+
+    // 动画效果
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    function createSakura() {
+      const sakura = document.createElement('div');
+      sakura.className = 'sakura';
+      sakura.innerHTML = '🌸';
+      sakura.style.left = Math.random() * 100 + '%';
+      sakura.style.animationDuration = (Math.random() * 8 + 12) + 's';
+      document.body.appendChild(sakura);
+      setTimeout(() => sakura.remove(), 20000);
+    }
+
+    setInterval(createSakura, 5000);
+  </script>
+</body>
+</html>

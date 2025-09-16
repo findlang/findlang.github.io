@@ -2,168 +2,762 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>日语学习首页 - 日英双语学习乐园</title>
+  <title>日语学习中心 - JLPT N4/N5 专业学习平台</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="专业的JLPT N4/N5日语学习平台，提供系统化的语法、词汇、五十音图学习资源">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700&family=Noto+Sans+JP:wght@500;700&display=swap');
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+    
+    :root {
+      --primary-color: #d32f2f;
+      --secondary-color: #1976d2;
+      --accent-color: #ff6f00;
+      --text-primary: #212121;
+      --text-secondary: #757575;
+      --background-light: #fafafa;
+      --background-white: #ffffff;
+      --shadow-light: rgba(0,0,0,0.1);
+      --shadow-medium: rgba(0,0,0,0.15);
+      --border-radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
       margin: 0;
-      font-family: 'Noto Sans SC', 'Noto Sans JP', Arial, sans-serif;
-      background: #f7f9fc;
-      color: #222;
+      padding: 0;
+      box-sizing: border-box;
     }
+
+    body {
+      font-family: 'Noto Sans SC', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 50%, #fd79a8 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* 樱花背景动画 */
+    .sakura {
+      position: fixed;
+      top: -10px;
+      z-index: -1;
+      color: #ffb3d9;
+      font-size: 16px;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100vh) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
     header {
-      background: #3f51b5;
-      color: #fff;
-      padding: 24px 0 16px 0;
+      background: linear-gradient(135deg, var(--primary-color), #e57373);
+      color: white;
+      padding: 1.5rem 0;
       text-align: center;
-      box-shadow: 0 2px 8px #0001;
+      position: relative;
+      overflow: hidden;
     }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+      animation: float 20s infinite linear;
+    }
+
+    @keyframes float {
+      0% { transform: translateX(-100px); }
+      100% { transform: translateX(100px); }
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      font-family: 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
     nav {
       display: flex;
       justify-content: center;
-      gap: 32px;
-      margin: 18px 0 0 0;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 8px 20px;
-      border-radius: 20px;
-      transition: background 0.2s;
-    }
-    nav a:hover {
-      background: #283593;
-    }
-    .profile {
-      max-width: 800px;
-      margin: 32px auto 0 auto;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 2px 12px #0001;
-      padding: 28px 32px;
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-    .profile-img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: #e3e6f3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-    }
-    .profile-info h2 {
-      margin: 0 0 8px 0;
-      color: #3f51b5;
-    }
-    .categories {
-      max-width: 800px;
-      margin: 32px auto 0 auto;
-      display: flex;
+      gap: 0.8rem;
       flex-wrap: wrap;
-      gap: 24px;
-      justify-content: center;
+      margin-top: 1.5rem;
     }
-    .category-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px #0001;
-      padding: 24px 32px;
-      min-width: 180px;
-      text-align: center;
-      transition: box-shadow 0.2s;
-    }
-    .category-card:hover {
-      box-shadow: 0 4px 16px #3f51b522;
-    }
-    .category-card a {
-      color: #3f51b5;
+
+    nav a {
+      background: rgba(255,255,255,0.2);
+      color: white;
       text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--border-radius);
+      font-weight: 500;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
+      font-size: 0.9rem;
     }
-    .latest {
-      max-width: 800px;
-      margin: 40px auto 32px auto;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px #0001;
-      padding: 24px 32px;
+
+    nav a:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
-    .latest h3 {
-      margin-top: 0;
-      color: #3f51b5;
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
     }
-    .latest-list {
+
+    .hero-section {
+      margin: 2rem auto;
+      background: var(--background-white);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px var(--shadow-medium);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      padding: 2.5rem;
+    }
+
+    .hero-text h2 {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .hero-description {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-image {
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-image .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-color), #e57373);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      margin: 0 auto;
+      box-shadow: 0 8px 24px var(--shadow-medium);
+    }
+
+    .level-badges {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 1.5rem 0;
+    }
+
+    .level-badge {
+      background: linear-gradient(135deg, var(--accent-color), #ffb74d);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 8px rgba(255, 111, 0, 0.3);
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem auto;
+    }
+
+    .category-card {
+      background: var(--background-white);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 20px var(--shadow-light);
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .category-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    }
+
+    .category-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px var(--shadow-medium);
+    }
+
+    .category-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .category-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .category-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .category-card a {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary-color), #e57373);
+      color: white;
+      text-decoration: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: var(--border-radius);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .category-card a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+    }
+
+    .progress-section {
+      background: var(--background-white);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      margin: 2rem auto;
+      box-shadow: 0 4px 20px var(--shadow-light);
+    }
+
+    .progress-section h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .progress-list {
       list-style: none;
       padding: 0;
       margin: 0;
     }
-    .latest-list li {
-      margin-bottom: 12px;
-      font-size: 1rem;
+
+    .progress-list li {
+      display: flex;
+      align-items: center;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #f0f0f0;
     }
-    .latest-list a {
-      color: #283593;
+
+    .progress-list li:last-child {
+      border-bottom: none;
+    }
+
+    .progress-icon {
+      margin-right: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .progress-list a {
+      color: var(--text-primary);
       text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
     }
-    .latest-list a:hover {
-      text-decoration: underline;
+
+    .progress-list a:hover {
+      color: var(--primary-color);
     }
-    @media (max-width: 700px) {
-      .profile, .categories, .latest { padding: 12px 4vw; }
-      .profile { flex-direction: column; gap: 12px; }
-    }
+
     footer {
       text-align: center;
-      color: #aaa;
-      font-size: 0.95rem;
-      margin: 32px 0 16px 0;
+      padding: 2rem;
+      color: var(--text-secondary);
+      background: var(--background-white);
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.8rem; }
+      .subtitle { font-size: 0.9rem; }
+      .hero-content { 
+        grid-template-columns: 1fr; 
+        padding: 1.5rem;
+        text-align: center;
+      }
+      .hero-text h2 { font-size: 1.6rem; }
+      .categories-grid { grid-template-columns: 1fr; }
+      .level-badges { flex-direction: column; align-items: center; }
+      nav { gap: 0.5rem; }
+      nav a { padding: 0.5rem 1rem; font-size: 0.8rem; }
+    }
+
+    .countdown-section {
+      margin: 2rem auto;
+    }
+
+    .countdown-container {
+      background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+      border: 2px solid var(--secondary-color); border-radius: var(--border-radius);
+      padding: 2rem; text-align: center;
+      box-shadow: 0 4px 20px rgba(25, 118, 210, 0.2);
+    }
+
+    .countdown-container h3 {
+      color: var(--primary-color); margin-bottom: 1.5rem;
+      font-size: 1.4rem; font-weight: 600;
+    }
+
+    .countdown-display {
+      display: flex; justify-content: center; gap: 1.5rem; margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .countdown-item {
+      background: var(--background-white); border-radius: var(--border-radius);
+      padding: 1rem; min-width: 80px; box-shadow: 0 2px 10px var(--shadow-light);
+      border: 2px solid var(--accent-color);
+    }
+
+    .countdown-number {
+      display: block; font-size: 2rem; font-weight: 700;
+      color: var(--primary-color); line-height: 1;
+    }
+
+    .countdown-label {
+      display: block; font-size: 0.9rem; color: var(--text-secondary);
+      margin-top: 0.5rem; font-weight: 500;
+    }
+
+    .next-exam-info {
+      font-size: 1rem; color: var(--secondary-color); font-weight: 600;
+      margin: 1rem 0;
+    }
+
+    .exam-guide-link {
+      display: inline-block; background: linear-gradient(135deg, var(--secondary-color), #42a5f5);
+      color: white; text-decoration: none; padding: 0.8rem 1.5rem;
+      border-radius: var(--border-radius); font-weight: 500; transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+    }
+
+    .exam-guide-link:hover {
+      transform: translateY(-2px); box-shadow: 0 8px 25px rgba(25, 118, 210, 0.4);
+    }
+
+    .fade-in { opacity: 0; transform: translateY(30px); transition: var(--transition); }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.8rem; }
+      .subtitle { font-size: 0.9rem; }
+      .hero-content { 
+        grid-template-columns: 1fr; 
+        padding: 1.5rem;
+        text-align: center;
+      }
+      .hero-text h2 { font-size: 1.6rem; }
+      .categories-grid { grid-template-columns: 1fr; }
+      .level-badges { flex-direction: column; align-items: center; }
+      nav { gap: 0.5rem; }
+      nav a { padding: 0.5rem 1rem; font-size: 0.8rem; }
     }
   </style>
 </head>
 <body>
+  <!-- 樱花背景效果 -->
+  <div class="sakura" style="left: 15%; animation-duration: 12s; animation-delay: 0s;">🌸</div>
+  <div class="sakura" style="left: 35%; animation-duration: 15s; animation-delay: 2s;">🌸</div>
+  <div class="sakura" style="left: 55%; animation-duration: 18s; animation-delay: 4s;">🌸</div>
+  <div class="sakura" style="left: 75%; animation-duration: 14s; animation-delay: 1s;">🌸</div>
+
   <header>
-    <h1>日语学习首页</h1>
-    <nav>
-      <a href="../index.html">返回主站</a>
-      <a href="index.html">日语首页</a>
-      <a href="katakana.html">五十音图</a>
-      <a href="phrases.html">常用句</a>
-      <a href="grammar.html">语法</a>
-      <a href="vocabulary.html">词汇</a>
-    </nav>
-  </header>
-  <div class="profile">
-    <div class="profile-img">🌸</div>
-    <div class="profile-info">
-      <h2>日语学习乐园</h2>
-      <p>欢迎来到日语学习乐园！这里像一个个人博客，持续更新日语五十音、常用句、语法、词汇等内容，助你高效有趣地学习日语。</p>
+    <div class="header-content">
+      <h1>日语学习中心</h1>
+      <p class="subtitle">JLPT N1-N5 全级别学习平台 - 日本語を学ぼう！</p>
+      
+      <nav>
+        <a href="../index.html">🏠 返回主站</a>
+        <a href="index.html">📚 学习中心</a>
+        <a href="n5-grammar.html">📖 N5语法</a>
+        <a href="n4-grammar.html">📘 N4语法</a>
+        <a href="n3-grammar.html">📗 N3语法</a>
+        <a href="n2-grammar.html">📙 N2语法</a>
+        <a href="n1-grammar.html">📕 N1语法</a>
+        <a href="n5-vocabulary.html">📋 N5词汇</a>
+        <a href="n4-vocabulary.html">📋 N4词汇</a>
+        <a href="n3-vocabulary.html">📋 N3词汇</a>
+        <a href="n2-vocabulary.html">📋 N2词汇</a>
+        <a href="n1-vocabulary.html">📋 N1词汇</a>
+        <a href="jlpt-guide.html">🎯 JLPT指南</a>
+        <a href="../study-plan.html">📅 学习计划</a>
+      </nav>
     </div>
+  </header>
+
+  <div class="container">
+    <section class="hero-section fade-in">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h2>JLPT N1-N5 全级别学习中心</h2>
+          <div class="level-badges">
+            <span class="level-badge">N5 基础</span>
+            <span class="level-badge">N4 进阶</span>
+            <span class="level-badge">N3 中级</span>
+            <span class="level-badge">N2 高级</span>
+            <span class="level-badge">N1 最高级</span>
+          </div>
+          <p class="hero-description">
+            专为JLPT N1-N5全级别考试设计的系统化学习平台。
+            从五十音图基础到高级语法词汇，
+            提供完整的学习路径和丰富的练习资源。
+          </p>
+        </div>
+        <div class="hero-image">
+          <div class="profile-img">🌸</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JLPT考试倒计时区域 -->
+    <section class="countdown-section fade-in">
+      <div class="countdown-container">
+        <h3>⏰ JLPT考试倒计时</h3>
+        <div class="countdown-display" id="countdownDisplay">
+          <div class="countdown-item">
+            <span class="countdown-number" id="days">0</span>
+            <span class="countdown-label">天</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="hours">0</span>
+            <span class="countdown-label">时</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="minutes">0</span>
+            <span class="countdown-label">分</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="seconds">0</span>
+            <span class="countdown-label">秒</span>
+          </div>
+        </div>
+        <p class="next-exam-info" id="nextExamInfo">正在计算...</p>
+        <a href="jlpt-guide.html" class="exam-guide-link">📖 查看考试指南</a>
+      </div>
+    </section>
+
+    <section class="categories-grid">
+      <div class="category-card fade-in">
+        <span class="category-icon">🔤</span>
+        <h3>五十音图</h3>
+        <p>平假名、片假名完整学习，支持A4打印练习</p>
+        <a href="katakana-a4.html">开始学习</a>
+      </div>
+
+      <div class="category-card fade-in">
+        <span class="category-icon">📖</span>
+        <h3>N5 语法</h3>
+        <p>JLPT N5级别语法点系统讲解，配合例句练习</p>
+        <a href="n5-grammar.html">学习N5语法</a>
+      </div>
+
+      <div class="category-card fade-in">
+        <span class="category-icon">📘</span>
+        <h3>N4 语法</h3>
+        <p>JLPT N4级别语法进阶，深入理解日语表达</p>
+        <a href="n4-grammar.html">学习N4语法</a>
+      </div>
+
+      <div class="category-card fade-in">
+        <span class="category-icon">📝</span>
+        <h3>N5 词汇</h3>
+        <p>N5必备词汇800+，分类记忆更高效</p>
+        <a href="n5-vocabulary.html">背诵N5词汇</a>
+      </div>
+
+      <div class="category-card fade-in">
+        <span class="category-icon">📋</span>
+        <h3>N4 词汇</h3>
+        <p>N4核心词汇1500+，系统扩展词汇量</p>
+        <a href="n4-vocabulary.html">背诵N4词汇</a>
+      </div>
+
+      <div class="category-card fade-in">
+        <span class="category-icon">📗</span>
+        <h3>N3 语法</h3>
+        <p>JLPT N3中级语法，复合句型和表达方式</p>
+        <a href="n3-grammar.html">学习N3语法</a>
+      </div>
+
+      <div class="category-card fade-in">
+        <span class="category-icon">📚</span>
+        <h3>N3 词汇</h3>
+        <p>N3中级词汇2500+，提升表达能力</p>
+        <a href="n3-vocabulary.html">背诵N3词汇</a>
+      </div>
+
+      <div class="category-card fade-in">
+        <span class="category-icon">📙</span>
+        <h3>N2 语法</h3>
+        <p>JLPT N2高级语法，敬语和复杂表达</p>
+        <a href="n2-grammar.html">学习N2语法</a>
+      </div>
+
+      <div class="category-card fade-in">
+        <span class="category-icon">📖</span>
+        <h3>N2 词汇</h3>
+        <p>N2高级词汇3000+，深化语言表达</p>
+        <a href="n2-vocabulary.html">背诵N2词汇</a>
+      </div>
+
+      <div class="category-card fade-in">
+        <span class="category-icon">📕</span>
+        <h3>N1 语法</h3>
+        <p>JLPT N1最高级语法，文学和学术表达</p>
+        <a href="n1-grammar.html">学习N1语法</a>
+      </div>
+
+      <div class="category-card fade-in">
+        <span class="category-icon">📓</span>
+        <h3>N1 词汇</h3>
+        <p>N1最高级词汇4000+，达到母语水平</p>
+        <a href="n1-vocabulary.html">背诵N1词汇</a>
+      </div>
+
+      <div class="category-card fade-in">
+        <span class="category-icon">📅</span>
+        <h3>学习计划</h3>
+        <p>艾宾浩斯记忆曲线，科学安排复习进度</p>
+        <a href="../study-plan.html">制定计划</a>
+      </div>
+    </section>
+
+    <section class="progress-section fade-in">
+      <h3>🎯 推荐学习路径</h3>
+      <div class="module-links">
+        <a href="n5-vocabulary.html" class="module-link">N5词汇</a>
+        <a href="n4-vocabulary.html" class="module-link secondary">N4词汇</a>
+        <a href="n3-vocabulary.html" class="module-link">N3词汇</a>
+        <a href="n2-vocabulary.html" class="module-link secondary">N2词汇</a>
+        <a href="n1-vocabulary.html" class="module-link">N1词汇</a>
+      </div>
+      <ul class="progress-list">
+        <li>
+          <span class="progress-icon">1️⃣</span>
+          <a href="katakana-a4.html">掌握五十音图（平假名 + 片假名）</a>
+        </li>
+        <li>
+          <span class="progress-icon">2️⃣</span>
+          <a href="n5-grammar.html">学习N5基础语法（动词变位、助词用法）</a>
+        </li>
+        <li>
+          <span class="progress-icon">3️⃣</span>
+          <a href="n5-vocabulary.html">积累N5核心词汇（约800词）</a>
+        </li>
+        <li>
+          <span class="progress-icon">4️⃣</span>
+          <a href="n4-grammar.html">进阶N4语法（复合句型、敬语基础）</a>
+        </li>
+        <li>
+          <span class="progress-icon">5️⃣</span>
+          <a href="n4-vocabulary.html">扩展N4词汇量（约1500词）</a>
+        </li>
+        <li>
+          <span class="progress-icon">6️⃣</span>
+          <a href="n3-grammar.html">掌握N3中级语法（复合句型、表达方式）</a>
+        </li>
+        <li>
+          <span class="progress-icon">7️⃣</span>
+          <a href="n3-vocabulary.html">学习N3中级词汇（约2500词）</a>
+        </li>
+        <li>
+          <span class="progress-icon">8️⃣</span>
+          <a href="n2-grammar.html">攻克N2高级语法（敬语、复杂表达）</a>
+        </li>
+        <li>
+          <span class="progress-icon">9️⃣</span>
+          <a href="n2-vocabulary.html">掌握N2高级词汇（约3000词）</a>
+        </li>
+        <li>
+          <span class="progress-icon">🔟</span>
+          <a href="n1-grammar.html">征服N1最高级语法（文学、学术表达）</a>
+        </li>
+        <li>
+          <span class="progress-icon">🏆</span>
+          <a href="n1-vocabulary.html">精通N1最高级词汇（约4000词）</a>
+        </li>
+        <li>
+          <span class="progress-icon">📅</span>
+          <a href="../study-plan.html">制定复习计划（艾宾浩斯记忆法）</a>
+        </li>
+      </ul>
+    </section>
   </div>
-  <div class="categories">
-    <div class="category-card"><a href="katakana.html">五十音图</a></div>
-    <div class="category-card"><a href="phrases.html">常用句</a></div>
-    <div class="category-card"><a href="grammar.html">语法</a></div>
-    <div class="category-card"><a href="vocabulary.html">词汇</a></div>    
-    <div class="category-card"><a href="study-plan.html">学习计划</a></div>    
-  </div>
-  <div class="latest">
-    <h3>最新内容</h3>
-    <ul class="latest-list">
-      <li><a href="#">【五十音】清音与浊音的区别</a></li>
-      <li><a href="#">【常用句】自我介绍怎么说？</a></li>
-      <li><a href="#">【语法】「は」和「が」的用法区别</a></li>
-      <li><a href="#">【词汇】日常生活必备词汇50个</a></li>
-    </ul>
-  </div>
+
   <footer>
-    &copy; 2024 FindLang | 联系方式: htoptree@163.com
+    <p>&copy; 2024 日语学习乐园 | 联系方式: htoptree@163.com</p>
+    <p>がんばって！(加油！) - 一起通过JLPT考试吧！</p>
   </footer>
+
+  <script>
+    // JLPT考试倒计时功能
+    function getNextJLPTExam() {
+      const now = new Date();
+      const currentYear = now.getFullYear();
+      
+      // 计算当年7月和12月第一个周日
+      const julyFirstSunday = getFirstSundayOfMonth(currentYear, 6); // 7月是第6个月(0-based)
+      const decemberFirstSunday = getFirstSundayOfMonth(currentYear, 11); // 12月是第11个月
+      
+      // 如果当前时间还没到7月考试
+      if (now < julyFirstSunday) {
+        return {
+          date: julyFirstSunday,
+          session: '第一回',
+          year: currentYear
+        };
+      }
+      // 如果当前时间还没到12月考试
+      else if (now < decemberFirstSunday) {
+        return {
+          date: decemberFirstSunday,
+          session: '第二回',
+          year: currentYear
+        };
+      }
+      // 如果已经过了当年的考试，计算下一年7月
+      else {
+        const nextYear = currentYear + 1;
+        const nextJulyFirstSunday = getFirstSundayOfMonth(nextYear, 6);
+        return {
+          date: nextJulyFirstSunday,
+          session: '第一回',
+          year: nextYear
+        };
+      }
+    }
+    
+    function getFirstSundayOfMonth(year, month) {
+      const firstDay = new Date(year, month, 1);
+      const dayOfWeek = firstDay.getDay(); // 0 = 周日, 1 = 周一, ...
+      const daysToAdd = dayOfWeek === 0 ? 0 : 7 - dayOfWeek;
+      return new Date(year, month, 1 + daysToAdd);
+    }
+    
+    function updateCountdown() {
+      const nextExam = getNextJLPTExam();
+      const now = new Date();
+      const timeDiff = nextExam.date - now;
+      
+      if (timeDiff > 0) {
+        const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+        
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+        document.getElementById('seconds').textContent = seconds;
+        
+        const examDateStr = nextExam.date.toLocaleDateString('zh-CN', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          weekday: 'long'
+        });
+        
+        document.getElementById('nextExamInfo').textContent = 
+          `${nextExam.year}年${nextExam.session} - ${examDateStr}`;
+      } else {
+        document.getElementById('nextExamInfo').textContent = '考试时间计算中...';
+      }
+    }
+
+    // 页面滚动动画效果
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // 页面加载完成后开始倒计时和动画
+    document.addEventListener('DOMContentLoaded', function() {
+      updateCountdown();
+      setInterval(updateCountdown, 1000); // 每秒更新一次倒计时
+    });
+
+    // 观察所有需要动画的元素
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // 动态创建更多樱花
+    function createSakura() {
+      const sakura = document.createElement('div');
+      sakura.className = 'sakura';
+      sakura.innerHTML = '🌸';
+      sakura.style.left = Math.random() * 100 + '%';
+      sakura.style.animationDuration = (Math.random() * 8 + 12) + 's';
+      sakura.style.animationDelay = Math.random() * 3 + 's';
+      document.body.appendChild(sakura);
+
+      // 动画结束后移除元素
+      setTimeout(() => {
+        sakura.remove();
+      }, 20000);
+    }
+
+    // 每隔一段时间创建新的樱花
+    setInterval(createSakura, 4000);
+  </script>
 </body>
 </html>

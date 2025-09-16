@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>JLPT N4 词汇学习 - 日语学习乐园</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+    
+    :root {
+      --primary-color: #d32f2f;
+      --secondary-color: #1976d2;
+      --accent-color: #ff6f00;
+      --success-color: #388e3c;
+      --text-primary: #212121;
+      --text-secondary: #757575;
+      --background-white: #ffffff;
+      --shadow-light: rgba(0,0,0,0.1);
+      --border-radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans SC', 'Noto Sans JP', sans-serif;
+      background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 50%, #fd79a8 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .sakura {
+      position: fixed; top: -10px; z-index: -1; color: #ffb3d9; font-size: 14px;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-100vh) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), #e57373);
+      color: white; padding: 1.5rem 0; text-align: center; position: relative; overflow: hidden;
+    }
+    header::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+      animation: float 20s infinite linear;
+    }
+    @keyframes float { 0% { transform: translateX(-100px); } 100% { transform: translateX(100px); } }
+
+    .header-content { position: relative; z-index: 2; }
+    header h1 { font-size: 2rem; margin-bottom: 0.5rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .subtitle { font-size: 1rem; opacity: 0.9; margin-bottom: 1.5rem; font-weight: 300; }
+
+    nav { display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.5rem; }
+    nav a {
+      background: rgba(255,255,255,0.2); color: white; text-decoration: none; padding: 0.5rem 1rem;
+      border-radius: var(--border-radius); font-weight: 500; transition: var(--transition);
+      backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); font-size: 0.85rem;
+    }
+    nav a:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+
+    .level-badge {
+      display: inline-block; background: linear-gradient(135deg, var(--secondary-color), #42a5f5);
+      color: white; padding: 0.5rem 1.5rem; border-radius: 20px; font-weight: 600;
+      font-size: 1rem; margin: 1rem 0; box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+    }
+
+    .vocab-section {
+      background: var(--background-white); border-radius: var(--border-radius); padding: 2rem;
+      margin: 1.5rem auto; box-shadow: 0 4px 20px var(--shadow-light); position: relative; overflow: hidden;
+    }
+    .vocab-section::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    }
+
+    .vocab-section h2 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1rem; }
+
+    .vocab-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem; margin: 1rem 0;
+    }
+
+    .vocab-card {
+      background: #f8f9fa; border-radius: 8px; padding: 1.2rem; border-left: 4px solid var(--accent-color);
+      transition: var(--transition); cursor: pointer;
+    }
+    .vocab-card:hover { background: #e3f2fd; transform: translateY(-2px); }
+
+    .japanese { font-family: 'Noto Sans JP', sans-serif; font-size: 1.3rem; font-weight: 600; color: var(--text-primary); }
+    .reading { font-size: 1rem; color: var(--secondary-color); margin: 0.3rem 0; }
+    .translation { font-size: 0.95rem; color: var(--text-secondary); }
+    .example { font-size: 0.9rem; color: #666; margin-top: 0.5rem; font-style: italic; }
+
+    .category-tabs {
+      display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; justify-content: center;
+    }
+    .tab-btn {
+      background: #f0f0f0; border: none; padding: 0.8rem 1.5rem; border-radius: 20px;
+      cursor: pointer; transition: var(--transition); font-weight: 500;
+    }
+    .tab-btn.active { background: var(--primary-color); color: white; }
+
+    .search-box {
+      width: 100%; max-width: 400px; padding: 0.8rem; border: 2px solid #e0e0e0;
+      border-radius: var(--border-radius); font-size: 1rem; margin-bottom: 1rem;
+    }
+    .search-box:focus { outline: none; border-color: var(--primary-color); }
+
+    .progress-bar {
+      background: #e0e0e0; height: 8px; border-radius: 4px; margin: 1rem 0; overflow: hidden;
+    }
+    .progress-fill {
+      background: linear-gradient(90deg, var(--success-color), #66bb6a);
+      height: 100%; width: 0%; transition: width 0.5s ease;
+    }
+
+    footer {
+      text-align: center; padding: 2rem; color: var(--text-secondary);
+      background: var(--background-white); margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.6rem; }
+      .vocab-grid { grid-template-columns: 1fr; }
+      .category-tabs { flex-direction: column; align-items: center; }
+    }
+
+    .fade-in { opacity: 0; transform: translateY(30px); transition: var(--transition); }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+  <div class="sakura" style="left: 10%; animation-duration: 16s; animation-delay: 0s;">🌸</div>
+  <div class="sakura" style="left: 30%; animation-duration: 20s; animation-delay: 3s;">🌸</div>
+  <div class="sakura" style="left: 70%; animation-duration: 18s; animation-delay: 4s;">🌸</div>
+
+  <header>
+    <div class="header-content">
+      <h1>JLPT N4 词汇学习</h1>
+      <p class="subtitle">N4级别核心词汇1500+ - 系统扩展词汇量</p>
+      
+      <nav>
+        <a href="../index.html">🏠 返回主站</a>
+        <a href="index.html">📚 学习中心</a>
+        <a href="n5-grammar.html">📖 N5语法</a>
+        <a href="n4-grammar.html">📘 N4语法</a>
+        <a href="n4-vocabulary.html">📋 N4词汇</a>
+        <a href="../study-plan.html">📅 学习计划</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="level-badge fade-in">🎯 JLPT N4 级别 - 进阶词汇</div>
+
+    <section class="vocab-section fade-in">
+      <h2>📚 词汇分类学习</h2>
+      
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <input type="text" class="search-box" placeholder="搜索词汇..." id="searchBox">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p>学习进度: <span id="progressText">0/0</span></p>
+      </div>
+
+      <div class="category-tabs">
+        <button class="tab-btn active" onclick="showCategory('study')">学习</button>
+        <button class="tab-btn" onclick="showCategory('work')">工作</button>
+        <button class="tab-btn" onclick="showCategory('travel')">旅行</button>
+        <button class="tab-btn" onclick="showCategory('nature')">自然</button>
+        <button class="tab-btn" onclick="showCategory('society')">社会</button>
+        <button class="tab-btn" onclick="showCategory('emotion')">情感</button>
+      </div>
+
+      <div id="study" class="vocab-category">
+        <h3>📖 学习</h3>
+        <div class="vocab-grid">
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">勉強</div>
+            <div class="reading">べんきょう</div>
+            <div class="translation">学习</div>
+            <div class="example">毎日日本語を勉強します。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">試験</div>
+            <div class="reading">しけん</div>
+            <div class="translation">考试</div>
+            <div class="example">来週試験があります。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">宿題</div>
+            <div class="reading">しゅくだい</div>
+            <div class="translation">作业</div>
+            <div class="example">宿題を忘れました。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">授業</div>
+            <div class="reading">じゅぎょう</div>
+            <div class="translation">课程、授课</div>
+            <div class="example">授業は9時から始まります。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">図書館</div>
+            <div class="reading">としょかん</div>
+            <div class="translation">图书馆</div>
+            <div class="example">図書館で本を借ります。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">辞書</div>
+            <div class="reading">じしょ</div>
+            <div class="translation">词典</div>
+            <div class="example">分からない言葉は辞書で調べます。</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="work" class="vocab-category" style="display: none;">
+        <h3>💼 工作</h3>
+        <div class="vocab-grid">
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">会社</div>
+            <div class="reading">かいしゃ</div>
+            <div class="translation">公司</div>
+            <div class="example">父は大きい会社で働いています。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">仕事</div>
+            <div class="reading">しごと</div>
+            <div class="translation">工作</div>
+            <div class="example">仕事が忙しいです。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">会議</div>
+            <div class="reading">かいぎ</div>
+            <div class="translation">会议</div>
+            <div class="example">午後会議があります。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">給料</div>
+            <div class="reading">きゅうりょう</div>
+            <div class="translation">工资</div>
+            <div class="example">来月給料が上がります。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">残業</div>
+            <div class="reading">ざんぎょう</div>
+            <div class="translation">加班</div>
+            <div class="example">今日は残業しなければなりません。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">部長</div>
+            <div class="reading">ぶちょう</div>
+            <div class="translation">部长</div>
+            <div class="example">部長に報告します。</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="travel" class="vocab-category" style="display: none;">
+        <h3>✈️ 旅行</h3>
+        <div class="vocab-grid">
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">旅行</div>
+            <div class="reading">りょこう</div>
+            <div class="translation">旅行</div>
+            <div class="example">夏休みに旅行に行きます。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">空港</div>
+            <div class="reading">くうこう</div>
+            <div class="translation">机场</div>
+            <div class="example">空港まで迎えに行きます。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">飛行機</div>
+            <div class="reading">ひこうき</div>
+            <div class="translation">飞机</div>
+            <div class="example">飛行機で東京に行きました。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">ホテル</div>
+            <div class="reading">ホテル</div>
+            <div class="translation">酒店</div>
+            <div class="example">駅の近くのホテルに泊まります。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">観光</div>
+            <div class="reading">かんこう</div>
+            <div class="translation">观光</div>
+            <div class="example">京都を観光しました。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">地図</div>
+            <div class="reading">ちず</div>
+            <div class="translation">地图</div>
+            <div class="example">地図を見ながら歩きます。</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="nature" class="vocab-category" style="display: none;">
+        <h3>🌿 自然</h3>
+        <div class="vocab-grid">
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">自然</div>
+            <div class="reading">しぜん</div>
+            <div class="translation">自然</div>
+            <div class="example">自然が美しいです。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">森</div>
+            <div class="reading">もり</div>
+            <div class="translation">森林</div>
+            <div class="example">森の中を散歩しました。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">海</div>
+            <div class="reading">うみ</div>
+            <div class="translation">海</div>
+            <div class="example">夏は海で泳ぎます。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">山</div>
+            <div class="reading">やま</div>
+            <div class="translation">山</div>
+            <div class="example">富士山に登りたいです。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">川</div>
+            <div class="reading">かわ</div>
+            <div class="translation">河流</div>
+            <div class="example">川で魚を釣りました。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">花</div>
+            <div class="reading">はな</div>
+            <div class="translation">花</div>
+            <div class="example">春になると花が咲きます。</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="society" class="vocab-category" style="display: none;">
+        <h3>🏛️ 社会</h3>
+        <div class="vocab-grid">
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">社会</div>
+            <div class="reading">しゃかい</div>
+            <div class="translation">社会</div>
+            <div class="example">現代社会は複雑です。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">政治</div>
+            <div class="reading">せいじ</div>
+            <div class="translation">政治</div>
+            <div class="example">政治に興味があります。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">経済</div>
+            <div class="reading">けいざい</div>
+            <div class="translation">经济</div>
+            <div class="example">日本の経済について勉強します。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">文化</div>
+            <div class="reading">ぶんか</div>
+            <div class="translation">文化</div>
+            <div class="example">日本の文化を理解したいです。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">歴史</div>
+            <div class="reading">れきし</div>
+            <div class="translation">历史</div>
+            <div class="example">歴史の本を読みます。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">法律</div>
+            <div class="reading">ほうりつ</div>
+            <div class="translation">法律</div>
+            <div class="example">法律を守らなければなりません。</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="emotion" class="vocab-category" style="display: none;">
+        <h3>😊 情感</h3>
+        <div class="vocab-grid">
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">気持ち</div>
+            <div class="reading">きもち</div>
+            <div class="translation">心情、感觉</div>
+            <div class="example">今日はいい気持ちです。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">嬉しい</div>
+            <div class="reading">うれしい</div>
+            <div class="translation">高兴</div>
+            <div class="example">プレゼントをもらって嬉しいです。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">悲しい</div>
+            <div class="reading">かなしい</div>
+            <div class="translation">悲伤</div>
+            <div class="example">映画を見て悲しくなりました。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">心配</div>
+            <div class="reading">しんぱい</div>
+            <div class="translation">担心</div>
+            <div class="example">試験のことが心配です。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">安心</div>
+            <div class="reading">あんしん</div>
+            <div class="translation">安心</div>
+            <div class="example">家族が元気で安心しました。</div>
+          </div>
+          <div class="vocab-card" onclick="toggleLearned(this)">
+            <div class="japanese">感動</div>
+            <div class="reading">かんどう</div>
+            <div class="translation">感动</div>
+            <div class="example">その話に感動しました。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 日语学习乐园 | 联系方式: htoptree@163.com</p>
+    <p>頑張って！(加油！) - N4词汇让你的日语表达更丰富</p>
+  </footer>
+
+  <script>
+    let learnedWords = JSON.parse(localStorage.getItem('n4-learned-words') || '[]');
+
+    function showCategory(category) {
+      document.querySelectorAll('.vocab-category').forEach(cat => cat.style.display = 'none');
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(category).style.display = 'block';
+      event.target.classList.add('active');
+      updateProgress();
+    }
+
+    function toggleLearned(card) {
+      const japanese = card.querySelector('.japanese').textContent;
+      if (learnedWords.includes(japanese)) {
+        learnedWords = learnedWords.filter(word => word !== japanese);
+        card.style.background = '#f8f9fa';
+      } else {
+        learnedWords.push(japanese);
+        card.style.background = '#e8f5e8';
+      }
+      localStorage.setItem('n4-learned-words', JSON.stringify(learnedWords));
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const totalWords = document.querySelectorAll('.vocab-card').length;
+      const learnedCount = learnedWords.length;
+      const percentage = totalWords > 0 ? (learnedCount / totalWords) * 100 : 0;
+      
+      document.getElementById('progressFill').style.width = percentage + '%';
+      document.getElementById('progressText').textContent = `${learnedCount}/${totalWords}`;
+    }
+
+    function initializeCards() {
+      document.querySelectorAll('.vocab-card').forEach(card => {
+        const japanese = card.querySelector('.japanese').textContent;
+        if (learnedWords.includes(japanese)) {
+          card.style.background = '#e8f5e8';
+        }
+      });
+      updateProgress();
+    }
+
+    document.getElementById('searchBox').addEventListener('input', function(e) {
+      const searchTerm = e.target.value.toLowerCase();
+      document.querySelectorAll('.vocab-card').forEach(card => {
+        const japanese = card.querySelector('.japanese').textContent.toLowerCase();
+        const reading = card.querySelector('.reading').textContent.toLowerCase();
+        const translation = card.querySelector('.translation').textContent.toLowerCase();
+        
+        if (japanese.includes(searchTerm) || reading.includes(searchTerm) || translation.includes(searchTerm)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    function createSakura() {
+      const sakura = document.createElement('div');
+      sakura.className = 'sakura';
+      sakura.innerHTML = '🌸';
+      sakura.style.left = Math.random() * 100 + '%';
+      sakura.style.animationDuration = (Math.random() * 8 + 12) + 's';
+      document.body.appendChild(sakura);
+      setTimeout(() => sakura.remove(), 20000);
+    }
+
+    setInterval(createSakura, 5000);
+    initializeCards();
+  </script>
+</body>
+</html>

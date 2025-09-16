@@ -1,243 +1,667 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>五十音图</title>
+  <title>日语五十音图 - 日语学习乐园</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="完整的日语五十音图，包含平假名、片假名、罗马音，支持打印学习">
   <style>
-    @page { size: A4; margin: 20mm; }
-    body { font-family: "Noto Sans JP", "Arial", sans-serif; margin: 40px; }
-    h2 { margin-top: 40px; }
-    table { border-collapse: collapse; width: 100%; margin-bottom: 30px; }
-    th, td {
-      border: 1px solid #333;
-      text-align: center;
-      padding: 8px 4px;
-      font-size: 18px;
-      min-width: 60px;
-      height: 40px;
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+    
+    :root {
+      --primary-color: #d32f2f;
+      --secondary-color: #1976d2;
+      --accent-color: #ff6f00;
+      --text-primary: #212121;
+      --text-secondary: #757575;
+      --background-light: #fafafa;
+      --background-white: #ffffff;
+      --shadow-light: rgba(0,0,0,0.1);
+      --shadow-medium: rgba(0,0,0,0.15);
+      --border-radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    th { background: #f0f0f0; }
-    .small { font-size: 14px; color: #666; }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans SC', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 50%, #fd79a8 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* 樱花背景动画 */
+    .sakura {
+      position: fixed;
+      top: -10px;
+      z-index: -1;
+      color: #ffb3d9;
+      font-size: 16px;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100vh) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    header {
+      background: var(--background-white);
+      box-shadow: 0 2px 10px var(--shadow-light);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--text-primary);
+      text-decoration: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      background: var(--background-light);
+      color: var(--primary-color);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .section {
+      background: var(--background-white);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px var(--shadow-light);
+    }
+
+    .section h2 {
+      color: var(--primary-color);
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .print-controls {
+      background: var(--background-light);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .print-btn {
+      background: linear-gradient(135deg, var(--primary-color), #e57373);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px var(--shadow-light);
+    }
+
+    .print-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--shadow-medium);
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 2rem;
+      background: var(--background-white);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: 0 2px 10px var(--shadow-light);
+    }
+
+    th, td {
+      border: 1px solid #e0e0e0;
+      text-align: center;
+      padding: 1rem 0.5rem;
+      font-size: 1.1rem;
+      min-width: 80px;
+      height: 60px;
+      transition: var(--transition);
+    }
+
+    th {
+      background: linear-gradient(135deg, var(--primary-color), #e57373);
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    td {
+      background: var(--background-white);
+    }
+
+    td:hover {
+      background: var(--background-light);
+      transform: scale(1.05);
+    }
+
+    .japanese-char {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .romaji {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-secondary);
+      background: var(--background-white);
+      margin-top: 2rem;
+    }
+
+    /* 打印样式 */
+    @media print {
+      @page { 
+        size: A4; 
+        margin: 5mm; 
+      }
+      
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
+      body { 
+        background: white; 
+        font-size: 8px;
+        line-height: 1;
+        font-family: 'Noto Sans JP', Arial, sans-serif;
+      }
+      
+      .sakura, header, nav, .print-controls, footer { display: none !important; }
+      
+      .container { 
+        max-width: none; 
+        margin: 0; 
+        padding: 0; 
+        height: auto;
+      }
+      
+      .section { 
+        box-shadow: none; 
+        margin: 0 0 3px 0; 
+        padding: 0;
+        page-break-inside: avoid;
+        background: none;
+        border-radius: 0;
+      }
+      
+      .section h2 { 
+        font-size: 11px; 
+        margin: 2px 0; 
+        text-align: center;
+        font-weight: bold;
+      }
+      
+      table { 
+        break-inside: avoid; 
+        margin: 0 0 3px 0;
+        width: 100%;
+        border-collapse: collapse;
+      }
+      
+      th, td { 
+        padding: 1px; 
+        font-size: 7px;
+        min-width: 0;
+        height: 15px;
+        border: 0.5px solid #333;
+        text-align: center;
+        vertical-align: middle;
+      }
+      
+      th {
+        background: #f5f5f5;
+        font-weight: bold;
+      }
+      
+      .japanese-char { 
+        font-size: 8px; 
+        display: inline;
+        margin: 0;
+        font-weight: bold;
+      }
+      
+      .romaji { 
+        font-size: 6px; 
+        display: inline;
+        margin-left: 2px;
+        color: #666;
+      }
+      
+      /* 基础五十音图 - 紧凑布局 */
+      .section:nth-child(1) table th,
+      .section:nth-child(1) table td {
+        height: 12px;
+        font-size: 6px;
+      }
+      
+      .section:nth-child(1) .japanese-char {
+        font-size: 7px;
+      }
+      
+      .section:nth-child(1) .romaji {
+        font-size: 5px;
+      }
+      
+      /* 浊音表 - 更紧凑 */
+      .section:nth-child(2) table th,
+      .section:nth-child(2) table td {
+        height: 10px;
+        font-size: 5px;
+      }
+      
+      .section:nth-child(2) .japanese-char {
+        font-size: 6px;
+      }
+      
+      .section:nth-child(2) .romaji {
+        font-size: 4px;
+      }
+      
+      /* 拗音表 - 最紧凑 */
+      .section:nth-child(3) table th,
+      .section:nth-child(3) table td {
+        height: 8px;
+        font-size: 4px;
+      }
+      
+      .section:nth-child(3) .japanese-char {
+        font-size: 5px;
+      }
+      
+      .section:nth-child(3) .romaji {
+        font-size: 3px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.6rem; }
+      nav { gap: 0.5rem; }
+      nav a { padding: 0.5rem 1rem; font-size: 0.9rem; }
+      th, td { padding: 0.5rem 0.3rem; font-size: 1rem; min-width: 60px; height: 50px; }
+      .japanese-char { font-size: 1.2rem; }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: var(--transition);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
-  <h1>日语五十音图</h1>
-  <table>
-    <tr>
-      <th></th>
-      <th>a<br>あ ア</th>
-      <th>i<br>い イ</th>
-      <th>u<br>う ウ</th>
-      <th>e<br>え エ</th>
-      <th>o<br>お オ</th>
-    </tr>
-    <tr>
-      <th>k</th>
-      <td>か カ<br>ka</td>
-      <td>き キ<br>ki</td>
-      <td>く ク<br>ku</td>
-      <td>け ケ<br>ke</td>
-      <td>こ コ<br>ko</td>
-    </tr>
-    <tr>
-      <th>s</th>
-      <td>さ サ<br>sa</td>
-      <td>し シ<br>shi</td>
-      <td>す ス<br>su</td>
-      <td>せ セ<br>se</td>
-      <td>そ ソ<br>so</td>
-    </tr>
-    <tr>
-      <th>t</th>
-      <td>た タ<br>ta</td>
-      <td>ち チ<br>chi</td>
-      <td>つ ツ<br>tsu</td>
-      <td>て テ<br>te</td>
-      <td>と ト<br>to</td>
-    </tr>
-    <tr>
-      <th>n</th>
-      <td>な ナ<br>na</td>
-      <td>に ニ<br>ni</td>
-      <td>ぬ ヌ<br>nu</td>
-      <td>ね ネ<br>ne</td>
-      <td>の ノ<br>no</td>
-    </tr>
-    <tr>
-      <th>h</th>
-      <td>は ハ<br>ha</td>
-      <td>ひ ヒ<br>hi</td>
-      <td>ふ フ<br>fu</td>
-      <td>へ ヘ<br>he</td>
-      <td>ほ ホ<br>ho</td>
-    </tr>
-    <tr>
-      <th>m</th>
-      <td>ま マ<br>ma</td>
-      <td>み ミ<br>mi</td>
-      <td>む ム<br>mu</td>
-      <td>め メ<br>me</td>
-      <td>も モ<br>mo</td>
-    </tr>
-    <tr>
-      <th>y</th>
-      <td>や ヤ<br>ya</td>
-      <td></td>
-      <td>ゆ ユ<br>yu</td>
-      <td></td>
-      <td>よ ヨ<br>yo</td>
-    </tr>
-    <tr>
-      <th>r</th>
-      <td>ら ラ<br>ra</td>
-      <td>り リ<br>ri</td>
-      <td>る ル<br>ru</td>
-      <td>れ レ<br>re</td>
-      <td>ろ ロ<br>ro</td>
-    </tr>
-    <tr>
-      <th>w</th>
-      <td>わ ワ<br>wa</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>を ヲ<br>wo</td>
-    </tr>
-    <tr>
-      <th>n</th>
-      <td colspan="5">ん ン<br>n</td>
-    </tr>
-  </table>
+  <div class="sakura" style="left: 15%; animation-duration: 18s; animation-delay: 1s;">🌸</div>
+  <div class="sakura" style="left: 35%; animation-duration: 22s; animation-delay: 2s;">🌸</div>
+  <div class="sakura" style="left: 75%; animation-duration: 16s; animation-delay: 5s;">🌸</div>
 
-  <h2>浊音表</h2>
-  <table>
-    <tr>
-      <th>が行</th>
-      <th>ざ行</th>
-      <th>だ行</th>
-      <th>ば行</th>
-      <th>ぱ行</th>
-    </tr>
-    <tr>
-      <td>が ガ<br>ga</td>
-      <td>ざ ザ<br>za</td>
-      <td>だ ダ<br>da</td>
-      <td>ば バ<br>ba</td>
-      <td>ぱ パ<br>pa</td>
-    </tr>
-    <tr>
-      <td>ぎ ギ<br>gi</td>
-      <td>じ ジ<br>ji</td>
-      <td>ぢ ヂ<br>ji</td>
-      <td>び ビ<br>bi</td>
-      <td>ぴ ピ<br>pi</td>
-    </tr>
-    <tr>
-      <td>ぐ グ<br>gu</td>
-      <td>ず ズ<br>zu</td>
-      <td>づ ヅ<br>zu</td>
-      <td>ぶ ブ<br>bu</td>
-      <td>ぷ プ<br>pu</td>
-    </tr>
-    <tr>
-      <td>げ ゲ<br>ge</td>
-      <td>ぜ ゼ<br>ze</td>
-      <td>で デ<br>de</td>
-      <td>べ ベ<br>be</td>
-      <td>ぺ ペ<br>pe</td>
-    </tr>
-    <tr>
-      <td>ご ゴ<br>go</td>
-      <td>ぞ ゾ<br>zo</td>
-      <td>ど ド<br>do</td>
-      <td>ぼ ボ<br>bo</td>
-      <td>ぽ ポ<br>po</td>
-    </tr>
-  </table>
+  <header>
+    <div class="header-content">
+      <h1>日语五十音图</h1>
+      <p class="subtitle">完整的平假名、片假名学习表 - 包含标准发音</p>
+      
+      <nav>
+        <a href="../index.html">🏠 返回主站</a>
+        <a href="index.html">📚 学习中心</a>        
+        <a href="katakana.html">🔤 平/片假名</a>
+        <a href="jlpt-guide.html">🎯 JLPT指南</a>
+      </nav>
+    </div>
+  </header>
 
-  <h2>拗音表（含浊音、半浊音）</h2>
-  <table>
-    <tr>
-      <th>きゃ行</th>
-      <th>しゃ行</th>
-      <th>ちゃ行</th>
-      <th>にゃ行</th>
-      <th>ひゃ行</th>
-    </tr>
-    <tr>
-      <td>きゃ キャ<br>kya</td>
-      <td>しゃ シャ<br>sha</td>
-      <td>ちゃ チャ<br>cha</td>
-      <td>にゃ ニャ<br>nya</td>
-      <td>ひゃ ヒャ<br>hya</td>
-    </tr>
-    <tr>
-      <td>きゅ キュ<br>kyu</td>
-      <td>しゅ シュ<br>shu</td>
-      <td>ちゅ チュ<br>chu</td>
-      <td>にゅ ニュ<br>nyu</td>
-      <td>ひゅ ヒュ<br>hyu</td>
-    </tr>
-    <tr>
-      <td>きょ キョ<br>kyo</td>
-      <td>しょ ショ<br>sho</td>
-      <td>ちょ チョ<br>cho</td>
-      <td>にょ ニョ<br>nyo</td>
-      <td>ひょ ヒョ<br>hyo</td>
-    </tr>
-    <tr>
-      <th>みゃ行</th>
-      <th>りゃ行</th>
-      <th>ぎゃ行</th>
-      <th>じゃ行</th>
-      <th>びゃ行</th>
-    </tr>
-    <tr>
-      <td>みゃ ミャ<br>mya</td>
-      <td>りゃ リャ<br>rya</td>
-      <td>ぎゃ ギャ<br>gya</td>
-      <td>じゃ ジャ<br>ja</td>
-      <td>びゃ ビャ<br>bya</td>
-    </tr>
-    <tr>
-      <td>みゅ ミュ<br>myu</td>
-      <td>りゅ リュ<br>ryu</td>
-      <td>ぎゅ ギュ<br>gyu</td>
-      <td>じゅ ジュ<br>ju</td>
-      <td>びゅ ビュ<br>byu</td>
-    </tr>
-    <tr>
-      <td>みょ ミョ<br>myo</td>
-      <td>りょ リョ<br>ryo</td>
-      <td>ぎょ ギョ<br>gyo</td>
-      <td>じょ ジョ<br>jo</td>
-      <td>びょ ビョ<br>byo</td>
-    </tr>
-    <tr>
-      <th>ぴゃ行</th>
-      <td colspan="4"></td>
-    </tr>
-    <tr>
-      <td>ぴゃ ピャ<br>pya</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>ぴゅ ピュ<br>pyu</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>ぴょ ピョ<br>pyo</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </table>
+  <div class="container">
+    <section class="print-controls fade-in">
+      <h3>📄 打印学习</h3>
+      <p>点击下方按钮打印A4版本的五十音图，方便随时学习</p>
+      <button class="print-btn" onclick="printKana()">🖨️ 打印五十音图</button>
+    </section>
+
+    <section class="section fade-in">
+      <h2>🎯 基础五十音图</h2>
+      <table>
+        <tr>
+          <th></th>
+          <th>a<br><span class="japanese-char">あ ア</span></th>
+          <th>i<br><span class="japanese-char">い イ</span></th>
+          <th>u<br><span class="japanese-char">う ウ</span></th>
+          <th>e<br><span class="japanese-char">え エ</span></th>
+          <th>o<br><span class="japanese-char">お オ</span></th>
+        </tr>
+        <tr>
+          <th>k</th>
+          <td><span class="japanese-char">か カ</span><span class="romaji">ka</span></td>
+          <td><span class="japanese-char">き キ</span><span class="romaji">ki</span></td>
+          <td><span class="japanese-char">く ク</span><span class="romaji">ku</span></td>
+          <td><span class="japanese-char">け ケ</span><span class="romaji">ke</span></td>
+          <td><span class="japanese-char">こ コ</span><span class="romaji">ko</span></td>
+        </tr>
+        <tr>
+          <th>s</th>
+          <td><span class="japanese-char">さ サ</span><span class="romaji">sa</span></td>
+          <td><span class="japanese-char">し シ</span><span class="romaji">shi</span></td>
+          <td><span class="japanese-char">す ス</span><span class="romaji">su</span></td>
+          <td><span class="japanese-char">せ セ</span><span class="romaji">se</span></td>
+          <td><span class="japanese-char">そ ソ</span><span class="romaji">so</span></td>
+        </tr>
+        <tr>
+          <th>t</th>
+          <td><span class="japanese-char">た タ</span><span class="romaji">ta</span></td>
+          <td><span class="japanese-char">ち チ</span><span class="romaji">chi</span></td>
+          <td><span class="japanese-char">つ ツ</span><span class="romaji">tsu</span></td>
+          <td><span class="japanese-char">て テ</span><span class="romaji">te</span></td>
+          <td><span class="japanese-char">と ト</span><span class="romaji">to</span></td>
+        </tr>
+        <tr>
+          <th>n</th>
+          <td><span class="japanese-char">な ナ</span><span class="romaji">na</span></td>
+          <td><span class="japanese-char">に ニ</span><span class="romaji">ni</span></td>
+          <td><span class="japanese-char">ぬ ヌ</span><span class="romaji">nu</span></td>
+          <td><span class="japanese-char">ね ネ</span><span class="romaji">ne</span></td>
+          <td><span class="japanese-char">の ノ</span><span class="romaji">no</span></td>
+        </tr>
+        <tr>
+          <th>h</th>
+          <td><span class="japanese-char">は ハ</span><span class="romaji">ha</span></td>
+          <td><span class="japanese-char">ひ ヒ</span><span class="romaji">hi</span></td>
+          <td><span class="japanese-char">ふ フ</span><span class="romaji">fu</span></td>
+          <td><span class="japanese-char">へ ヘ</span><span class="romaji">he</span></td>
+          <td><span class="japanese-char">ほ ホ</span><span class="romaji">ho</span></td>
+        </tr>
+        <tr>
+          <th>m</th>
+          <td><span class="japanese-char">ま マ</span><span class="romaji">ma</span></td>
+          <td><span class="japanese-char">み ミ</span><span class="romaji">mi</span></td>
+          <td><span class="japanese-char">む ム</span><span class="romaji">mu</span></td>
+          <td><span class="japanese-char">め メ</span><span class="romaji">me</span></td>
+          <td><span class="japanese-char">も モ</span><span class="romaji">mo</span></td>
+        </tr>
+        <tr>
+          <th>y</th>
+          <td><span class="japanese-char">や ヤ</span><span class="romaji">ya</span></td>
+          <td></td>
+          <td><span class="japanese-char">ゆ ユ</span><span class="romaji">yu</span></td>
+          <td></td>
+          <td><span class="japanese-char">よ ヨ</span><span class="romaji">yo</span></td>
+        </tr>
+        <tr>
+          <th>r</th>
+          <td><span class="japanese-char">ら ラ</span><span class="romaji">ra</span></td>
+          <td><span class="japanese-char">り リ</span><span class="romaji">ri</span></td>
+          <td><span class="japanese-char">る ル</span><span class="romaji">ru</span></td>
+          <td><span class="japanese-char">れ レ</span><span class="romaji">re</span></td>
+          <td><span class="japanese-char">ろ ロ</span><span class="romaji">ro</span></td>
+        </tr>
+        <tr>
+          <th>w</th>
+          <td><span class="japanese-char">わ ワ</span><span class="romaji">wa</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><span class="japanese-char">を ヲ</span><span class="romaji">wo</span></td>
+        </tr>
+        <tr>
+          <th>n</th>
+          <td colspan="5"><span class="japanese-char">ん ン</span><span class="romaji">n</span></td>
+        </tr>
+      </table>
+    </section>
+
+    <section class="section fade-in">
+      <h2>🌟 浊音表</h2>
+      <table>
+        <tr>
+          <th>が行</th>
+          <th>ざ行</th>
+          <th>だ行</th>
+          <th>ば行</th>
+          <th>ぱ行</th>
+        </tr>
+        <tr>
+          <td><span class="japanese-char">が ガ</span><span class="romaji">ga</span></td>
+          <td><span class="japanese-char">ざ ザ</span><span class="romaji">za</span></td>
+          <td><span class="japanese-char">だ ダ</span><span class="romaji">da</span></td>
+          <td><span class="japanese-char">ば バ</span><span class="romaji">ba</span></td>
+          <td><span class="japanese-char">ぱ パ</span><span class="romaji">pa</span></td>
+        </tr>
+        <tr>
+          <td><span class="japanese-char">ぎ ギ</span><span class="romaji">gi</span></td>
+          <td><span class="japanese-char">じ ジ</span><span class="romaji">ji</span></td>
+          <td><span class="japanese-char">ぢ ヂ</span><span class="romaji">ji</span></td>
+          <td><span class="japanese-char">び ビ</span><span class="romaji">bi</span></td>
+          <td><span class="japanese-char">ぴ ピ</span><span class="romaji">pi</span></td>
+        </tr>
+        <tr>
+          <td><span class="japanese-char">ぐ グ</span><span class="romaji">gu</span></td>
+          <td><span class="japanese-char">ず ズ</span><span class="romaji">zu</span></td>
+          <td><span class="japanese-char">づ ヅ</span><span class="romaji">zu</span></td>
+          <td><span class="japanese-char">ぶ ブ</span><span class="romaji">bu</span></td>
+          <td><span class="japanese-char">ぷ プ</span><span class="romaji">pu</span></td>
+        </tr>
+        <tr>
+          <td><span class="japanese-char">げ ゲ</span><span class="romaji">ge</span></td>
+          <td><span class="japanese-char">ぜ ゼ</span><span class="romaji">ze</span></td>
+          <td><span class="japanese-char">で デ</span><span class="romaji">de</span></td>
+          <td><span class="japanese-char">べ ベ</span><span class="romaji">be</span></td>
+          <td><span class="japanese-char">ぺ ペ</span><span class="romaji">pe</span></td>
+        </tr>
+        <tr>
+          <td><span class="japanese-char">ご ゴ</span><span class="romaji">go</span></td>
+          <td><span class="japanese-char">ぞ ゾ</span><span class="romaji">zo</span></td>
+          <td><span class="japanese-char">ど ド</span><span class="romaji">do</span></td>
+          <td><span class="japanese-char">ぼ ボ</span><span class="romaji">bo</span></td>
+          <td><span class="japanese-char">ぽ ポ</span><span class="romaji">po</span></td>
+        </tr>
+      </table>
+    </section>
+
+    <section class="section fade-in">
+      <h2>🎭 拗音表（含浊音、半浊音）</h2>
+      <table>
+        <tr>
+          <th>きゃ行</th>
+          <th>しゃ行</th>
+          <th>ちゃ行</th>
+          <th>にゃ行</th>
+          <th>ひゃ行</th>
+        </tr>
+        <tr>
+          <td><span class="japanese-char">きゃ キャ</span><span class="romaji">kya</span></td>
+          <td><span class="japanese-char">しゃ シャ</span><span class="romaji">sha</span></td>
+          <td><span class="japanese-char">ちゃ チャ</span><span class="romaji">cha</span></td>
+          <td><span class="japanese-char">にゃ ニャ</span><span class="romaji">nya</span></td>
+          <td><span class="japanese-char">ひゃ ヒャ</span><span class="romaji">hya</span></td>
+        </tr>
+        <tr>
+          <td><span class="japanese-char">きゅ キュ</span><span class="romaji">kyu</span></td>
+          <td><span class="japanese-char">しゅ シュ</span><span class="romaji">shu</span></td>
+          <td><span class="japanese-char">ちゅ チュ</span><span class="romaji">chu</span></td>
+          <td><span class="japanese-char">にゅ ニュ</span><span class="romaji">nyu</span></td>
+          <td><span class="japanese-char">ひゅ ヒュ</span><span class="romaji">hyu</span></td>
+        </tr>
+        <tr>
+          <td><span class="japanese-char">きょ キョ</span><span class="romaji">kyo</span></td>
+          <td><span class="japanese-char">しょ ショ</span><span class="romaji">sho</span></td>
+          <td><span class="japanese-char">ちょ チョ</span><span class="romaji">cho</span></td>
+          <td><span class="japanese-char">にょ ニョ</span><span class="romaji">nyo</span></td>
+          <td><span class="japanese-char">ひょ ヒョ</span><span class="romaji">hyo</span></td>
+        </tr>
+        <tr>
+          <th>みゃ行</th>
+          <th>りゃ行</th>
+          <th>ぎゃ行</th>
+          <th>じゃ行</th>
+          <th>びゃ行</th>
+        </tr>
+        <tr>
+          <td><span class="japanese-char">みゃ ミャ</span><span class="romaji">mya</span></td>
+          <td><span class="japanese-char">りゃ リャ</span><span class="romaji">rya</span></td>
+          <td><span class="japanese-char">ぎゃ ギャ</span><span class="romaji">gya</span></td>
+          <td><span class="japanese-char">じゃ ジャ</span><span class="romaji">ja</span></td>
+          <td><span class="japanese-char">びゃ ビャ</span><span class="romaji">bya</span></td>
+        </tr>
+        <tr>
+          <td><span class="japanese-char">みゅ ミュ</span><span class="romaji">myu</span></td>
+          <td><span class="japanese-char">りゅ リュ</span><span class="romaji">ryu</span></td>
+          <td><span class="japanese-char">ぎゅ ギュ</span><span class="romaji">gyu</span></td>
+          <td><span class="japanese-char">じゅ ジュ</span><span class="romaji">ju</span></td>
+          <td><span class="japanese-char">びゅ ビュ</span><span class="romaji">byu</span></td>
+        </tr>
+        <tr>
+          <td><span class="japanese-char">みょ ミョ</span><span class="romaji">myo</span></td>
+          <td><span class="japanese-char">りょ リョ</span><span class="romaji">ryo</span></td>
+          <td><span class="japanese-char">ぎょ ギョ</span><span class="romaji">gyo</span></td>
+          <td><span class="japanese-char">じょ ジョ</span><span class="romaji">jo</span></td>
+          <td><span class="japanese-char">びょ ビョ</span><span class="romaji">byo</span></td>
+        </tr>
+        <tr>
+          <th>ぴゃ行</th>
+          <td colspan="4"></td>
+        </tr>
+        <tr>
+          <td><span class="japanese-char">ぴゃ ピャ</span><span class="romaji">pya</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><span class="japanese-char">ぴゅ ピュ</span><span class="romaji">pyu</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><span class="japanese-char">ぴょ ピョ</span><span class="romaji">pyo</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 日语学习乐园 | 联系方式: htoptree@163.com</p>
+    <p>頑張って！(加油！) - 五十音图，日语学习的第一步</p>
+  </footer>
+
+  <script>
+    // 打印功能
+    function printKana() {
+      // 直接调用当前页面的打印功能
+      window.print();
+    }
+
+    // 樱花动画
+    function createSakura() {
+      const sakura = document.createElement('div');
+      sakura.className = 'sakura';
+      sakura.innerHTML = '🌸';
+      sakura.style.left = Math.random() * 100 + '%';
+      sakura.style.animationDuration = (Math.random() * 8 + 12) + 's';
+      document.body.appendChild(sakura);
+      
+      setTimeout(() => {
+        if (sakura.parentNode) {
+          sakura.remove();
+        }
+      }, 20000);
+    }
+
+    // 渐入动画
+    function setupAnimations() {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+      
+      document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // 页面加载完成后初始化
+    document.addEventListener('DOMContentLoaded', function() {
+      setupAnimations();
+      
+      // 定期创建樱花
+      setInterval(createSakura, 5000);
+      
+      // 初始创建几个樱花
+      for (let i = 0; i < 3; i++) {
+        setTimeout(createSakura, i * 2000);
+      }
+    });
+  </script>
 </body>
-</html> 
+</html>

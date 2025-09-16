@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>JLPT N1语法总结 - 日语学习乐园</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="JLPT N1级别语法点系统总结，包含最高级语法、文学表达、专业术语等核心知识点">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+    
+    :root {
+      --primary-color: #d32f2f;
+      --secondary-color: #1976d2;
+      --accent-color: #ff6f00;
+      --text-primary: #212121;
+      --text-secondary: #757575;
+      --background-light: #fafafa;
+      --background-white: #ffffff;
+      --shadow-light: rgba(0,0,0,0.1);
+      --shadow-medium: rgba(0,0,0,0.15);
+      --border-radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans SC', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 50%, #fd79a8 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* 樱花背景动画 */
+    .sakura {
+      position: fixed;
+      top: -10px;
+      z-index: -1;
+      color: #ffb3d9;
+      font-size: 16px;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100vh) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    header {
+      background: var(--background-white);
+      box-shadow: 0 2px 10px var(--shadow-light);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--text-primary);
+      text-decoration: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      background: var(--background-light);
+      color: var(--primary-color);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .section {
+      background: var(--background-white);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px var(--shadow-light);
+    }
+
+    .section h2 {
+      color: var(--primary-color);
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .grammar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .grammar-card {
+      background: var(--background-light);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      border-left: 4px solid var(--accent-color);
+      transition: var(--transition);
+    }
+
+    .grammar-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px var(--shadow-medium);
+    }
+
+    .grammar-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .grammar-pattern {
+      background: var(--background-white);
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-family: 'Noto Sans JP', monospace;
+      font-weight: 500;
+      color: var(--secondary-color);
+      margin-bottom: 1rem;
+      border: 1px solid #e0e0e0;
+    }
+
+    .grammar-meaning {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    .example {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 0.8rem;
+      border-left: 3px solid var(--secondary-color);
+    }
+
+    .japanese {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      margin-bottom: 0.3rem;
+    }
+
+    .chinese {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .category-header {
+      background: linear-gradient(135deg, var(--primary-color), #e57373);
+      color: white;
+      padding: 1rem;
+      border-radius: var(--border-radius);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .category-header h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-tracker {
+      background: var(--background-light);
+      padding: 1rem;
+      border-radius: var(--border-radius);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .progress-bar {
+      background: #e0e0e0;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+
+    .progress-fill {
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-secondary);
+      background: var(--background-white);
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.6rem; }
+      .grammar-grid { grid-template-columns: 1fr; }
+      nav { gap: 0.5rem; }
+      nav a { padding: 0.5rem 1rem; font-size: 0.9rem; }
+    }
+
+    .fade-in { opacity: 0; transform: translateY(30px); transition: var(--transition); }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+  <div class="sakura" style="left: 10%; animation-duration: 16s; animation-delay: 0s;">🌸</div>
+  <div class="sakura" style="left: 30%; animation-duration: 20s; animation-delay: 3s;">🌸</div>
+  <div class="sakura" style="left: 70%; animation-duration: 18s; animation-delay: 4s;">🌸</div>
+
+  <header>
+    <div class="header-content">
+      <h1>JLPT N1语法总结</h1>
+      <p class="subtitle">最高级日语语法系统学习 - 掌握文学表达，达到母语水平</p>
+      
+      <nav>
+        <a href="../index.html">🏠 返回主站</a>
+        <a href="index.html">📚 学习中心</a>
+        <a href="n5-grammar.html">📖 N5语法</a>
+        <a href="n4-grammar.html">📘 N4语法</a>
+        <a href="n3-grammar.html">📗 N3语法</a>
+        <a href="n2-grammar.html">📙 N2语法</a>
+        <a href="jlpt-guide.html">🎯 JLPT指南</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <section class="progress-tracker fade-in">
+      <h3>📊 学习进度</h3>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <p id="progressText">已掌握 0/80 个语法点</p>
+    </section>
+
+    <section class="section fade-in">
+      <h2>🎯 N1语法概览</h2>
+      <p style="text-align: center; font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;">
+        N1级别是日语学习的最高阶段，语法极其复杂和抽象，多用于文学作品和学术文章。
+        掌握N1语法后，你将能够理解各种日语文本，达到接近母语者的水平。
+      </p>
+      
+      <div class="category-header">
+        <h3>📝 文学表达与古典语法</h3>
+        <p>学习文学作品中的高雅表达和古典语法形式</p>
+      </div>
+
+      <div class="grammar-grid">
+        <div class="grammar-card">
+          <div class="grammar-title">🎭 ～んばかりに</div>
+          <div class="grammar-pattern">动词辞书形/た形 + んばかりに</div>
+          <div class="grammar-meaning">仿佛要...似的（文学表达）</div>
+          <div class="example">
+            <div class="japanese">今にも泣き出さんばかりの表情をしていた。</div>
+            <div class="chinese">做出一副仿佛马上就要哭出来的表情。</div>
+          </div>
+          <div class="example">
+            <div class="japanese">心臓が飛び出さんばかりに驚いた。</div>
+            <div class="chinese">惊讶得心脏仿佛要跳出来似的。</div>
+          </div>
+        </div>
+
+        <div class="grammar-card">
+          <div class="grammar-title">🎭 ～まじき</div>
+          <div class="grammar-pattern">动词辞书形 + まじき</div>
+          <div class="grammar-meaning">不应该...的（古典表达）</div>
+          <div class="example">
+            <div class="japanese">人の道に外れたまじき行為だ。</div>
+            <div class="chinese">这是违背人道的不应该的行为。</div>
+          </div>
+          <div class="example">
+            <div class="japanese">信じがたきまじき出来事が起こった。</div>
+            <div class="chinese">发生了不应该相信的事情。</div>
+          </div>
+        </div>
+
+        <div class="grammar-card">
+          <div class="grammar-title">🎭 ～たりとも</div>
+          <div class="grammar-pattern">数量词 + たりとも</div>
+          <div class="grammar-meaning">哪怕...也...（强调最小量）</div>
+          <div class="example">
+            <div class="japanese">一歩たりとも譲るつもりはない。</div>
+            <div class="chinese">哪怕一步也不打算退让。</div>
+          </div>
+          <div class="example">
+            <div class="japanese">一円たりとも無駄にしたくない。</div>
+            <div class="chinese">哪怕一日元也不想浪费。</div>
+          </div>
+        </div>
+
+        <div class="grammar-card">
+          <div class="grammar-title">🎭 ～ならでは</div>
+          <div class="grammar-pattern">名词 + ならでは</div>
+          <div class="grammar-meaning">只有...才...（独特性）</div>
+          <div class="example">
+            <div class="japanese">日本ならではの美しい風景だ。</div>
+            <div class="chinese">这是只有日本才有的美丽风景。</div>
+          </div>
+          <div class="example">
+            <div class="japanese">彼ならではの発想だと思う。</div>
+            <div class="chinese">我觉得这是只有他才有的想法。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fade-in">
+      <div class="category-header">
+        <h3>🎭 最高级敬语与超正式表达</h3>
+        <p>掌握最高级别的敬语和超正式场合的表达</p>
+      </div>
+
+      <div class="grammar-grid">
+        <div class="grammar-card">
+          <div class="grammar-title">🙏 ～たまう</div>
+          <div class="grammar-pattern">动词连用形 + たまう</div>
+          <div class="grammar-meaning">给予...（最高敬语）</div>
+          <div class="example">
+            <div class="japanese">天皇陛下がお言葉を賜った。</div>
+            <div class="chinese">天皇陛下赐予了话语。</div>
+          </div>
+          <div class="example">
+            <div class="japanese">ご指導を賜りたく存じます。</div>
+            <div class="chinese">希望能够得到您的指导。</div>
+          </div>
+        </div>
+
+        <div class="grammar-card">
+          <div class="grammar-title">🙏 ～奉る（たてまつる）</div>
+          <div class="grammar-pattern">动词连用形 + 奉る</div>
+          <div class="grammar-meaning">献上...（最高谦让语）</div>
+          <div class="example">
+            <div class="japanese">心よりお祝い申し上げ奉ります。</div>
+            <div class="chinese">谨致以衷心的祝贺。</div>
+          </div>
+          <div class="example">
+            <div class="japanese">ご報告申し上げ奉る次第です。</div>
+            <div class="chinese">谨此报告。</div>
+          </div>
+        </div>
+
+        <div class="grammar-card">
+          <div class="grammar-title">🙏 ～かたがた</div>
+          <div class="grammar-pattern">名词 + かたがた</div>
+          <div class="grammar-meaning">顺便...（正式表达）</div>
+          <div class="example">
+            <div class="japanese">お礼かたがた、ご挨拶に伺いました。</div>
+            <div class="chinese">顺便致谢，前来拜访。</div>
+          </div>
+          <div class="example">
+            <div class="japanese">散歩かたがた、買い物に行く。</div>
+            <div class="chinese">顺便散步，去买东西。</div>
+          </div>
+        </div>
+
+        <div class="grammar-card">
+          <div class="grammar-title">🙏 ～次第で</div>
+          <div class="grammar-pattern">名词 + 次第で</div>
+          <div class="grammar-meaning">根据...而定</div>
+          <div class="example">
+            <div class="japanese">あなたの努力次第で結果が変わる。</div>
+            <div class="chinese">根据你的努力程度，结果会有所不同。</div>
+          </div>
+          <div class="example">
+            <div class="japanese">天気次第で、計画を変更します。</div>
+            <div class="chinese">根据天气情况，会改变计划。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fade-in">
+      <div class="category-header">
+        <h3>💭 哲学思辨与抽象概念</h3>
+        <p>学习表达哲学思辨和抽象概念的高级语法</p>
+      </div>
+
+      <div class="grammar-grid">
+        <div class="grammar-card">
+          <div class="grammar-title">🤔 ～をもってしても</div>
+          <div class="grammar-pattern">名词 + をもってしても</div>
+          <div class="grammar-meaning">即使用...也...</div>
+          <div class="example">
+            <div class="japanese">最新技術をもってしても解決できない問題だ。</div>
+            <div class="chinese">即使用最新技术也无法解决的问题。</div>
+          </div>
+          <div class="example">
+            <div class="japanese">彼の才能をもってしても、この課題は困難だ。</div>
+            <div class="chinese">即使以他的才能，这个课题也很困难。</div>
+          </div>
+        </div>
+
+        <div class="grammar-card">
+          <div class="grammar-title">🤔 ～に足る</div>
+          <div class="grammar-pattern">动词辞书形/名词 + に足る</div>
+          <div class="grammar-meaning">值得...、足以...</div>
+          <div class="example">
+            <div class="japanese">信頼するに足る人物だ。</div>
+            <div class="chinese">是值得信赖的人物。</div>
+          </div>
+          <div class="example">
+            <div class="japanese">注目に足る研究成果が発表された。</div>
+            <div class="chinese">发表了值得关注的研究成果。</div>
+          </div>
+        </div>
+
+        <div class="grammar-card">
+          <div class="grammar-title">🤔 ～をよそに</div>
+          <div class="grammar-pattern">名词 + をよそに</div>
+          <div class="grammar-meaning">不顾...、置...于不顾</div>
+          <div class="example">
+            <div class="japanese">周囲の反対をよそに、計画を実行した。</div>
+            <div class="chinese">不顾周围的反对，执行了计划。</div>
+          </div>
+          <div class="example">
+            <div class="japanese">親の心配をよそに、危険な冒険に出かけた。</div>
+            <div class="chinese">不顾父母的担心，去进行危险的冒险。</div>
+          </div>
+        </div>
+
+        <div class="grammar-card">
+          <div class="grammar-title">🤔 ～に即して</div>
+          <div class="grammar-pattern">名词 + に即して</div>
+          <div class="grammar-meaning">根据...、按照...</div>
+          <div class="example">
+            <div class="japanese">現実に即した政策を立てる必要がある。</div>
+            <div class="chinese">有必要制定符合现实的政策。</div>
+          </div>
+          <div class="example">
+            <div class="japanese">時代に即した教育方法を考えよう。</div>
+            <div class="chinese">让我们思考符合时代的教育方法。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fade-in">
+      <div class="category-header">
+        <h3>🎯 学术论证与逻辑推理</h3>
+        <p>掌握学术写作和逻辑推理的高级表达</p>
+      </div>
+
+      <div class="grammar-grid">
+        <div class="grammar-card">
+          <div class="grammar-title">🎯 ～に鑑みて</div>
+          <div class="grammar-pattern">名词 + に鑑みて</div>
+          <div class="grammar-meaning">鉴于...、考虑到...</div>
+          <div class="example">
+            <div class="japanese">現在の状況に鑑みて、計画を変更する。</div>
+            <div class="chinese">鉴于目前的状况，改变计划。</div>
+          </div>
+          <div class="example">
+            <div class="japanese">過去の経験に鑑みて判断した。</div>
+            <div class="chinese">鉴于过去的经验进行了判断。</div>
+          </div>
+        </div>
+
+        <div class="grammar-card">
+          <div class="grammar-title">🎯 ～をおいて</div>
+          <div class="grammar-pattern">名词 + をおいて</div>
+          <div class="grammar-meaning">除了...之外（没有其他）</div>
+          <div class="example">
+            <div class="japanese">この仕事は彼をおいて他にいない。</div>
+            <div class="chinese">这个工作除了他之外没有其他人。</div>
+          </div>
+          <div class="example">
+            <div class="japanese">今をおいて、いつやるのか。</div>
+            <div class="chinese">除了现在，还要等到什么时候？</div>
+          </div>
+        </div>
+
+        <div class="grammar-card">
+          <div class="grammar-title">🎯 ～ひいては</div>
+          <div class="grammar-pattern">ひいては + 句子</div>
+          <div class="grammar-meaning">进而、从而</div>
+          <div class="example">
+            <div class="japanese">個人の成長は、ひいては社会の発展につながる。</div>
+            <div class="chinese">个人的成长，进而会连接到社会的发展。</div>
+          </div>
+          <div class="example">
+            <div class="japanese">教育の充実は、ひいては国力の向上に寄与する。</div>
+            <div class="chinese">教育的充实，进而会对国力的提升做出贡献。</div>
+          </div>
+        </div>
+
+        <div class="grammar-card">
+          <div class="grammar-title">🎯 ～と相まって</div>
+          <div class="grammar-pattern">名词 + と相まって</div>
+          <div class="grammar-meaning">与...相结合</div>
+          <div class="example">
+            <div class="japanese">技術の進歩と相まって、生活が便利になった。</div>
+            <div class="chinese">与技术的进步相结合，生活变得方便了。</div>
+          </div>
+          <div class="example">
+            <div class="japanese">努力と才能が相まって、成功を収めた。</div>
+            <div class="chinese">努力与才能相结合，获得了成功。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 日语学习乐园 | 联系方式: htoptree@163.com</p>
+    <p>頑張って！(加油！) - N1语法，登峰造极</p>
+  </footer>
+
+  <script>
+    // 进度追踪功能
+    let masteredGrammar = JSON.parse(localStorage.getItem('n1-grammar-progress') || '[]');
+    
+    function updateProgress() {
+      const totalGrammar = 20; // 总语法点数
+      const masteredCount = masteredGrammar.length;
+      const percentage = (masteredCount / totalGrammar) * 100;
+      
+      document.getElementById('progressFill').style.width = percentage + '%';
+      document.getElementById('progressText').textContent = `已掌握 ${masteredCount}/${totalGrammar} 个语法点`;
+    }
+    
+    function toggleGrammarMastery(grammarId) {
+      const index = masteredGrammar.indexOf(grammarId);
+      if (index > -1) {
+        masteredGrammar.splice(index, 1);
+      } else {
+        masteredGrammar.push(grammarId);
+      }
+      localStorage.setItem('n1-grammar-progress', JSON.stringify(masteredGrammar));
+      updateProgress();
+    }
+    
+    // 为语法卡片添加点击事件
+    document.querySelectorAll('.grammar-card').forEach((card, index) => {
+      const grammarId = `n1-grammar-${index}`;
+      
+      if (masteredGrammar.includes(grammarId)) {
+        card.style.opacity = '0.7';
+        card.style.background = '#e8f5e8';
+      }
+      
+      card.addEventListener('click', () => {
+        toggleGrammarMastery(grammarId);
+        if (masteredGrammar.includes(grammarId)) {
+          card.style.opacity = '0.7';
+          card.style.background = '#e8f5e8';
+        } else {
+          card.style.opacity = '1';
+          card.style.background = 'var(--background-light)';
+        }
+      });
+      
+      card.style.cursor = 'pointer';
+      card.title = '点击标记为已掌握';
+    });
+
+    // 动画效果
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    
+    // 初始化进度
+    updateProgress();
+
+    function createSakura() {
+      const sakura = document.createElement('div');
+      sakura.className = 'sakura';
+      sakura.innerHTML = '🌸';
+      sakura.style.left = Math.random() * 100 + '%';
+      sakura.style.animationDuration = (Math.random() * 8 + 12) + 's';
+      document.body.appendChild(sakura);
+      setTimeout(() => sakura.remove(), 20000);
+    }
+
+    setInterval(createSakura, 5000);
+  </script>
+</body>
+</html>

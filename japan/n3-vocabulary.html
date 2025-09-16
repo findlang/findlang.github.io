@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>JLPT N3词汇学习 - 日语学习乐园</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="JLPT N3级别词汇系统学习，包含2500+核心词汇，分类记忆更高效">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+    
+    :root {
+      --primary-color: #d32f2f;
+      --secondary-color: #1976d2;
+      --accent-color: #ff6f00;
+      --text-primary: #212121;
+      --text-secondary: #757575;
+      --background-light: #fafafa;
+      --background-white: #ffffff;
+      --shadow-light: rgba(0,0,0,0.1);
+      --shadow-medium: rgba(0,0,0,0.15);
+      --border-radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans SC', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 50%, #fd79a8 100%);
+      color: var(--text-primary); line-height: 1.6; min-height: 100vh;
+    }
+
+    .sakura { position: fixed; top: -10px; z-index: -1; color: #ffb3d9; font-size: 16px; animation: fall linear infinite; }
+    @keyframes fall { 0% { transform: translateY(-100vh) rotate(0deg); } 100% { transform: translateY(100vh) rotate(360deg); } }
+
+    header { background: var(--background-white); box-shadow: 0 2px 10px var(--shadow-light); position: sticky; top: 0; z-index: 100; }
+    .header-content { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; text-align: center; }
+    header h1 { font-size: 2rem; color: var(--primary-color); margin-bottom: 0.5rem; font-weight: 700; }
+    .subtitle { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1rem; }
+
+    nav { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    nav a { color: var(--text-primary); text-decoration: none; padding: 0.6rem 1.2rem; border-radius: var(--border-radius); transition: var(--transition); font-weight: 500; }
+    nav a:hover { background: var(--background-light); color: var(--primary-color); }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+    .section { background: var(--background-white); border-radius: var(--border-radius); padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 20px var(--shadow-light); }
+    .section h2 { color: var(--primary-color); font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center; font-weight: 600; }
+
+    .search-container { background: var(--background-light); padding: 1.5rem; border-radius: var(--border-radius); margin-bottom: 2rem; text-align: center; }
+    .search-box { width: 100%; max-width: 400px; padding: 0.8rem 1rem; border: 2px solid var(--secondary-color); border-radius: var(--border-radius); font-size: 1rem; outline: none; transition: var(--transition); }
+    .search-box:focus { border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1); }
+
+    .progress-tracker { background: var(--background-light); padding: 1rem; border-radius: var(--border-radius); margin-bottom: 2rem; text-align: center; }
+    .progress-bar { background: #e0e0e0; height: 8px; border-radius: 4px; overflow: hidden; margin: 1rem 0; }
+    .progress-fill { background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); height: 100%; width: 0%; transition: width 0.3s ease; }
+
+    .category-tabs { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .tab-button { padding: 0.8rem 1.5rem; border: none; background: var(--background-light); color: var(--text-primary); border-radius: var(--border-radius); cursor: pointer; transition: var(--transition); font-weight: 500; }
+    .tab-button.active { background: var(--primary-color); color: white; }
+    .tab-button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px var(--shadow-light); }
+
+    .vocabulary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .vocab-card { background: var(--background-white); border: 1px solid #e0e0e0; border-radius: var(--border-radius); padding: 1.5rem; transition: var(--transition); cursor: pointer; }
+    .vocab-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px var(--shadow-medium); border-color: var(--primary-color); }
+    .vocab-card.mastered { background: #e8f5e8; opacity: 0.8; }
+
+    .word-japanese { font-family: 'Noto Sans JP', sans-serif; font-size: 1.4rem; font-weight: 600; color: var(--primary-color); margin-bottom: 0.5rem; }
+    .word-reading { font-family: 'Noto Sans JP', sans-serif; font-size: 1rem; color: var(--secondary-color); margin-bottom: 0.5rem; }
+    .word-meaning { color: var(--text-primary); font-size: 1rem; margin-bottom: 0.8rem; }
+    .word-example { background: #f8f9fa; padding: 0.8rem; border-radius: 8px; border-left: 3px solid var(--accent-color); }
+    .example-japanese { font-family: 'Noto Sans JP', sans-serif; color: var(--text-primary); margin-bottom: 0.3rem; }
+    .example-chinese { color: var(--text-secondary); font-size: 0.9rem; }
+
+    footer { text-align: center; padding: 2rem; color: var(--text-secondary); background: var(--background-white); margin-top: 2rem; }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.6rem; }
+      .vocabulary-grid { grid-template-columns: 1fr; }
+      .category-tabs { flex-direction: column; align-items: center; }
+      nav { gap: 0.5rem; }
+      nav a { padding: 0.5rem 1rem; font-size: 0.9rem; }
+    }
+
+    .fade-in { opacity: 0; transform: translateY(30px); transition: var(--transition); }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+  <div class="sakura" style="left: 10%; animation-duration: 16s; animation-delay: 0s;">🌸</div>
+  <div class="sakura" style="left: 30%; animation-duration: 20s; animation-delay: 3s;">🌸</div>
+  <div class="sakura" style="left: 70%; animation-duration: 18s; animation-delay: 4s;">🌸</div>
+
+  <header>
+    <div class="header-content">
+      <h1>JLPT N3词汇学习</h1>
+      <p class="subtitle">中级词汇系统学习 - 掌握2500+核心词汇，提升表达能力</p>
+      
+      <nav>
+        <a href="../index.html">🏠 返回主站</a>
+        <a href="index.html">📚 学习中心</a>
+        <a href="n5-vocabulary.html">📋 N5词汇</a>
+        <a href="n4-vocabulary.html">📋 N4词汇</a>
+        <a href="n2-vocabulary.html">📋 N2词汇</a>
+        <a href="n1-vocabulary.html">📋 N1词汇</a>
+        <a href="jlpt-guide.html">🎯 JLPT指南</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <section class="search-container fade-in">
+      <h3>🔍 词汇搜索</h3>
+      <input type="text" class="search-box" id="searchBox" placeholder="输入日语、假名或中文搜索词汇...">
+    </section>
+
+    <section class="progress-tracker fade-in">
+      <h3>📊 学习进度</h3>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <p id="progressText">已掌握 0/60 个词汇</p>
+    </section>
+
+    <section class="section fade-in">
+      <h2>🎯 N3词汇分类学习</h2>
+      
+      <div class="category-tabs">
+        <button class="tab-button active" data-category="daily">日常生活</button>
+        <button class="tab-button" data-category="work">工作职场</button>
+        <button class="tab-button" data-category="education">教育学习</button>
+        <button class="tab-button" data-category="society">社会文化</button>
+        <button class="tab-button" data-category="nature">自然环境</button>
+        <button class="tab-button" data-category="emotion">情感表达</button>
+      </div>
+
+      <div id="vocabularyContainer">
+        <!-- 词汇内容将通过JavaScript动态加载 -->
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 日语学习乐园 | 联系方式: htoptree@163.com</p>
+    <p>頑張って！(加油！) - N3词汇，稳步提升</p>
+  </footer>
+
+  <script>
+    // N3词汇数据（简化版）
+    const n3Vocabulary = {
+      daily: [
+        { japanese: '生活', reading: 'せいかつ', meaning: '生活', example: '毎日の生活が忙しい。', exampleChinese: '每天的生活很忙。' },
+        { japanese: '料理', reading: 'りょうり', meaning: '料理、做饭', example: '母は料理が上手です。', exampleChinese: '妈妈很会做饭。' },
+        { japanese: '掃除', reading: 'そうじ', meaning: '打扫', example: '部屋の掃除をします。', exampleChinese: '打扫房间。' },
+        { japanese: '洗濯', reading: 'せんたく', meaning: '洗衣服', example: '洗濯物を干している。', exampleChinese: '正在晾衣服。' },
+        { japanese: '買い物', reading: 'かいもの', meaning: '购物', example: 'スーパーで買い物をする。', exampleChinese: '在超市购物。' },
+        { japanese: '散歩', reading: 'さんぽ', meaning: '散步', example: '公園を散歩しましょう。', exampleChinese: '在公园散步吧。' },
+        { japanese: '運動', reading: 'うんどう', meaning: '运动', example: '健康のために運動している。', exampleChinese: '为了健康在运动。' },
+        { japanese: '趣味', reading: 'しゅみ', meaning: '兴趣爱好', example: '読書が趣味です。', exampleChinese: '读书是我的兴趣。' },
+        { japanese: '習慣', reading: 'しゅうかん', meaning: '习惯', example: '早起きの習慣がある。', exampleChinese: '有早起的习惯。' },
+        { japanese: '経験', reading: 'けいけん', meaning: '经验', example: '貴重な経験をした。', exampleChinese: '有了宝贵的经验。' }
+      ],
+      work: [
+        { japanese: '会社', reading: 'かいしゃ', meaning: '公司', example: '大きな会社で働いている。', exampleChinese: '在大公司工作。' },
+        { japanese: '仕事', reading: 'しごと', meaning: '工作', example: '仕事が忙しくて大変だ。', exampleChinese: '工作很忙很辛苦。' },
+        { japanese: '職業', reading: 'しょくぎょう', meaning: '职业', example: '将来の職業を考える。', exampleChinese: '考虑将来的职业。' },
+        { japanese: '給料', reading: 'きゅうりょう', meaning: '工资', example: '給料が上がった。', exampleChinese: '工资涨了。' },
+        { japanese: '残業', reading: 'ざんぎょう', meaning: '加班', example: '今日は残業があります。', exampleChinese: '今天要加班。' },
+        { japanese: '会議', reading: 'かいぎ', meaning: '会议', example: '重要な会議に出席する。', exampleChinese: '参加重要会议。' },
+        { japanese: '報告', reading: 'ほうこく', meaning: '报告', example: '結果を報告します。', exampleChinese: '报告结果。' },
+        { japanese: '資料', reading: 'しりょう', meaning: '资料', example: '資料を準備してください。', exampleChinese: '请准备资料。' },
+        { japanese: '企画', reading: 'きかく', meaning: '企划', example: '新しい企画を考える。', exampleChinese: '考虑新的企划。' },
+        { japanese: '営業', reading: 'えいぎょう', meaning: '营业、销售', example: '営業部で働いています。', exampleChinese: '在营业部工作。' }
+      ],
+      education: [
+        { japanese: '教育', reading: 'きょういく', meaning: '教育', example: '子供の教育が大切だ。', exampleChinese: '孩子的教育很重要。' },
+        { japanese: '授業', reading: 'じゅぎょう', meaning: '授课', example: '日本語の授業を受ける。', exampleChinese: '上日语课。' },
+        { japanese: '講義', reading: 'こうぎ', meaning: '讲义、讲座', example: '大学で講義を聞く。', exampleChinese: '在大学听讲座。' },
+        { japanese: '試験', reading: 'しけん', meaning: '考试', example: '来週試験があります。', exampleChinese: '下周有考试。' },
+        { japanese: '成績', reading: 'せいせき', meaning: '成绩', example: '成績が良くなった。', exampleChinese: '成绩变好了。' },
+        { japanese: '合格', reading: 'ごうかく', meaning: '合格', example: '試験に合格した。', exampleChinese: '考试合格了。' },
+        { japanese: '卒業', reading: 'そつぎょう', meaning: '毕业', example: '来年大学を卒業する。', exampleChinese: '明年大学毕业。' },
+        { japanese: '入学', reading: 'にゅうがく', meaning: '入学', example: '4月に入学します。', exampleChinese: '4月入学。' },
+        { japanese: '専門', reading: 'せんもん', meaning: '专业', example: '経済学が専門です。', exampleChinese: '专业是经济学。' },
+        { japanese: '研究', reading: 'けんきゅう', meaning: '研究', example: '環境問題を研究している。', exampleChinese: '研究环境问题。' }
+      ],
+      society: [
+        { japanese: '社会', reading: 'しゃかい', meaning: '社会', example: '現代社会は複雑だ。', exampleChinese: '现代社会很复杂。' },
+        { japanese: '政治', reading: 'せいじ', meaning: '政治', example: '政治に興味がある。', exampleChinese: '对政治有兴趣。' },
+        { japanese: '経済', reading: 'けいざい', meaning: '经济', example: '日本の経済が発展している。', exampleChinese: '日本的经济在发展。' },
+        { japanese: '文化', reading: 'ぶんか', meaning: '文化', example: '日本の文化を学ぶ。', exampleChinese: '学习日本文化。' },
+        { japanese: '伝統', reading: 'でんとう', meaning: '传统', example: '古い伝統を守る。', exampleChinese: '保持古老传统。' },
+        { japanese: '歴史', reading: 'れきし', meaning: '历史', example: '日本の歴史を勉強する。', exampleChinese: '学习日本历史。' },
+        { japanese: '国際', reading: 'こくさい', meaning: '国际', example: '国際会議に参加する。', exampleChinese: '参加国际会议。' },
+        { japanese: '外国', reading: 'がいこく', meaning: '外国', example: '外国で働きたい。', exampleChinese: '想在外国工作。' },
+        { japanese: '人口', reading: 'じんこう', meaning: '人口', example: '人口が減少している。', exampleChinese: '人口在减少。' },
+        { japanese: '都市', reading: 'とし', meaning: '都市', example: '大きな都市に住んでいる。', exampleChinese: '住在大城市。' }
+      ],
+      nature: [
+        { japanese: '自然', reading: 'しぜん', meaning: '自然', example: '自然を大切にしよう。', exampleChinese: '让我们珍惜自然。' },
+        { japanese: '環境', reading: 'かんきょう', meaning: '环境', example: '環境を保護する。', exampleChinese: '保护环境。' },
+        { japanese: '空気', reading: 'くうき', meaning: '空气', example: '山の空気がきれいだ。', exampleChinese: '山里的空气很清新。' },
+        { japanese: '海', reading: 'うみ', meaning: '海', example: '夏は海で泳ぎます。', exampleChinese: '夏天在海里游泳。' },
+        { japanese: '山', reading: 'やま', meaning: '山', example: '高い山に登った。', exampleChinese: '爬了高山。' },
+        { japanese: '川', reading: 'かわ', meaning: '河', example: '川で魚を釣る。', exampleChinese: '在河里钓鱼。' },
+        { japanese: '森', reading: 'もり', meaning: '森林', example: '森の中を歩く。', exampleChinese: '在森林中行走。' },
+        { japanese: '花', reading: 'はな', meaning: '花', example: '美しい花が咲いている。', exampleChinese: '美丽的花在盛开。' },
+        { japanese: '木', reading: 'き', meaning: '树', example: '大きな木の下で休む。', exampleChinese: '在大树下休息。' },
+        { japanese: '鳥', reading: 'とり', meaning: '鸟', example: '朝、鳥の声が聞こえる。', exampleChinese: '早上能听到鸟叫声。' }
+      ],
+      emotion: [
+        { japanese: '気持ち', reading: 'きもち', meaning: '心情', example: '嬉しい気持ちになった。', exampleChinese: '心情变得高兴。' },
+        { japanese: '感情', reading: 'かんじょう', meaning: '感情', example: '感情を表現するのが苦手だ。', exampleChinese: '不擅长表达感情。' },
+        { japanese: '喜び', reading: 'よろこび', meaning: '喜悦', example: '合格の喜びを分かち合う。', exampleChinese: '分享合格的喜悦。' },
+        { japanese: '悲しみ', reading: 'かなしみ', meaning: '悲伤', example: '別れの悲しみを感じる。', exampleChinese: '感受到离别的悲伤。' },
+        { japanese: '怒り', reading: 'いかり', meaning: '愤怒', example: '怒りを抑えるのが大変だ。', exampleChinese: '抑制愤怒很困难。' },
+        { japanese: '心配', reading: 'しんぱい', meaning: '担心', example: '子供のことが心配だ。', exampleChinese: '担心孩子。' },
+        { japanese: '安心', reading: 'あんしん', meaning: '安心', example: '無事で安心した。', exampleChinese: '平安无事很安心。' },
+        { japanese: '緊張', reading: 'きんちょう', meaning: '紧张', example: '発表で緊張している。', exampleChinese: '发表时很紧张。' },
+        { japanese: '興奮', reading: 'こうふん', meaning: '兴奋', example: '試合に興奮した。', exampleChinese: '比赛让人兴奋。' },
+        { japanese: '満足', reading: 'まんぞく', meaning: '满足', example: '結果に満足している。', exampleChinese: '对结果很满足。' }
+      ]
+    };
+
+    let currentCategory = 'daily';
+    let masteredWords = JSON.parse(localStorage.getItem('n3-vocabulary-progress') || '[]');
+    let allWords = [];
+
+    // 初始化所有词汇
+    Object.values(n3Vocabulary).forEach(category => {
+      allWords = allWords.concat(category);
+    });
+
+    function displayVocabulary(category) {
+      const container = document.getElementById('vocabularyContainer');
+      const words = n3Vocabulary[category];
+      
+      container.innerHTML = `
+        <div class="vocabulary-grid">
+          ${words.map((word, index) => {
+            const wordId = `${category}-${index}`;
+            const isMastered = masteredWords.includes(wordId);
+            return `
+              <div class="vocab-card ${isMastered ? 'mastered' : ''}" data-word-id="${wordId}">
+                <div class="word-japanese">${word.japanese}</div>
+                <div class="word-reading">${word.reading}</div>
+                <div class="word-meaning">${word.meaning}</div>
+                <div class="word-example">
+                  <div class="example-japanese">${word.example}</div>
+                  <div class="example-chinese">${word.exampleChinese}</div>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+
+      // 添加点击事件
+      document.querySelectorAll('.vocab-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const wordId = card.dataset.wordId;
+          toggleWordMastery(wordId);
+          card.classList.toggle('mastered');
+        });
+      });
+    }
+
+    function toggleWordMastery(wordId) {
+      const index = masteredWords.indexOf(wordId);
+      if (index > -1) {
+        masteredWords.splice(index, 1);
+      } else {
+        masteredWords.push(wordId);
+      }
+      localStorage.setItem('n3-vocabulary-progress', JSON.stringify(masteredWords));
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const totalWords = allWords.length;
+      const masteredCount = masteredWords.length;
+      const percentage = (masteredCount / totalWords) * 100;
+      
+      document.getElementById('progressFill').style.width = percentage + '%';
+      document.getElementById('progressText').textContent = `已掌握 ${masteredCount}/${totalWords} 个词汇`;
+    }
+
+    function searchVocabulary(query) {
+      if (!query) {
+        displayVocabulary(currentCategory);
+        return;
+      }
+
+      const filteredWords = allWords.filter(word => 
+        word.japanese.includes(query) || 
+        word.reading.includes(query) || 
+        word.meaning.includes(query)
+      );
+
+      const container = document.getElementById('vocabularyContainer');
+      container.innerHTML = `
+        <div class="vocabulary-grid">
+          ${filteredWords.map((word, index) => {
+            const wordId = `search-${index}`;
+            return `
+              <div class="vocab-card">
+                <div class="word-japanese">${word.japanese}</div>
+                <div class="word-reading">${word.reading}</div>
+                <div class="word-meaning">${word.meaning}</div>
+                <div class="word-example">
+                  <div class="example-japanese">${word.example}</div>
+                  <div class="example-chinese">${word.exampleChinese}</div>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    // 事件监听
+    document.querySelectorAll('.tab-button').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+        button.classList.add('active');
+        currentCategory = button.dataset.category;
+        displayVocabulary(currentCategory);
+      });
+    });
+
+    document.getElementById('searchBox').addEventListener('input', (e) => {
+      searchVocabulary(e.target.value);
+    });
+
+    // 动画效果
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // 初始化
+    displayVocabulary(currentCategory);
+    updateProgress();
+
+    function createSakura() {
+      const sakura = document.createElement('div');
+      sakura.className = 'sakura';
+      sakura.innerHTML = '🌸';
+      sakura.style.left = Math.random() * 100 + '%';
+      sakura.style.animationDuration = (Math.random() * 8 + 12) + 's';
+      document.body.appendChild(sakura);
+      setTimeout(() => sakura.remove(), 20000);
+    }
+
+    setInterval(createSakura, 5000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>JLPT N1词汇学习 - 日语学习乐园</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="JLPT N1级别词汇系统学习，包含4000+最高级词汇，达到母语水平">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+    
+    :root {
+      --primary-color: #d32f2f;
+      --secondary-color: #1976d2;
+      --accent-color: #ff6f00;
+      --text-primary: #212121;
+      --text-secondary: #757575;
+      --background-light: #fafafa;
+      --background-white: #ffffff;
+      --shadow-light: rgba(0,0,0,0.1);
+      --shadow-medium: rgba(0,0,0,0.15);
+      --border-radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans SC', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      color: var(--text-primary); line-height: 1.6; min-height: 100vh;
+    }
+
+    .sakura { position: fixed; top: -10px; z-index: -1; color: #ffb3d9; font-size: 16px; animation: fall linear infinite; }
+    @keyframes fall { 0% { transform: translateY(-100vh) rotate(0deg); } 100% { transform: translateY(100vh) rotate(360deg); } }
+
+    header { background: var(--background-white); box-shadow: 0 2px 10px var(--shadow-light); position: sticky; top: 0; z-index: 100; }
+    .header-content { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; text-align: center; }
+    header h1 { font-size: 2rem; color: var(--primary-color); margin-bottom: 0.5rem; font-weight: 700; }
+    .subtitle { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1rem; }
+
+    nav { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    nav a { color: var(--text-primary); text-decoration: none; padding: 0.6rem 1.2rem; border-radius: var(--border-radius); transition: var(--transition); font-weight: 500; }
+    nav a:hover { background: var(--background-light); color: var(--primary-color); }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+    .section { background: var(--background-white); border-radius: var(--border-radius); padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 20px var(--shadow-light); }
+    .section h2 { color: var(--primary-color); font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center; font-weight: 600; }
+
+    .search-container { background: var(--background-light); padding: 1.5rem; border-radius: var(--border-radius); margin-bottom: 2rem; text-align: center; }
+    .search-box { width: 100%; max-width: 400px; padding: 0.8rem 1rem; border: 2px solid var(--secondary-color); border-radius: var(--border-radius); font-size: 1rem; outline: none; transition: var(--transition); }
+    .search-box:focus { border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1); }
+
+    .progress-tracker { background: var(--background-light); padding: 1rem; border-radius: var(--border-radius); margin-bottom: 2rem; text-align: center; }
+    .progress-bar { background: #e0e0e0; height: 8px; border-radius: 4px; overflow: hidden; margin: 1rem 0; }
+    .progress-fill { background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); height: 100%; width: 0%; transition: width 0.3s ease; }
+
+    .category-tabs { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .tab-button { padding: 0.8rem 1.5rem; border: none; background: var(--background-light); color: var(--text-primary); border-radius: var(--border-radius); cursor: pointer; transition: var(--transition); font-weight: 500; }
+    .tab-button.active { background: var(--primary-color); color: white; }
+    .tab-button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px var(--shadow-light); }
+
+    .vocabulary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .vocab-card { background: var(--background-white); border: 1px solid #e0e0e0; border-radius: var(--border-radius); padding: 1.5rem; transition: var(--transition); cursor: pointer; position: relative; }
+    .vocab-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px var(--shadow-medium); border-color: var(--primary-color); }
+    .vocab-card.mastered { background: #e8f5e8; opacity: 0.8; }
+
+    .word-japanese { font-family: 'Noto Sans JP', sans-serif; font-size: 1.4rem; font-weight: 600; color: var(--primary-color); margin-bottom: 0.5rem; }
+    .word-reading { font-family: 'Noto Sans JP', sans-serif; font-size: 1rem; color: var(--secondary-color); margin-bottom: 0.5rem; }
+    .word-meaning { color: var(--text-primary); font-size: 1rem; margin-bottom: 0.8rem; font-weight: 500; }
+    .word-type { background: #f3e5f5; color: #7b1fa2; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-bottom: 0.5rem; display: inline-block; }
+    .word-example { background: #f8f9fa; padding: 0.8rem; border-radius: 8px; border-left: 3px solid var(--accent-color); }
+    .example-japanese { font-family: 'Noto Sans JP', sans-serif; color: var(--text-primary); margin-bottom: 0.3rem; }
+    .example-chinese { color: var(--text-secondary); font-size: 0.9rem; }
+
+    footer { text-align: center; padding: 2rem; color: var(--text-secondary); background: var(--background-white); margin-top: 2rem; }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.6rem; }
+      .vocabulary-grid { grid-template-columns: 1fr; }
+      .category-tabs { flex-direction: column; align-items: center; }
+      nav { gap: 0.5rem; }
+      nav a { padding: 0.5rem 1rem; font-size: 0.9rem; }
+    }
+
+    .fade-in { opacity: 0; transform: translateY(30px); transition: var(--transition); }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+  <div class="sakura" style="left: 10%; animation-duration: 20s; animation-delay: 0s;">🌸</div>
+  <div class="sakura" style="left: 30%; animation-duration: 24s; animation-delay: 3s;">🌸</div>
+  <div class="sakura" style="left: 70%; animation-duration: 18s; animation-delay: 6s;">🌸</div>
+
+  <header>
+    <div class="header-content">
+      <h1>JLPT N1词汇学习</h1>
+      <p class="subtitle">最高级词汇系统学习 - 掌握4000+核心词汇，达到母语水平</p>
+      
+      <nav>
+        <a href="../index.html">🏠 返回主站</a>
+        <a href="index.html">📚 学习中心</a>
+        <a href="n5-vocabulary.html">📋 N5词汇</a>
+        <a href="n4-vocabulary.html">📋 N4词汇</a>
+        <a href="n3-vocabulary.html">📋 N3词汇</a>
+        <a href="n2-vocabulary.html">📋 N2词汇</a>
+        <a href="jlpt-guide.html">🎯 JLPT指南</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <section class="search-container fade-in">
+      <h3>🔍 词汇搜索</h3>
+      <input type="text" class="search-box" id="searchBox" placeholder="输入日语、假名或中文搜索词汇...">
+    </section>
+
+    <section class="progress-tracker fade-in">
+      <h3>📊 学习进度</h3>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <p id="progressText">已掌握 0/80 个词汇</p>
+    </section>
+
+    <section class="section fade-in">
+      <h2>🎯 N1词汇分类学习</h2>
+      
+      <div class="category-tabs">
+        <button class="tab-button active" data-category="literature">文学艺术</button>
+        <button class="tab-button" data-category="philosophy">哲学思想</button>
+        <button class="tab-button" data-category="academic">学术研究</button>
+        <button class="tab-button" data-category="politics">政治外交</button>
+        <button class="tab-button" data-category="economics">经济金融</button>
+        <button class="tab-button" data-category="science">科学技术</button>
+        <button class="tab-button" data-category="psychology">心理学</button>
+        <button class="tab-button" data-category="formal">正式敬语</button>
+      </div>
+
+      <div id="vocabularyContainer">
+        <!-- 词汇内容将通过JavaScript动态加载 -->
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 日语学习乐园 | 联系方式: htoptree@163.com</p>
+    <p>頑張って！(加油！) - N1词汇，登峰造极</p>
+  </footer>
+
+  <!-- 引入词汇数据 -->
+  <script src="js/n1-vocabulary-data.js"></script>
+  <script src="js/vocabulary-app.js"></script>
+</body>
+</html>
