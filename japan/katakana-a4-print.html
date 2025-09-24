@@ -22,6 +22,36 @@
     }
     th { background: #f0f0f0; font-size: 12px; }
     .small { font-size: 10px; color: #666; }
+  
+    /* 火箭回到顶部按钮 */
+    .rocket-back-to-top {
+      position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      z-index: 1000; opacity: 0; visibility: hidden; transform: translateY(20px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+      border: 3px solid rgba(255, 255, 255, 0.2);
+    }
+    .rocket-back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .rocket-back-to-top:hover {
+      transform: translateY(-5px) scale(1.1); box-shadow: 0 8px 30px rgba(255, 107, 107, 0.5);
+      background: linear-gradient(135deg, #ff5252, #d32f2f);
+    }
+    .rocket-icon {
+      font-size: 24px; color: white; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      animation: rocketFloat 2s ease-in-out infinite;
+    }
+    @keyframes rocketFloat { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-3px); } }
+    .rocket-back-to-top:hover .rocket-icon { animation: rocketLaunch 0.6s ease-out; }
+    @keyframes rocketLaunch {
+      0% { transform: translateY(0px) scale(1); } 50% { transform: translateY(-8px) scale(1.2); }
+      100% { transform: translateY(0px) scale(1); }
+    }
+    @media (max-width: 768px) {
+      .rocket-back-to-top { bottom: 20px; right: 20px; width: 50px; height: 50px; }
+      .rocket-icon { font-size: 20px; }
+    }
   </style>
 </head>
 <body>

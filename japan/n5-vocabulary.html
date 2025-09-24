@@ -132,6 +132,36 @@
 
     .fade-in { opacity: 0; transform: translateY(30px); transition: var(--transition); }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
+  
+    /* 火箭回到顶部按钮 */
+    .rocket-back-to-top {
+      position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      z-index: 1000; opacity: 0; visibility: hidden; transform: translateY(20px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+      border: 3px solid rgba(255, 255, 255, 0.2);
+    }
+    .rocket-back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .rocket-back-to-top:hover {
+      transform: translateY(-5px) scale(1.1); box-shadow: 0 8px 30px rgba(255, 107, 107, 0.5);
+      background: linear-gradient(135deg, #ff5252, #d32f2f);
+    }
+    .rocket-icon {
+      font-size: 24px; color: white; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      animation: rocketFloat 2s ease-in-out infinite;
+    }
+    @keyframes rocketFloat { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-3px); } }
+    .rocket-back-to-top:hover .rocket-icon { animation: rocketLaunch 0.6s ease-out; }
+    @keyframes rocketLaunch {
+      0% { transform: translateY(0px) scale(1); } 50% { transform: translateY(-8px) scale(1.2); }
+      100% { transform: translateY(0px) scale(1); }
+    }
+    @media (max-width: 768px) {
+      .rocket-back-to-top { bottom: 20px; right: 20px; width: 50px; height: 50px; }
+      .rocket-icon { font-size: 20px; }
+    }
   </style>
 </head>
 <body>
@@ -420,6 +450,10 @@
     <p>&copy; 2024 日语学习乐园 | 联系方式: htoptree@163.com</p>
     <p>頑張って！(加油！) - 词汇是语言学习的基础</p>
   </footer>
+  <!-- 火箭回到顶部按钮 -->
+  <div class="rocket-back-to-top" id="rocketBackToTop">
+    <span class="rocket-icon">🚀</span>
+  </div>
 
   <script>
     let learnedWords = JSON.parse(localStorage.getItem('n5-learned-words') || '[]');
@@ -500,6 +534,23 @@
 
     setInterval(createSakura, 5000);
     initializeCards();
+  
+    // 火箭回到顶部功能
+    const rocketButton = document.getElementById('rocketBackToTop');
+    if (rocketButton) {
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+          rocketButton.classList.add('visible');
+        } else {
+          rocketButton.classList.remove('visible');
+        }
+      });
+      rocketButton.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        rocketButton.style.transform = 'translateY(-10px) scale(1.2)';
+        setTimeout(() => { rocketButton.style.transform = ''; }, 200);
+      });
+    }
   </script>
 </body>
 </html>

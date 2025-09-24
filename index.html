@@ -386,6 +386,106 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* 火箭回到顶部按钮 */
+    .rocket-back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+      border: 3px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .rocket-back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .rocket-back-to-top:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 8px 30px rgba(255, 107, 107, 0.5);
+      background: linear-gradient(135deg, #ff5252, #d32f2f);
+    }
+
+    .rocket-back-to-top:active {
+      transform: translateY(-2px) scale(1.05);
+    }
+
+    .rocket-icon {
+      font-size: 24px;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      animation: rocketFloat 2s ease-in-out infinite;
+    }
+
+    @keyframes rocketFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-3px); }
+    }
+
+    .rocket-back-to-top:hover .rocket-icon {
+      animation: rocketLaunch 0.6s ease-out;
+    }
+
+    @keyframes rocketLaunch {
+      0% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-8px) scale(1.2); }
+      100% { transform: translateY(0px) scale(1); }
+    }
+
+    /* 火箭尾焰效果 */
+    .rocket-back-to-top::before {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 15px solid rgba(255, 107, 107, 0.6);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .rocket-back-to-top:hover::before {
+      opacity: 1;
+      animation: flameFlicker 0.3s ease-in-out infinite alternate;
+    }
+
+    @keyframes flameFlicker {
+      0% { transform: translateX(-50%) scale(1); opacity: 0.6; }
+      100% { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .rocket-back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+      }
+      
+      .rocket-icon {
+        font-size: 20px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -547,6 +647,11 @@
     <p>がんばって！(加油！)</p>
   </footer>
 
+  <!-- 火箭回到顶部按钮 -->
+  <div class="rocket-back-to-top" id="rocketBackToTop">
+    <span class="rocket-icon">🚀</span>
+  </div>
+
   <script>
     // JLPT考试倒计时功能
     function getNextJLPTExam() {
@@ -665,6 +770,33 @@
 
     // 每隔一段时间创建新的樱花
     setInterval(createSakura, 3000);
+
+    // 火箭回到顶部功能
+    const rocketButton = document.getElementById('rocketBackToTop');
+    
+    // 监听滚动事件
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        rocketButton.classList.add('visible');
+      } else {
+        rocketButton.classList.remove('visible');
+      }
+    });
+    
+    // 点击火箭按钮回到顶部
+    rocketButton.addEventListener('click', function() {
+      // 平滑滚动到顶部
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      
+      // 添加点击动画效果
+      rocketButton.style.transform = 'translateY(-10px) scale(1.2)';
+      setTimeout(() => {
+        rocketButton.style.transform = '';
+      }, 200);
+    });
   </script>
 </body>
 </html>
