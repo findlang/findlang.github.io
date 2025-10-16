@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>日语N4/N5语法总结 - 完整变形表 | 日语学习乐园</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="适合初学者的完整日语N4/N5语法变形表，包含普通体与敬体对照，动词、形容词、名词变形规则详解">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+    
+    :root {
+      --primary-color: #d32f2f;
+      --secondary-color: #1976d2;
+      --accent-color: #ff6f00;
+      --success-color: #388e3c;
+      --warning-color: #f57c00;
+      --text-primary: #212121;
+      --text-secondary: #757575;
+      --background-light: #fafafa;
+      --background-white: #ffffff;
+      --shadow-light: rgba(0,0,0,0.1);
+      --shadow-medium: rgba(0,0,0,0.15);
+      --border-radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans SC', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 50%, #fd79a8 100%);
+      color: var(--text-primary);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* 樱花背景动画 */
+    .sakura {
+      position: fixed;
+      top: -10px;
+      z-index: -1;
+      color: #ffb3d9;
+      font-size: 14px;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100vh) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), #e57373);
+      color: white;
+      padding: 1.5rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+      animation: float 20s infinite linear;
+    }
+
+    @keyframes float {
+      0% { transform: translateX(-100px); }
+      100% { transform: translateX(100px); }
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      font-family: 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    nav a {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius);
+      font-weight: 500;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
+      font-size: 0.85rem;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .print-bar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .print-bar button {
+      background: linear-gradient(135deg, var(--secondary-color), #42a5f5);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      padding: 0.7rem 1.5rem;
+      font-size: 0.95rem;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 500;
+      transition: var(--transition);
+      box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+    }
+
+    .print-bar button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(25, 118, 210, 0.4);
+    }
+
+    .level-badges {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .level-badge {
+      background: linear-gradient(135deg, var(--success-color), #66bb6a);
+      color: white;
+      padding: 0.6rem 1.5rem;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 8px rgba(56, 142, 60, 0.3);
+    }
+
+    .grammar-section {
+      background: var(--background-white);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      margin: 1.5rem auto;
+      box-shadow: 0 4px 20px var(--shadow-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .grammar-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    }
+
+    .grammar-section h2 {
+      color: var(--primary-color);
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+    }
+
+    .grammar-section h3 {
+      color: var(--secondary-color);
+      font-size: 1.3rem;
+      margin: 1.8rem 0 1rem 0;
+      padding-left: 1rem;
+      border-left: 4px solid var(--secondary-color);
+      font-weight: 600;
+    }
+
+    .grammar-section h4 {
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      margin: 1.3rem 0 0.8rem 0;
+      font-weight: 600;
+    }
+
+    .grammar-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px var(--shadow-light);
+      font-size: 0.95rem;
+    }
+
+    .grammar-table th {
+      background: linear-gradient(135deg, var(--primary-color), #e57373);
+      color: white;
+      padding: 0.9rem 0.5rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .grammar-table td {
+      padding: 0.8rem 0.5rem;
+      text-align: center;
+      border-bottom: 1px solid #f0f0f0;
+      font-family: 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+    }
+
+    .grammar-table tr:hover {
+      background: #f8f9fa;
+    }
+
+    .grammar-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .tips-box {
+      background: #fff3e0;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin: 1.2rem 0;
+      border-left: 4px solid var(--warning-color);
+    }
+
+    .tips-box h4 {
+      color: var(--warning-color);
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tips-box p, .tips-box ul {
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .tips-box ul {
+      margin-left: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .tips-box li {
+      margin: 0.4rem 0;
+    }
+
+    .warning-box {
+      background: #ffebee;
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .warning-box strong {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .info-box {
+      background: #e3f2fd;
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-left: 4px solid var(--secondary-color);
+    }
+
+    .highlight {
+      color: var(--primary-color);
+      font-weight: 600;
+      background: #ffebee;
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+
+    .jp-text {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+    }
+
+    .toc {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .toc h3 {
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      border-left: none;
+      padding-left: 0;
+    }
+
+    .toc ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .toc li {
+      margin: 0.6rem 0;
+    }
+
+    .toc a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toc a:hover {
+      color: var(--primary-color);
+      transform: translateX(5px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-secondary);
+      background: var(--background-white);
+      margin-top: 2rem;
+    }
+
+    /* 打印样式 */
+    @media print {
+      body {
+        background: white;
+      }
+      
+      header, nav, footer, .print-bar, .rocket-back-to-top, .sakura {
+        display: none;
+      }
+      
+      .container {
+        max-width: 100%;
+        padding: 0;
+      }
+      
+      .grammar-section {
+        box-shadow: none;
+        page-break-inside: avoid;
+        margin: 1rem 0;
+        padding: 1rem;
+      }
+      
+      .grammar-table {
+        font-size: 0.85rem;
+        page-break-inside: avoid;
+      }
+      
+      .grammar-table th, .grammar-table td {
+        padding: 0.5rem 0.3rem;
+      }
+      
+      h2 {
+        font-size: 1.3rem;
+        page-break-after: avoid;
+      }
+      
+      h3 {
+        font-size: 1.1rem;
+        page-break-after: avoid;
+      }
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.6rem; }
+      .subtitle { font-size: 0.9rem; }
+      .grammar-section { padding: 1.5rem; }
+      .grammar-section h2 { font-size: 1.3rem; }
+      .grammar-section h3 { font-size: 1.1rem; }
+      nav { gap: 0.4rem; }
+      nav a { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
+      .grammar-table { font-size: 0.85rem; }
+      .grammar-table th, .grammar-table td { padding: 0.6rem 0.3rem; }
+      .level-badges { flex-direction: column; align-items: center; }
+    }
+
+    /* 滚动动画 */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: var(--transition);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 火箭回到顶部按钮 */
+    .rocket-back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+      border: 3px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .rocket-back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .rocket-back-to-top:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 8px 30px rgba(255, 107, 107, 0.5);
+      background: linear-gradient(135deg, #ff5252, #d32f2f);
+    }
+
+    .rocket-icon {
+      font-size: 24px;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      animation: rocketFloat 2s ease-in-out infinite;
+    }
+
+    @keyframes rocketFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-3px); }
+    }
+
+    .rocket-back-to-top:hover .rocket-icon {
+      animation: rocketLaunch 0.6s ease-out;
+    }
+
+    @keyframes rocketLaunch {
+      0% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-8px) scale(1.2); }
+      100% { transform: translateY(0px) scale(1); }
+    }
+
+    @media (max-width: 768px) {
+      .rocket-back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+      }
+      
+      .rocket-icon {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 樱花背景效果 -->
+  <div class="sakura" style="left: 10%; animation-duration: 16s; animation-delay: 0s;">🌸</div>
+  <div class="sakura" style="left: 30%; animation-duration: 20s; animation-delay: 3s;">🌸</div>
+  <div class="sakura" style="left: 50%; animation-duration: 14s; animation-delay: 1s;">🌸</div>
+  <div class="sakura" style="left: 70%; animation-duration: 18s; animation-delay: 4s;">🌸</div>
+  <div class="sakura" style="left: 90%; animation-duration: 12s; animation-delay: 2s;">🌸</div>
+
+  <header>
+    <div class="header-content">
+      <h1>日语N4/N5语法总结</h1>
+      <p class="subtitle">适合初学者的完整语法变形表，包含普通体与敬体对照</p>
+      
+      <nav>
+        <a href="../index.html">🏠 返回主站</a>
+        <a href="index.html">📚 学习中心</a>
+        <a href="n5-grammar.html">📖 N5语法</a>
+        <a href="n4-grammar.html">📘 N4语法</a>
+        <a href="n5-vocabulary.html">📝 N5词汇</a>
+        <a href="n4-vocabulary.html">📋 N4词汇</a>
+        <a href="../study-plan.html">📅 学习计划</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="print-bar">
+      <button onclick="window.print()">🖨️ 一键打印</button>
+    </div>
+
+    <div class="level-badges fade-in">
+      <span class="level-badge">N5 基础语法</span>
+      <span class="level-badge">N4 进阶语法</span>
+    </div>
+
+    <!-- 目录 -->
+    <section class="grammar-section fade-in">
+      <h2>📋 目录</h2>
+      <div class="toc">
+        <ul>
+          <li><a href="#verb-conjugation">🔄 动词变形</a></li>
+          <li><a href="#adjective-conjugation">🎨 形容词变形</a></li>
+          <li><a href="#noun-conjugation">📝 名词变形</a></li>
+          <li><a href="#common-verbs">📚 常用动词变形表</a></li>
+          <li><a href="#particles">🔗 助词用法总结</a></li>
+          <li><a href="#common-mistakes">⚠️ 常见错误与易混淆点</a></li>
+          <li><a href="#kanji-table">📖 汉字假名对照表</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 动词变形 -->
+    <section id="verb-conjugation" class="grammar-section fade-in">
+      <h2>🔄 动词变形</h2>
+      
+      <h3>动词分类方法</h3>
+      <table class="grammar-table">
+        <thead>
+          <tr>
+            <th>动词类型</th>
+            <th>判断方法</th>
+            <th>例词</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>五段动词</strong></td>
+            <td>词尾是う段假名（う、く、す、つ、ぬ、ぶ、む、る、ぐ）</td>
+            <td class="jp-text">書<ruby>く<rt>か</rt></ruby>、読<ruby>む<rt>よ</rt></ruby>、行<ruby>く<rt>い</rt></ruby></td>
+          </tr>
+          <tr>
+            <td><strong>一段动词</strong></td>
+            <td>词尾是る，前面是い段或え段（少数例外）</td>
+            <td class="jp-text">食<ruby>べる<rt>た</rt></ruby>、見<ruby>る<rt>み</rt></ruby>、起<ruby>きる<rt>お</rt></ruby></td>
+          </tr>
+          <tr>
+            <td><strong>サ变动词</strong></td>
+            <td>する 及其复合词</td>
+            <td class="jp-text">する、勉強<ruby>する<rt>べんきょう</rt></ruby></td>
+          </tr>
+          <tr>
+            <td><strong>カ变动词</strong></td>
+            <td>来る（くる）</td>
+            <td class="jp-text">来<ruby>る<rt>く</rt></ruby></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="tips-box">
+        <h4>💡 判断技巧</h4>
+        <ul>
+          <li>如果不是「る」结尾 → 一定是五段动词</li>
+          <li>如果是「る」结尾 → 看前一个假名
+            <ul>
+              <li>前面是い段（い、き、し、ち、に、ひ、み、り、ぎ）或え段（え、け、せ、て、ね、へ、め、れ、げ）→ 可能是一段动词</li>
+              <li>前面是あ段、う段、お段 → 一定是五段动词</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="warning-box">
+        <strong>⚠️ 常见一段动词误判：</strong><br>
+        <span class="jp-text">帰<ruby>る<rt>かえ</rt></ruby></span>（かえる）- 虽然是える结尾，但是五段动词<br>
+        <span class="jp-text">切<ruby>る<rt>き</rt></ruby></span>（きる）- 虽然是いる结尾，但是五段动词<br>
+        <span class="jp-text">知<ruby>る<rt>し</rt></ruby></span>（しる）- 虽然是いる结尾，但是五段动词
+      </div>
+
+      <h3>五段动词（一类动词）</h3>
+      
+      <h4>四种基本时态变形表</h4>
+      <table class="grammar-table">
+        <thead>
+          <tr>
+            <th>时态</th>
+            <th>词类示例</th>
+            <th>普通体变形</th>
+            <th>敬体变形</th>
+            <th>变形规律</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>现在肯定</td>
+            <td class="jp-text">書<ruby>く<rt>か</rt></ruby>（写）</td>
+            <td class="jp-text">書<ruby>く<rt>か</rt></ruby></td>
+            <td class="jp-text">書<ruby>きます<rt>か</rt></ruby></td>
+            <td>辞书形/う段→い段+ます</td>
+          </tr>
+          <tr>
+            <td>现在否定</td>
+            <td class="jp-text">書<ruby>く<rt>か</rt></ruby>（写）</td>
+            <td class="jp-text">書<ruby>かない<rt>か</rt></ruby></td>
+            <td class="jp-text">書<ruby>きません<rt>か</rt></ruby></td>
+            <td>う段→あ段+ない/+ません</td>
+          </tr>
+          <tr>
+            <td>过去肯定</td>
+            <td class="jp-text">書<ruby>く<rt>か</rt></ruby>（写）</td>
+            <td class="jp-text">書<ruby>いた<rt>か</rt></ruby></td>
+            <td class="jp-text">書<ruby>きました<rt>か</rt></ruby></td>
+            <td>音便+た/+ました</td>
+          </tr>
+          <tr>
+            <td>过去否定</td>
+            <td class="jp-text">書<ruby>く<rt>か</rt></ruby>（写）</td>
+            <td class="jp-text">書<ruby>かなかった<rt>か</rt></ruby></td>
+            <td class="jp-text">書<ruby>きませんでした<rt>か</rt></ruby></td>
+            <td>あ段+なかった/+ませんでした</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>音便规律总结</h4>
+      <table class="grammar-table">
+        <thead>
+          <tr>
+            <th>词尾</th>
+            <th>音便类型</th>
+            <th>た形/て形</th>
+            <th>例词</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>く</td>
+            <td>い音便</td>
+            <td>いた/いて</td>
+            <td class="jp-text">書<ruby>く<rt>か</rt></ruby> → 書<ruby>いた<rt>か</rt></ruby></td>
+          </tr>
+          <tr>
+            <td>ぐ</td>
+            <td>い音便（浊音）</td>
+            <td>いだ/いで</td>
+            <td class="jp-text">泳<ruby>ぐ<rt>およ</rt></ruby> → 泳<ruby>いだ<rt>およ</rt></ruby></td>
+          </tr>
+          <tr>
+            <td>す</td>
+            <td>无音便</td>
+            <td>した/して</td>
+            <td class="jp-text">話<ruby>す<rt>はな</rt></ruby> → 話<ruby>した<rt>はな</rt></ruby></td>
+          </tr>
+          <tr>
+            <td>つ、う、る</td>
+            <td>促音便</td>
+            <td>った/って</td>
+            <td class="jp-text">待<ruby>つ<rt>ま</rt></ruby> → 待<ruby>った<rt>ま</rt></ruby>、買<ruby>う<rt>か</rt></ruby> → 買<ruby>った<rt>か</rt></ruby></td>
+          </tr>
+          <tr>
+            <td>ぬ、ぶ、む</td>
+            <td>拨音便</td>
+            <td>んだ/んで</td>
+            <td class="jp-text">読<ruby>む<rt>よ</rt></ruby> → 読<ruby>んだ<rt>よ</rt></ruby></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning-box">
+        <strong>⚠️ 特例：</strong><span class="jp-text">行<ruby>く<rt>い</rt></ruby> → 行<ruby>った<rt>い</rt></ruby></span>（虽然是く结尾，但用促音便）
+      </div>
+
+      <h3>一段动词（二类动词）</h3>
+      
+      <h4>四种基本时态变形表</h4>
+      <table class="grammar-table">
+        <thead>
+          <tr>
+            <th>时态</th>
+            <th>词类示例</th>
+            <th>普通体变形</th>
+            <th>敬体变形</th>
+            <th>变形规律</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>现在肯定</td>
+            <td class="jp-text">食<ruby>べる<rt>た</rt></ruby>（吃）</td>
+            <td class="jp-text">食<ruby>べる<rt>た</rt></ruby></td>
+            <td class="jp-text">食<ruby>べます<rt>た</rt></ruby></td>
+            <td>辞书形/去る+ます</td>
+          </tr>
+          <tr>
+            <td>现在否定</td>
+            <td class="jp-text">食<ruby>べる<rt>た</rt></ruby>（吃）</td>
+            <td class="jp-text">食<ruby>べない<rt>た</rt></ruby></td>
+            <td class="jp-text">食<ruby>べません<rt>た</rt></ruby></td>
+            <td>去る+ない/+ません</td>
+          </tr>
+          <tr>
+            <td>过去肯定</td>
+            <td class="jp-text">食<ruby>べる<rt>た</rt></ruby>（吃）</td>
+            <td class="jp-text">食<ruby>べた<rt>た</rt></ruby></td>
+            <td class="jp-text">食<ruby>べました<rt>た</rt></ruby></td>
+            <td>去る+た/+ました</td>
+          </tr>
+          <tr>
+            <td>过去否定</td>
+            <td class="jp-text">食<ruby>べる<rt>た</rt></ruby>（吃）</td>
+            <td class="jp-text">食<ruby>べなかった<rt>た</rt></ruby></td>
+            <td class="jp-text">食<ruby>べませんでした<rt>た</rt></ruby></td>
+            <td>去る+なかった/+ませんでした</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="tips-box">
+        <h4>💡 变形规律</h4>
+        <p>一段动词变形非常简单：</p>
+        <ol>
+          <li><strong>去掉词尾「る」</strong></li>
+          <li><strong>直接加上词尾</strong>（ます、ない、た、て等）</li>
+        </ol>
+        <p><strong>例：</strong><span class="jp-text">食<ruby>べる<rt>た</rt></ruby> → 食<ruby>べ<rt>た</rt></ruby></span>（词干）<br>
+        <span class="jp-text">食<ruby>べ<rt>た</rt></ruby> + ます = 食<ruby>べます<rt>た</rt></ruby></span><br>
+        <span class="jp-text">食<ruby>べ<rt>た</rt></ruby> + ない = 食<ruby>べない<rt>た</rt></ruby></span><br>
+        <span class="jp-text">食<ruby>べ<rt>た</rt></ruby> + た = 食<ruby>べた<rt>た</rt></ruby></span></p>
+      </div>
+
+      <h3>サ变动词</h3>
+      
+      <h4>四种基本时态变形表</h4>
+      <table class="grammar-table">
+        <thead>
+          <tr>
+            <th>时态</th>
+            <th>词类示例</th>
+            <th>普通体变形</th>
+            <th>敬体变形</th>
+            <th>变形规律</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>现在肯定</td>
+            <td>する（做）</td>
+            <td>する</td>
+            <td>します</td>
+            <td>する不变/+ます</td>
+          </tr>
+          <tr>
+            <td>现在否定</td>
+            <td>する（做）</td>
+            <td>しない</td>
+            <td>しません</td>
+            <td>し+ない/+ません</td>
+          </tr>
+          <tr>
+            <td>过去肯定</td>
+            <td>する（做）</td>
+            <td>した</td>
+            <td>しました</td>
+            <td>し+た/+ました</td>
+          </tr>
+          <tr>
+            <td>过去否定</td>
+            <td>する（做）</td>
+            <td>しなかった</td>
+            <td>しませんでした</td>
+            <td>し+なかった/+ませんでした</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="info-box">
+        <strong>サ变动词 = 名词 + する</strong><br>
+        • <strong>する</strong> 部分按照不规则变化<br>
+        • <strong>名词部分不变</strong><br>
+        例：<span class="jp-text">勉強<ruby>する<rt>べんきょう</rt></ruby>、散歩<ruby>する<rt>さんぽ</rt></ruby>、掃除<ruby>する<rt>そうじ</rt></ruby></span>
+      </div>
+
+      <h3>カ变动词</h3>
+      
+      <h4>四种基本时态变形表</h4>
+      <table class="grammar-table">
+        <thead>
+          <tr>
+            <th>时态</th>
+            <th>词类示例</th>
+            <th>普通体变形</th>
+            <th>敬体变形</th>
+            <th>变形规律</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>现在肯定</td>
+            <td class="jp-text">来<ruby>る<rt>く</rt></ruby>（来）</td>
+            <td class="jp-text">来<ruby>る<rt>く</rt></ruby></td>
+            <td class="jp-text">来<ruby>ます<rt>き</rt></ruby></td>
+            <td>来る不变/き+ます</td>
+          </tr>
+          <tr>
+            <td>现在否定</td>
+            <td class="jp-text">来<ruby>る<rt>く</rt></ruby>（来）</td>
+            <td class="jp-text">来<ruby>ない<rt>こ</rt></ruby></td>
+            <td class="jp-text">来<ruby>ません<rt>き</rt></ruby></td>
+            <td>こ+ない/き+ません</td>
+          </tr>
+          <tr>
+            <td>过去肯定</td>
+            <td class="jp-text">来<ruby>る<rt>く</rt></ruby>（来）</td>
+            <td class="jp-text">来<ruby>た<rt>き</rt></ruby></td>
+            <td class="jp-text">来<ruby>ました<rt>き</rt></ruby></td>
+            <td>き+た/き+ました</td>
+          </tr>
+          <tr>
+            <td>过去否定</td>
+            <td class="jp-text">来<ruby>る<rt>く</rt></ruby>（来）</td>
+            <td class="jp-text">来<ruby>なかった<rt>こ</rt></ruby></td>
+            <td class="jp-text">来<ruby>ませんでした<rt>き</rt></ruby></td>
+            <td>こ+なかった/き+ませんでした</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning-box">
+        <strong>⚠️ 来る</strong> 是唯一的カ变动词，词干变化不规则：<br>
+        • 辞书形：<span class="jp-text">来<ruby>る<rt>く</rt></ruby></span>（くる）<br>
+        • ます形：<span class="jp-text">来<ruby>ます<rt>き</rt></ruby></span>（きます）- 词干变「き」<br>
+        • ない形：<span class="jp-text">来<ruby>ない<rt>こ</rt></ruby></span>（こない）- 词干变「こ」<br>
+        • た形：<span class="jp-text">来<ruby>た<rt>き</rt></ruby></span>（きた）- 词干变「き」
+      </div>
+    </section>
+
+    <!-- 形容词变形 -->
+    <section id="adjective-conjugation" class="grammar-section fade-in">
+      <h2>🎨 形容词变形</h2>
+      
+      <h3>い形容词</h3>
+      
+      <h4>四种基本时态变形表</h4>
+      <table class="grammar-table">
+        <thead>
+          <tr>
+            <th>时态</th>
+            <th>词类示例</th>
+            <th>普通体变形</th>
+            <th>敬体变形</th>
+            <th>变形规律</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>现在肯定</td>
+            <td class="jp-text">高<ruby>い<rt>たか</rt></ruby>（高）</td>
+            <td class="jp-text">高<ruby>い<rt>たか</rt></ruby></td>
+            <td class="jp-text">高<ruby>いです<rt>たか</rt></ruby></td>
+            <td>不变/+です</td>
+          </tr>
+          <tr>
+            <td>现在否定</td>
+            <td class="jp-text">高<ruby>い<rt>たか</rt></ruby>（高）</td>
+            <td class="jp-text">高<ruby>くない<rt>たか</rt></ruby></td>
+            <td class="jp-text">高<ruby>くないです<rt>たか</rt></ruby></td>
+            <td>い→く+ない/+ないです</td>
+          </tr>
+          <tr>
+            <td>过去肯定</td>
+            <td class="jp-text">高<ruby>い<rt>たか</rt></ruby>（高）</td>
+            <td class="jp-text">高<ruby>かった<rt>たか</rt></ruby></td>
+            <td class="jp-text">高<ruby>かったです<rt>たか</rt></ruby></td>
+            <td>い→かった/+です</td>
+          </tr>
+          <tr>
+            <td>过去否定</td>
+            <td class="jp-text">高<ruby>い<rt>たか</rt></ruby>（高）</td>
+            <td class="jp-text">高<ruby>くなかった<rt>たか</rt></ruby></td>
+            <td class="jp-text">高<ruby>くなかったです<rt>たか</rt></ruby></td>
+            <td>い→く+なかった/+なかったです</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning-box">
+        <strong>⚠️ 特殊变形：いい（良い）</strong><br>
+        いい变形时用「よい」的词干「よ」：<br>
+        • 否定：<span class="jp-text">よくない</span><br>
+        • 过去：<span class="jp-text">よかった</span><br>
+        • 过去否定：<span class="jp-text">よくなかった</span>
+      </div>
+
+      <h3>な形容词</h3>
+      
+      <h4>四种基本时态变形表</h4>
+      <table class="grammar-table">
+        <thead>
+          <tr>
+            <th>时态</th>
+            <th>词类示例</th>
+            <th>普通体变形</th>
+            <th>敬体变形</th>
+            <th>变形规律</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>现在肯定</td>
+            <td class="jp-text">静<ruby>か<rt>しず</rt></ruby>（安静）</td>
+            <td class="jp-text">静<ruby>かだ<rt>しず</rt></ruby></td>
+            <td class="jp-text">静<ruby>かです<rt>しず</rt></ruby></td>
+            <td>词干+だ/+です</td>
+          </tr>
+          <tr>
+            <td>现在否定</td>
+            <td class="jp-text">静<ruby>か<rt>しず</rt></ruby>（安静）</td>
+            <td class="jp-text">静<ruby>かではない<rt>しず</rt></ruby></td>
+            <td class="jp-text">静<ruby>かではありません<rt>しず</rt></ruby></td>
+            <td>词干+ではない/+ではありません</td>
+          </tr>
+          <tr>
+            <td>过去肯定</td>
+            <td class="jp-text">静<ruby>か<rt>しず</rt></ruby>（安静）</td>
+            <td class="jp-text">静<ruby>かだった<rt>しず</rt></ruby></td>
+            <td class="jp-text">静<ruby>かでした<rt>しず</rt></ruby></td>
+            <td>词干+だった/+でした</td>
+          </tr>
+          <tr>
+            <td>过去否定</td>
+            <td class="jp-text">静<ruby>か<rt>しず</rt></ruby>（安静）</td>
+            <td class="jp-text">静<ruby>かではなかった<rt>しず</rt></ruby></td>
+            <td class="jp-text">静<ruby>かではありませんでした<rt>しず</rt></ruby></td>
+            <td>词干+ではなかった/+ではありませんでした</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="info-box">
+        <strong>💡 な形容词的变形类似名词：</strong><br>
+        • <strong>词干部分不变</strong><br>
+        • <strong>加上だ、です、ではない等</strong><br>
+        • 普通体用「だ」，敬体用「です」<br>
+        • 否定形可以用「ではない」或「じゃない」（口语）
+      </div>
+    </section>
+
+    <!-- 名词变形 -->
+    <section id="noun-conjugation" class="grammar-section fade-in">
+      <h2>📝 名词变形</h2>
+      
+      <h3>四种基本时态变形表</h3>
+      <table class="grammar-table">
+        <thead>
+          <tr>
+            <th>时态</th>
+            <th>词类示例</th>
+            <th>普通体变形</th>
+            <th>敬体变形</th>
+            <th>变形规律</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>现在肯定</td>
+            <td class="jp-text">学生<ruby>（<rt>がくせい</rt></ruby>）</td>
+            <td class="jp-text">学生<ruby>だ<rt>がくせい</rt></ruby></td>
+            <td class="jp-text">学生<ruby>です<rt>がくせい</rt></ruby></td>
+            <td>名词+だ/+です</td>
+          </tr>
+          <tr>
+            <td>现在否定</td>
+            <td class="jp-text">学生<ruby>（<rt>がくせい</rt></ruby>）</td>
+            <td class="jp-text">学生<ruby>ではない<rt>がくせい</rt></ruby></td>
+            <td class="jp-text">学生<ruby>ではありません<rt>がくせい</rt></ruby></td>
+            <td>名词+ではない/+ではありません</td>
+          </tr>
+          <tr>
+            <td>过去肯定</td>
+            <td class="jp-text">学生<ruby>（<rt>がくせい</rt></ruby>）</td>
+            <td class="jp-text">学生<ruby>だった<rt>がくせい</rt></ruby></td>
+            <td class="jp-text">学生<ruby>でした<rt>がくせい</rt></ruby></td>
+            <td>名词+だった/+でした</td>
+          </tr>
+          <tr>
+            <td>过去否定</td>
+            <td class="jp-text">学生<ruby>（<rt>がくせい</rt></ruby>）</td>
+            <td class="jp-text">学生<ruby>ではなかった<rt>がくせい</rt></ruby></td>
+            <td class="jp-text">学生<ruby>ではありませんでした<rt>がくせい</rt></ruby></td>
+            <td>名词+ではなかった/+ではありませんでした</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 助词用法总结 -->
+    <section id="particles" class="grammar-section fade-in">
+      <h2>🔗 助词用法总结</h2>
+      
+      <h3>基本助词一览表</h3>
+      <table class="grammar-table">
+        <thead>
+          <tr>
+            <th>助词</th>
+            <th>主要用法</th>
+            <th>例句</th>
+            <th>译文</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>は</strong></td>
+            <td>主题标记</td>
+            <td class="jp-text">私<ruby>は<rt>わたし</rt></ruby>学生<ruby>です<rt>がくせい</rt></ruby></td>
+            <td>我是学生</td>
+          </tr>
+          <tr>
+            <td><strong>が</strong></td>
+            <td>主语标记、强调</td>
+            <td class="jp-text">猫<ruby>がいます<rt>ねこ</rt></ruby></td>
+            <td>有猫</td>
+          </tr>
+          <tr>
+            <td><strong>を</strong></td>
+            <td>宾语标记</td>
+            <td class="jp-text">本<ruby>を<rt>ほん</rt></ruby>読<ruby>む<rt>よ</rt></ruby></td>
+            <td>读书</td>
+          </tr>
+          <tr>
+            <td><strong>に</strong></td>
+            <td>时间、地点、方向</td>
+            <td class="jp-text">学校<ruby>に<rt>がっこう</rt></ruby>行<ruby>く<rt>い</rt></ruby></td>
+            <td>去学校</td>
+          </tr>
+          <tr>
+            <td><strong>へ</strong></td>
+            <td>方向</td>
+            <td class="jp-text">東京<ruby>へ<rt>とうきょう</rt></ruby>行<ruby>く<rt>い</rt></ruby></td>
+            <td>去东京</td>
+          </tr>
+          <tr>
+            <td><strong>で</strong></td>
+            <td>手段、场所、材料</td>
+            <td class="jp-text">バスで行<ruby>く<rt>い</rt></ruby></td>
+            <td>坐巴士去</td>
+          </tr>
+          <tr>
+            <td><strong>と</strong></td>
+            <td>并列、一起</td>
+            <td class="jp-text">AとB</td>
+            <td>A和B</td>
+          </tr>
+          <tr>
+            <td><strong>の</strong></td>
+            <td>所属、修饰</td>
+            <td class="jp-text">私<ruby>の<rt>わたし</rt></ruby>本<ruby><rt>ほん</rt></ruby></td>
+            <td>我的书</td>
+          </tr>
+          <tr>
+            <td><strong>から</strong></td>
+            <td>起点、原因</td>
+            <td class="jp-text">駅<ruby>から<rt>えき</rt></ruby>来<ruby>た<rt>き</rt></ruby></td>
+            <td>从车站来</td>
+          </tr>
+          <tr>
+            <td><strong>まで</strong></td>
+            <td>终点</td>
+            <td class="jp-text">駅<ruby>まで<rt>えき</rt></ruby>行<ruby>く<rt>い</rt></ruby></td>
+            <td>去到车站</td>
+          </tr>
+          <tr>
+            <td><strong>も</strong></td>
+            <td>也</td>
+            <td class="jp-text">私<ruby>も<rt>わたし</rt></ruby>学生<ruby>です<rt>がくせい</rt></ruby></td>
+            <td>我也是学生</td>
+          </tr>
+          <tr>
+            <td><strong>や</strong></td>
+            <td>不完全列举</td>
+            <td class="jp-text">本<ruby>やペン<rt>ほん</rt></ruby></td>
+            <td>书、笔等</td>
+          </tr>
+          <tr>
+            <td><strong>か</strong></td>
+            <td>疑问</td>
+            <td class="jp-text">学生<ruby>ですか<rt>がくせい</rt></ruby></td>
+            <td>是学生吗？</td>
+          </tr>
+          <tr>
+            <td><strong>ね</strong></td>
+            <td>确认、同意</td>
+            <td class="jp-text">いいですね</td>
+            <td>很好呢</td>
+          </tr>
+          <tr>
+            <td><strong>よ</strong></td>
+            <td>提醒、强调</td>
+            <td class="jp-text">行<ruby>きますよ<rt>い</rt></ruby></td>
+            <td>要去哦</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 常见错误与易混淆点 -->
+    <section id="common-mistakes" class="grammar-section fade-in">
+      <h2>⚠️ 常见错误与易混淆点</h2>
+      
+      <h3>常见错误对照表</h3>
+      <table class="grammar-table">
+        <thead>
+          <tr>
+            <th>错误类型</th>
+            <th>错误示例</th>
+            <th>正确形式</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>音便错误</td>
+            <td class="jp-text">書<ruby>きた<rt>か</rt></ruby> ❌</td>
+            <td class="jp-text">書<ruby>いた<rt>か</rt></ruby> ✅</td>
+            <td>く结尾用い音便</td>
+          </tr>
+          <tr>
+            <td>行く特例</td>
+            <td class="jp-text">行<ruby>いた<rt>い</rt></ruby> ❌</td>
+            <td class="jp-text">行<ruby>った<rt>い</rt></ruby> ✅</td>
+            <td>行く是特例，用促音便</td>
+          </tr>
+          <tr>
+            <td>动词分类错误</td>
+            <td class="jp-text">見<ruby>ます<rt>み</rt></ruby>→見<ruby>らない<rt>み</rt></ruby> ❌</td>
+            <td class="jp-text">見<ruby>ない<rt>み</rt></ruby> ✅</td>
+            <td>見る是一段动词</td>
+          </tr>
+          <tr>
+            <td>い形容词</td>
+            <td class="jp-text">高<ruby>いた<rt>たか</rt></ruby> ❌</td>
+            <td class="jp-text">高<ruby>かった<rt>たか</rt></ruby> ✅</td>
+            <td>い→かった</td>
+          </tr>
+          <tr>
+            <td>な形容词</td>
+            <td class="jp-text">静<ruby>かい<rt>しず</rt></ruby> ❌</td>
+            <td class="jp-text">静<ruby>かな<rt>しず</rt></ruby> ✅</td>
+            <td>修饰名词用「な」</td>
+          </tr>
+          <tr>
+            <td>いい变形</td>
+            <td class="jp-text">いかった ❌</td>
+            <td class="jp-text">よかった ✅</td>
+            <td>いい用よ词干</td>
+          </tr>
+          <tr>
+            <td>来る词干</td>
+            <td class="jp-text">来<ruby>ます<rt>こ</rt></ruby>（こます）❌</td>
+            <td class="jp-text">来<ruby>ます<rt>き</rt></ruby>（きます）✅</td>
+            <td>ます形词干是「き」</td>
+          </tr>
+          <tr>
+            <td>する否定</td>
+            <td>するない ❌</td>
+            <td>しない ✅</td>
+            <td>する变し</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>易混淆点详解</h3>
+      
+      <h4>1. は vs が 的区别</h4>
+      <table class="grammar-table">
+        <thead>
+          <tr>
+            <th>用法</th>
+            <th>は</th>
+            <th>が</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>主题</td>
+            <td class="jp-text">私<ruby>は<rt>わたし</rt></ruby>学生<ruby>です<rt>がくせい</rt></ruby> ✅</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>新信息/存在</td>
+            <td>-</td>
+            <td class="jp-text">猫<ruby>がいます<rt>ねこ</rt></ruby> ✅</td>
+          </tr>
+          <tr>
+            <td>疑问词回答</td>
+            <td>-</td>
+            <td class="jp-text">誰<ruby>が<rt>だれ</rt></ruby>来<ruby>ましたか<rt>き</rt></ruby> ✅</td>
+          </tr>
+          <tr>
+            <td>对比</td>
+            <td class="jp-text">これは本<ruby>です<rt>ほん</rt></ruby> ✅</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>强调主语</td>
+            <td>-</td>
+            <td class="jp-text">私<ruby>がやります<rt>わたし</rt></ruby> ✅</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>2. に vs で 的区别</h4>
+      <table class="grammar-table">
+        <thead>
+          <tr>
+            <th>用法</th>
+            <th>に</th>
+            <th>で</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>存在场所</td>
+            <td class="jp-text">東京<ruby>にいる<rt>とうきょう</rt></ruby> ✅</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>动作场所</td>
+            <td>-</td>
+            <td class="jp-text">図書館<ruby>で<rt>としょかん</rt></ruby>勉強<ruby>する<rt>べんきょう</rt></ruby> ✅</td>
+          </tr>
+          <tr>
+            <td>到达点</td>
+            <td class="jp-text">学校<ruby>に<rt>がっこう</rt></ruby>行<ruby>く<rt>い</rt></ruby> ✅</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>手段</td>
+            <td>-</td>
+            <td class="jp-text">バスで行<ruby>く<rt>い</rt></ruby> ✅</td>
+          </tr>
+          <tr>
+            <td>时间点</td>
+            <td class="jp-text">9時<ruby>に<rt>じ</rt></ruby>起<ruby>きる<rt>お</rt></ruby> ✅</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 汉字假名对照表 -->
+    <section id="kanji-table" class="grammar-section fade-in">
+      <h2>📖 汉字假名对照表</h2>
+      
+      <h3>动词汉字</h3>
+      <table class="grammar-table">
+        <thead>
+          <tr>
+            <th>汉字</th>
+            <th>假名</th>
+            <th>意思</th>
+            <th>汉字</th>
+            <th>假名</th>
+            <th>意思</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="jp-text">行<ruby>く<rt>い</rt></ruby></td>
+            <td>いく</td>
+            <td>去</td>
+            <td class="jp-text">来<ruby>る<rt>く</rt></ruby></td>
+            <td>くる</td>
+            <td>来</td>
+          </tr>
+          <tr>
+            <td class="jp-text">書<ruby>く<rt>か</rt></ruby></td>
+            <td>かく</td>
+            <td>写</td>
+            <td class="jp-text">読<ruby>む<rt>よ</rt></ruby></td>
+            <td>よむ</td>
+            <td>读</td>
+          </tr>
+          <tr>
+            <td class="jp-text">聞<ruby>く<rt>き</rt></ruby></td>
+            <td>きく</td>
+            <td>听</td>
+            <td class="jp-text">話<ruby>す<rt>はな</rt></ruby></td>
+            <td>はなす</td>
+            <td>说话</td>
+          </tr>
+          <tr>
+            <td class="jp-text">食<ruby>べる<rt>た</rt></ruby></td>
+            <td>たべる</td>
+            <td>吃</td>
+            <td class="jp-text">飲<ruby>む<rt>の</rt></ruby></td>
+            <td>のむ</td>
+            <td>喝</td>
+          </tr>
+          <tr>
+            <td class="jp-text">見<ruby>る<rt>み</rt></ruby></td>
+            <td>みる</td>
+            <td>看</td>
+            <td class="jp-text">買<ruby>う<rt>か</rt></ruby></td>
+            <td>かう</td>
+            <td>买</td>
+          </tr>
+          <tr>
+            <td class="jp-text">売<ruby>る<rt>う</rt></ruby></td>
+            <td>うる</td>
+            <td>卖</td>
+            <td class="jp-text">会<ruby>う<rt>あ</rt></ruby></td>
+            <td>あう</td>
+            <td>见面</td>
+          </tr>
+          <tr>
+            <td class="jp-text">待<ruby>つ<rt>ま</rt></ruby></td>
+            <td>まつ</td>
+            <td>等</td>
+            <td class="jp-text">帰<ruby>る<rt>かえ</rt></ruby></td>
+            <td>かえる</td>
+            <td>回去</td>
+          </tr>
+          <tr>
+            <td class="jp-text">作<ruby>る<rt>つく</rt></ruby></td>
+            <td>つくる</td>
+            <td>做</td>
+            <td class="jp-text">取<ruby>る<rt>と</rt></ruby></td>
+            <td>とる</td>
+            <td>拿</td>
+          </tr>
+          <tr>
+            <td class="jp-text">乗<ruby>る<rt>の</rt></ruby></td>
+            <td>のる</td>
+            <td>乘坐</td>
+            <td class="jp-text">座<ruby>る<rt>すわ</rt></ruby></td>
+            <td>すわる</td>
+            <td>坐</td>
+          </tr>
+          <tr>
+            <td class="jp-text">立<ruby>つ<rt>た</rt></ruby></td>
+            <td>たつ</td>
+            <td>站</td>
+            <td class="jp-text">歩<ruby>く<rt>ある</rt></ruby></td>
+            <td>あるく</td>
+            <td>走路</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>形容词汉字</h3>
+      <table class="grammar-table">
+        <thead>
+          <tr>
+            <th>汉字</th>
+            <th>假名</th>
+            <th>意思</th>
+            <th>汉字</th>
+            <th>假名</th>
+            <th>意思</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="jp-text">高<ruby>い<rt>たか</rt></ruby></td>
+            <td>たかい</td>
+            <td>高</td>
+            <td class="jp-text">安<ruby>い<rt>やす</rt></ruby></td>
+            <td>やすい</td>
+            <td>便宜</td>
+          </tr>
+          <tr>
+            <td class="jp-text">大<ruby>きい<rt>おお</rt></ruby></td>
+            <td>おおきい</td>
+            <td>大</td>
+            <td class="jp-text">小<ruby>さい<rt>ちい</rt></ruby></td>
+            <td>ちいさい</td>
+            <td>小</td>
+          </tr>
+          <tr>
+            <td class="jp-text">新<ruby>しい<rt>あたら</rt></ruby></td>
+            <td>あたらしい</td>
+            <td>新</td>
+            <td class="jp-text">古<ruby>い<rt>ふる</rt></ruby></td>
+            <td>ふるい</td>
+            <td>旧</td>
+          </tr>
+          <tr>
+            <td class="jp-text">暑<ruby>い<rt>あつ</rt></ruby></td>
+            <td>あつい</td>
+            <td>热</td>
+            <td class="jp-text">寒<ruby>い<rt>さむ</rt></ruby></td>
+            <td>さむい</td>
+            <td>冷</td>
+          </tr>
+          <tr>
+            <td class="jp-text">難<ruby>しい<rt>むずか</rt></ruby></td>
+            <td>むずかしい</td>
+            <td>难</td>
+            <td class="jp-text">易<ruby>しい<rt>やさ</rt></ruby></td>
+            <td>やさしい</td>
+            <td>简单</td>
+          </tr>
+          <tr>
+            <td class="jp-text">静<ruby>か<rt>しず</rt></ruby></td>
+            <td>しずか</td>
+            <td>安静</td>
+            <td class="jp-text">便利<ruby><rt>べんり</rt></ruby></td>
+            <td>べんり</td>
+            <td>方便</td>
+          </tr>
+          <tr>
+            <td class="jp-text">元気<ruby><rt>げんき</rt></ruby></td>
+            <td>げんき</td>
+            <td>精神</td>
+            <td class="jp-text">親切<ruby><rt>しんせつ</rt></ruby></td>
+            <td>しんせつ</td>
+            <td>亲切</td>
+          </tr>
+          <tr>
+            <td class="jp-text">簡単<ruby><rt>かんたん</rt></ruby></td>
+            <td>かんたん</td>
+            <td>简单</td>
+            <td class="jp-text">有名<ruby><rt>ゆうめい</rt></ruby></td>
+            <td>ゆうめい</td>
+            <td>有名</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 学习建议 -->
+    <section class="grammar-section fade-in">
+      <h2>💡 学习建议</h2>
+      
+      <h3>1. 动词变形学习顺序</h3>
+      <ol>
+        <li><strong>先掌握动词分类</strong>（五段、一段、サ变、カ变）</li>
+        <li><strong>记住音便规律</strong>（最重要！）</li>
+        <li><strong>背诵常用动词变形</strong>（从30个开始）</li>
+        <li><strong>大量练习</strong>，形成条件反射</li>
+      </ol>
+
+      <h3>2. 每日练习计划</h3>
+      <ul>
+        <li><strong>第1-7天</strong>：五段动词变形 + 音便规律</li>
+        <li><strong>第8-10天</strong>：一段动词变形</li>
+        <li><strong>第11-12天</strong>：サ变、カ变动词</li>
+        <li><strong>第13-14天</strong>：形容词变形</li>
+        <li><strong>第15天</strong>：综合复习</li>
+      </ul>
+
+      <h3>3. 记忆技巧</h3>
+      <ul>
+        <li>制作单词卡片</li>
+        <li>每天听写10个动词的四种时态</li>
+        <li>用学过的动词造句</li>
+        <li>对照表格自查</li>
+      </ul>
+
+      <div class="tips-box">
+        <h4>🎯 学习目标</h4>
+        <p>通过系统学习本页内容，你将能够：</p>
+        <ul>
+          <li>准确判断动词类型并进行正确变形</li>
+          <li>掌握形容词和名词的时态变化</li>
+          <li>理解并正确使用基本助词</li>
+          <li>避免常见的语法错误</li>
+          <li>为JLPT N5/N4考试打下坚实基础</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 日语学习乐园 | 联系方式: htoptree@163.com</p>
+    <p>頑張って！(加油！) - 一起通过JLPT考试吧！</p>
+  </footer>
+
+  <!-- 火箭回到顶部按钮 -->
+  <div class="rocket-back-to-top" id="rocketBackToTop">
+    <span class="rocket-icon">🚀</span>
+  </div>
+
+  <script>
+    // 滚动动画效果
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // 观察所有需要动画的元素
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // 动态创建樱花
+    function createSakura() {
+      const sakura = document.createElement('div');
+      sakura.className = 'sakura';
+      sakura.innerHTML = '🌸';
+      sakura.style.left = Math.random() * 100 + '%';
+      sakura.style.animationDuration = (Math.random() * 8 + 12) + 's';
+      sakura.style.animationDelay = Math.random() * 3 + 's';
+      document.body.appendChild(sakura);
+
+      setTimeout(() => {
+        sakura.remove();
+      }, 20000);
+    }
+
+    setInterval(createSakura, 5000);
+
+    // 火箭回到顶部功能
+    const rocketButton = document.getElementById('rocketBackToTop');
+    
+    // 监听滚动事件
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        rocketButton.classList.add('visible');
+      } else {
+        rocketButton.classList.remove('visible');
+      }
+    });
+    
+    // 点击火箭按钮回到顶部
+    rocketButton.addEventListener('click', function() {
+      // 平滑滚动到顶部
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      
+      // 添加点击动画效果
+      rocketButton.style.transform = 'translateY(-10px) scale(1.2)';
+      setTimeout(() => {
+        rocketButton.style.transform = '';
+      }, 200);
+    });
+
+    // 平滑滚动到锚点
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
